@@ -50,10 +50,17 @@ preserved unless `--refresh-research` is provided.
 
 ## Explore
 
-- Use **Chat** for conversational instructions, or **Raw text** to continue a passage. The native chat template with an optional system
-  message and assistant prefill. Generate up to 128 tokens, or choose zero
-  to inspect only the prompt. The prompt plus continuation must fit in 512
-  tokens. Generation is greedy and preserves the exact token IDs.
+- Use **Chat** for conversational instructions, or **Raw text** to continue a passage. Chat uses the native template with an optional system
+  message and assistant prefill. The default output budget is **16,819 tokens**;
+  generation stops early at EOS or the chat turn-end token. Choose a smaller
+  budget or zero to inspect only the prompt. Prompts accept up to 4,096 tokens,
+  including template, system, and prefill. Generation is greedy and preserves
+  exact token IDs. Opening an older run preserves your chosen output budget.
+- Long runs retain their full continuation under **Model continuation**.
+  **Inspect positions** pages the token strip, layer grid, and exact traces in
+  windows of 512 tokens. All 192 residuals are saved at every token; additional
+  readout windows are computed on demand and then cached. A read-only viewer
+  can open previously computed windows.
 - Select a token and inspect the layer × token grid with the J-lens, raw
   logit lens, or sparse inventory. Filter loops, the workspace band, and
   prompt/continuation positions. Arrow keys move the selected cell.
@@ -70,7 +77,9 @@ preserved unless `--refresh-research` is provided.
 - Copy a view link or download JSON. Links restore the run, selected cell,
   lens, filters, pins, and inventory settings on the same viewer server.
   Downloads include metadata, token IDs, readouts, computed inventories,
-  exact traces, and view settings. Residual tensors remain on the server.
+  exact traces, and view settings. For long runs, exported readouts and traces
+  cover the selected window (with absolute position offsets), while output text
+  and token IDs cover the complete sequence. Residual tensors remain on the server.
 
 The currency example has a saved live readout ready to open. Research captures
 retain the original generation limits and thought/final-answer flags.
@@ -105,8 +114,20 @@ positions in the chosen loops/layers, both during generation and when
 recording the resulting run. This is an interactive causal probe; a successful
 example is not a statistical reproduction of the paper's headline results.
 
-The checkpoint is BF16, transport is FP32, and inference uses SDPA with no KV
-cache. Runtime device, model revision, lens-family digest, exact inputs, and
+The checkpoint, unembedding, and stored residuals are BF16; Jacobian transport
+and probability/rank calculations use FP32. New live runs use SDPA and an
+explicit `DynamicCache`, with separate KV
+entries for all 192 recurrent sites. Prompt prefill uses 128-token chunks and
+readouts use 64-token batches. Prompt interventions are applied as their
+positions enter the cache; generated positions are not edited. Historical
+runs retain their original uncached-generation provenance. BF16 rounding can
+produce differences between cached/chunked and full-sequence computation.
+
+A maximum-length run retains roughly 31 GiB of KV tensors on the GPU in
+addition to model weights, and roughly 15 GiB of residuals on the host and
+disk. The original server uses a 48 GB L40S on GPU 8; smaller devices may need
+a smaller output budget. Runtime device, model revision, lens-family digest,
+exact inputs, and
 stop flags are recorded. CPU/GPU numerical differences are possible. The
 existing research artifacts and their verification manifests are unchanged.
 See [WORKSPACE_INVENTORY.md](WORKSPACE_INVENTORY.md) for methodological limits.
@@ -115,6 +136,8 @@ See [WORKSPACE_INVENTORY.md](WORKSPACE_INVENTORY.md) for methodological limits.
 
 - `ouro_viewer.py`: localhost server, persistent store, validation and job queue.
 - `ouro_viewer_engine.py`: generation, readouts, exact traces and interventions.
+- `ouro_viewer_inference.py`: chunked prefill, cached decoding and prompt-only edits.
+- `ouro_viewer_limits.py`: generation, prompt and readout-window limits.
 - `export_ouro_viewer.py`: imports the immutable research captures.
 - `ouro-viewer/`: browser interface and local assets.
 - `results/ouro-viewer/runs/`: saved JSON, residuals, traces and cell inventories.
@@ -128,13 +151,14 @@ operations; model loading and an individual forward pass finish first.
 
 ```bash
 # Validation, persistence, serialized cancellation, HTTP scope and read-only mode.
-.venv/bin/python -m unittest -v test_ouro_viewer.py
+.venv/bin/python -m unittest -v test_ouro_viewer test_ouro_viewer_inference test_ouro_viewer_windows
 
 # Browser testing uses a separate environment; do not change model dependencies.
 python3 -m venv /tmp/ouro-browser-env
 /tmp/ouro-browser-env/bin/pip install playwright
 /tmp/ouro-browser-env/bin/playwright install chromium
 /tmp/ouro-browser-env/bin/python test_ouro_viewer_browser.py --live
+/tmp/ouro-browser-env/bin/python test_ouro_viewer_long_browser.py
 ```
 
 The browser acceptance test requires the exported research captures and a
@@ -143,6 +167,11 @@ data: full-vocabulary tracing, sparse pursuit, share/export persistence,
 missing sites, capped thought output, native final-site generation alignment,
 loop-end identity transport, France→China intervention, cancellation, desktop
 and 390px mobile layouts. Omit `--live` for the browsing-only checks.
+The long-output test checks the 16,819 default, natural stopping, 512 generated
+tokens, late-position readouts/ranks/inventories, cached window navigation and
+share/export offsets. [The verification receipt](provenance/long-output-checks.json)
+also records a 20,915-position GPU capacity check using synthetic prefill and
+one decoding step; it does not claim a full 16,819-step generation benchmark.
 
 ## References
 

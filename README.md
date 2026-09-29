@@ -60,12 +60,16 @@ python3 download_artifacts.py --bundle lenses --bundle viewer
 
 Use **Chat** for conversational instructions. **Raw text** continues an input
 as ordinary text, which can produce repetition when used for questions.
-Generation is greedy, allows 0–128 output tokens, and caps prompt plus output
-at 512 tokens. Use the native chat template's system message and optional
+Generation is greedy, defaults to **16,819 output tokens**, and stops early at
+a natural end-of-turn token. Smaller budgets and prompt-only inspection remain
+available. Prompts may use up to 4,096 tokens (including the chat template). Use the native chat template's system message and optional
 assistant prefill when needed. The UI distinguishes capped output and thought
 traces without a final answer.
 
-Live runs capture all 192 sites. Pin concepts for full-vocabulary ranks;
+Live runs capture all 192 sites at every token. Long runs keep the complete
+output and page the layer grid and exact traces in 512-token windows; use
+**Inspect positions** to move through them. Cached decoding keeps the model
+from recomputing the entire prefix for each new token. Pin concepts for full-vocabulary ranks;
 compute a cell's positive sparse inventory; or transfer/remove a concept
 direction and compare its continuation with the saved baseline. See
 [the viewer guide](OURO_VIEWER.md) for controls and scoring semantics.

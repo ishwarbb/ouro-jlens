@@ -13,8 +13,9 @@ import re
 import threading
 import time
 import traceback
-from urllib.parse import urlparse
+from urllib.parse import urlparse,parse_qs
 import uuid
+from ouro_viewer_limits import DEFAULT_NEW_TOKENS,MAX_NEW_TOKENS,MAX_SEQUENCE_TOKENS,READOUT_WINDOW,window_bounds
 
 ROOT=Path(__file__).resolve().parent
 WEB=ROOT/'ouro-viewer'
@@ -59,12 +60,22 @@ class Store:
             except (OSError,ValueError):continue
         return sorted(entries,key=lambda r:(r['kind']=='research',r['created_at']),reverse=True)
 
-    def extras(self,run_id):
+    def window(self,run_id,start):
+        run=self.get(run_id);start,end=window_bounds(start,len(run['tokens']))
+        current=run.get('readout_window',dict(start=0,end=len(run['tokens']),size=READOUT_WINDOW,total=len(run['tokens'])))
+        if current['start']==start:
+            return dict(kind='window',run_id=run_id,window=current,layers=run['layers'],vocabulary=run['vocabulary'])
+        path=self.path(run_id)/f'window-{start:06d}.json'
+        if not path.exists():raise FileNotFoundError('This token window has not been computed yet')
+        return json.loads(path.read_text())
+
+    def extras(self,run_id,start=0):
         directory=self.path(run_id)
         if not (directory/'run.json').exists():raise FileNotFoundError('Saved run not found')
         traces={};inventories={}
         for path in directory.glob('trace-*.json'):
-            value=json.loads(path.read_text());traces[value['word'].strip().lower()]=value
+            value=json.loads(path.read_text())
+            if value.get('position_start',0)==start:traces[value['word'].strip().lower()]=value
         for path in directory.glob('cell-*.json'):
             value=json.loads(path.read_text());inventories[f'{value["site"]}:{value["position"]}']=value
         return dict(traces=traces,inventories=inventories)
@@ -73,7 +84,7 @@ class Store:
 def validate_request(value):
     if not isinstance(value,dict):raise ValueError('Expected a JSON object')
     kind=value.get('kind','analyze')
-    if kind not in ['analyze','trace','inventory','intervene']:raise ValueError('Unknown operation')
+    if kind not in ['analyze','trace','inventory','intervene','window']:raise ValueError('Unknown operation')
     if kind=='analyze':
         prompt=value.get('prompt','')
         if not isinstance(prompt,str) or not prompt.strip():raise ValueError('Enter a prompt to analyze')
@@ -81,15 +92,20 @@ def validate_request(value):
         if value.get('mode','raw') not in ('raw','chat'):raise ValueError('Choose raw text or chat')
         for name in ['system','prefill']:
             if not isinstance(value.get(name,''),str) or len(value.get(name,''))>4000:raise ValueError('Invalid '+name)
-        n=value.get('max_new_tokens',24)
-        if type(n) is not int or not 0<=n<=128:raise ValueError('Output length must be between 0 and 128 tokens')
+        n=value.get('max_new_tokens',DEFAULT_NEW_TOKENS)
+        if type(n) is not int or not 0<=n<=MAX_NEW_TOKENS:raise ValueError(f'Output length must be between 0 and {MAX_NEW_TOKENS:,} tokens')
+        value=dict(value,max_new_tokens=n)
     else:
         if not re.fullmatch(r'[a-zA-Z0-9_-]{1,64}',str(value.get('run_id',''))):raise ValueError('Select a saved run')
     if kind=='trace':
         word=value.get('word','')
         if not isinstance(word,str) or not 0<len(word.strip())<=80:raise ValueError('Enter one concept to trace')
+    if kind in ['trace','window']:
+        start=value.get('start',0)
+        window_bounds(start,MAX_SEQUENCE_TOKENS)
+        value=dict(value,start=start)
     if kind=='inventory':
-        for key,limit in [('site',192),('position',512)]:
+        for key,limit in [('site',192),('position',MAX_SEQUENCE_TOKENS)]:
             if type(value.get(key)) is not int or not 0<=value[key]<limit:raise ValueError('Invalid '+key)
     if kind=='intervene':
         if value.get('operation') not in ['transfer','erase']:raise ValueError('Choose transfer or erase')
@@ -115,7 +131,7 @@ class Jobs:
         with self.lock:
             if sum(j['state'] in ['queued','running'] for j in self.jobs.values())>=4:raise ValueError('The analysis queue is full. Wait for a run to finish.')
             job_id=uuid.uuid4().hex[:16]
-            job=dict(id=job_id,state='queued',phase='Waiting for GPU',progress=0,created_at=now(),cancel=threading.Event())
+            job=dict(id=job_id,kind=payload['kind'],state='queued',phase='Waiting for GPU',progress=0,created_at=now(),cancel=threading.Event())
             self.jobs[job_id]=job
         self.pool.submit(self.work,job_id,payload)
         return self.get(job_id)
@@ -174,15 +190,19 @@ def handler_for(store,jobs):
             self.send(dict(error=str(error)),code)
 
         def do_GET(self):
-            path=urlparse(self.path).path
+            parsed=urlparse(self.path);path=parsed.path
             try:
                 if path=='/api/status':
                     self.send(dict(model='Ouro-2.6B',loops=4,layers_per_loop=48,fit_prompts=1000,
                         live=not jobs.read_only,engine=jobs.engine_state,gpu=jobs.gpu,
-                        device=jobs.engine.device.type if jobs.engine else 'auto'));return
+                        device=jobs.engine.device.type if jobs.engine else 'auto',max_new_tokens=MAX_NEW_TOKENS,
+                        default_new_tokens=DEFAULT_NEW_TOKENS,readout_window=READOUT_WINDOW));return
                 if path=='/api/runs':self.send(store.list());return
                 if path.startswith('/api/runs/') and path.endswith('/extras'):
-                    self.send(store.extras(path[len('/api/runs/'):-len('/extras')]));return
+                    start=int(parse_qs(parsed.query).get('start',['0'])[0])
+                    self.send(store.extras(path[len('/api/runs/'):-len('/extras')],start));return
+                match=re.fullmatch(r'/api/runs/([a-zA-Z0-9_-]{1,64})/windows/(\d+)',path)
+                if match:self.send(store.window(match[1],int(match[2])));return
                 if path.startswith('/api/runs/'):
                     run_id=path.removeprefix('/api/runs/');file=store.path(run_id)/'run.json'
                     if not file.is_file():raise FileNotFoundError('Saved run not found')
@@ -220,6 +240,9 @@ def main():
     parser.add_argument('--read-only',action='store_true')
     args=parser.parse_args();os.environ['CUDA_DEVICE_ORDER']='PCI_BUS_ID';os.environ['CUDA_VISIBLE_DEVICES']=args.gpu
     os.environ['OURO_VIEWER_DEVICE']=args.device
+    # Growing KV tensors otherwise leave many differently sized cached blocks.
+    if 'PYTORCH_ALLOC_CONF' not in os.environ and 'PYTORCH_CUDA_ALLOC_CONF' not in os.environ:
+        os.environ['PYTORCH_ALLOC_CONF']='expandable_segments:True'
     os.environ['TOKENIZERS_PARALLELISM']='false';os.environ['OMP_NUM_THREADS']='2'
     store=Store(args.data);jobs=Jobs(store,read_only=args.read_only,gpu=args.gpu)
     server=ThreadingHTTPServer(('127.0.0.1',args.port),handler_for(store,jobs))

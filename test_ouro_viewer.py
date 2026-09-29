@@ -34,10 +34,33 @@ class ViewerTests(unittest.TestCase):
             with self.subTest(value=value),self.assertRaises(ValueError):self.store.path(value)
 
     def test_invalid_lengths_and_modes_are_rejected(self):
-        for extra in [dict(max_new_tokens=-1),dict(max_new_tokens=129),dict(max_new_tokens=True),dict(max_new_tokens=1.2),dict(mode='invalid')]:
+        for extra in [dict(max_new_tokens=-1),dict(max_new_tokens=16820),dict(max_new_tokens=True),dict(max_new_tokens=1.2),dict(mode='invalid')]:
             with self.subTest(extra=extra),self.assertRaises(ValueError):validate_request(dict(prompt='test',**extra))
         for value in [[],None,dict(prompt=' '),dict(prompt='x'*16001),dict(prompt='hi',system=[])]:
             with self.assertRaises(ValueError):validate_request(value)
+
+    def test_long_output_default_and_window_boundaries(self):
+        self.assertEqual(validate_request(dict(prompt='test'))['max_new_tokens'],16819)
+        for n in [0,128,512,16819]:
+            self.assertEqual(validate_request(dict(prompt='test',max_new_tokens=n))['max_new_tokens'],n)
+        validate_request(dict(kind='inventory',run_id='a',site=191,position=20914))
+        validate_request(dict(kind='window',run_id='a',start=20480))
+        for start in [-512,1,True,20992]:
+            with self.assertRaises(ValueError):validate_request(dict(kind='window',run_id='a',start=start))
+
+    def test_paged_readouts_and_traces_do_not_alias_positions(self):
+        from ouro_viewer import write_json
+        run=self.fixture()|dict(tokens=[dict(id=i) for i in range(600)],vocabulary={},
+            readout_window=dict(start=0,end=512,size=512,total=600))
+        self.store.save(run)
+        self.assertEqual(self.store.window(run['id'],0)['window']['end'],512)
+        with self.assertRaises(FileNotFoundError):self.store.window(run['id'],512)
+        page=dict(kind='window',run_id=run['id'],window=dict(start=512,end=600,size=512,total=600),layers=[],vocabulary={})
+        write_json(self.store.path(run['id'])/'window-000512.json',page)
+        self.assertEqual(self.store.window(run['id'],512),page)
+        for start in [0,512]:write_json(self.store.path(run['id'])/f'trace-{start}.json',dict(word='Italy',position_start=start,layers={}))
+        self.assertEqual(self.store.extras(run['id'],512)['traces']['italy']['position_start'],512)
+        self.assertEqual(self.store.extras(run['id'])['traces']['italy']['position_start'],0)
 
     def test_intervention_constraints_precede_model_loading(self):
         valid=dict(kind='intervene',run_id='sample',operation='transfer',source='France',destination='China',loops=[2,3,4],band=[24,40])
@@ -48,7 +71,7 @@ class ViewerTests(unittest.TestCase):
             with self.subTest(extra=extra),self.assertRaises(ValueError):validate_request(valid|extra)
 
     def test_trace_and_inventory_boundaries(self):
-        for value in [dict(kind='trace',run_id='a',word=' '),dict(kind='inventory',run_id='a',site=192,position=0),dict(kind='inventory',run_id='a',site=0,position=512)]:
+        for value in [dict(kind='trace',run_id='a',word=' '),dict(kind='inventory',run_id='a',site=192,position=0),dict(kind='inventory',run_id='a',site=0,position=20915)]:
             with self.assertRaises(ValueError):validate_request(value)
 
     def test_jobs_are_serial_and_cancelled_before_execution(self):

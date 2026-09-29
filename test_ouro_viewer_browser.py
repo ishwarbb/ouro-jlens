@@ -8,10 +8,10 @@ import json
 from pathlib import Path
 import time
 
-from playwright.sync_api import sync_playwright
 
 
 def main():
+    from playwright.sync_api import sync_playwright
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--url', default='http://127.0.0.1:8769')
     parser.add_argument('--output', type=Path, default=Path('results/ouro-viewer/verification'))
@@ -70,7 +70,8 @@ def main():
             assert page.evaluate('Object.keys(S.traces.italy.layers).length') == 192
             assert page.evaluate('S.traces.italy.layers[128].jlens.ranks.length === S.run.tokens.length')
             passed('exact full-vocabulary concept trace', concept='Italy')
-            page.locator('#compute-inventory').click()
+            if page.locator('#compute-inventory').is_visible():page.locator('#compute-inventory').click()
+            else:page.locator('[data-lens="inventory"]').click()
             page.wait_for_function('!S.busy && S.lens === "inventory"', timeout=360000)
             assert not page.locator('#error-banner').is_visible()
             assert page.locator('#readout-units').inner_text() == 'coefficient / ‖state‖'

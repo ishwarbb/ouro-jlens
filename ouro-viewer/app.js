@@ -13,14 +13,14 @@ const EXAMPLES = {
 };
 const S = {run:null,runs:[],layers:new Map(),loop:3,site:128,position:0,lens:'jlens',mode:'raw',pins:[],activePin:null,
   traces:{},cellInventory:{},busy:false,job:null,live:true,cellWidth:78,rowHeight:23,gutter:67,header:40,
-  rows:[],positions:[],conceptKey:'',cachedConcepts:[],loadSequence:0};
+  rows:[],positions:[],window:null,windowBusy:false,conceptKey:'',cachedConcepts:[],loadSequence:0};
 const traceCache = new Map();
 let toastTimer,paintFrame;
 
 async function api(path,options={}) {
   const response = await fetch(path,options);
   const data = await response.json();
-  if (!response.ok) throw new Error(data.error || `Request failed (${response.status})`);
+  if (!response.ok) { const failure=new Error(data.error || `Request failed (${response.status})`);failure.status=response.status;throw failure; }
   return data;
 }
 const post = (path,value) => api(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(value)});
@@ -48,15 +48,16 @@ function renderRuns() {
 }
 
 function setMode(mode) { S.mode=mode;document.querySelectorAll('#prompt-mode button').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));$('chat-options').hidden=mode!=='chat'; }
-function fillComposer(input) { $('prompt').value=input.prompt||'';setMode(input.mode||'raw');$('system').value=input.system||'';$('prefill').value=input.prefill||'';const n=String(input.max_new_tokens??16);if (![...$('max-tokens').options].some(o=>o.value===n))$('max-tokens').add(new Option(`${n} tokens`,n));$('max-tokens').value=n; }
+function fillComposer(input) { $('prompt').value=input.prompt||'';setMode(input.mode||'raw');$('system').value=input.system||'';$('prefill').value=input.prefill||''; }
 function composerPayload() { return {kind:'analyze',prompt:$('prompt').value,mode:S.mode,system:$('system').value,prefill:$('prefill').value,max_new_tokens:Number($('max-tokens').value)}; }
 
 async function loadRun(runId,view=null) {
   const sequence=++S.loadSequence;clearError();$('run-list').setAttribute('aria-busy','true');$('run-loader').hidden=false;
   try {
-    const [run,extras]=await Promise.all([api(`/api/runs/${encodeURIComponent(runId)}`),api(`/api/runs/${encodeURIComponent(runId)}/extras`)]);
+    let [run,extras]=await Promise.all([api(`/api/runs/${encodeURIComponent(runId)}`),api(`/api/runs/${encodeURIComponent(runId)}/extras`)]);
+    if(run.readout_window?.start)extras=await api(`/api/runs/${encodeURIComponent(runId)}/extras?start=${run.readout_window.start}`);
     if(sequence!==S.loadSequence)return;
-    S.run=run;S.layers=new Map(run.layers.map(l=>[l.site,l]));S.traces=extras.traces||{};S.pins=[];S.activePin=null;S.cellInventory={};S.conceptKey='';
+    S.run=run;S.window=run.readout_window||{start:0,end:run.tokens.length,size:512,total:run.tokens.length};S.layers=new Map(run.layers.map(l=>[l.site,l]));S.traces=extras.traces||{};S.pins=[];S.activePin=null;S.cellInventory={};S.conceptKey='';
     for(const [key,result] of Object.entries(extras.inventories||{})){S.cellInventory[key]=result.inventory;Object.assign(run.vocabulary,result.vocabulary);}
     S.loop=view&&[0,1,2,3,4].includes(Number(view.loop))?Number(view.loop):3;
     S.site=view&&Number.isInteger(Number(view.site))?Math.max(0,Math.min(191,Number(view.site))):128;
@@ -81,7 +82,11 @@ async function loadRun(runId,view=null) {
     $('continuation-preview').innerHTML=previews.map(([label,g])=>`<div><span class="eyebrow">${label}</span><p>${esc(g.answer_text||(g.unclosed_thought?'No final answer within this token budget.':g.output_tokens?'No visible output.':'Prompt-only readout; no continuation requested.'))}</p>${g.had_thought?`<details><summary>Full trace, including thought tokens</summary><pre>${esc(g.raw_text)}</pre></details>`:''}</div>`).join('');
     $('provenance-content').textContent=JSON.stringify({model:run.model,provenance:run.provenance,generation:run.generation,
       exact_input:run.prompt_text,sequence_ids:run.tokens.map(t=>t.id),intervention:run.intervention,notes:run.notes},null,2);
-    renderRuns();renderAll();scrollSelection();updateHash();$('sidebar').classList.remove('open');
+    renderRuns();renderAll();scrollSelection();$('sidebar').classList.remove('open');
+    const desired=Number(view?.window??Math.floor(S.position/512)*512);
+    if(desired!==S.window.start)await loadWindow(desired);
+    if(sequence!==S.loadSequence)return;
+    updateHash();
     if(view?.pins)for(const word of view.pins.split(',').filter(Boolean).slice(0,4))addPin(word);
   } finally { if(sequence===S.loadSequence){$('run-list').removeAttribute('aria-busy');$('run-loader').hidden=true;} }
 }
@@ -101,6 +106,7 @@ async function startJob(payload) {
     if(job.state==='failed')throw new Error(job.error);
     if(job.state==='cancelled'){toast('Analysis cancelled.');return;}
     if(job.result.kind==='run'){await refreshRuns();await loadRun(job.result.run_id);toast('Analysis saved. Click a cell to explore.');}
+    else if(job.result.kind==='window'&&job.result.run_id===S.run?.id){await applyWindow(job.result);}
     else if(job.result.kind==='inventory'&&job.result.run_id===S.run?.id){
       const result=job.result;S.cellInventory[`${result.site}:${result.position}`]=result.inventory;Object.assign(S.run.vocabulary,result.vocabulary);
       S.lens='inventory';S.site=result.site;S.position=result.position;S.conceptKey='';renderAll();scrollSelection();updateHash();toast('Sparse inventory computed for this cell.');
@@ -109,10 +115,47 @@ async function startJob(payload) {
   finally { S.busy=false;S.job=null;$('job-panel').hidden=true;$('analyze-button').disabled=!S.live;$('intervene-open').disabled=!S.live;status(); }
 }
 
-function viewState() { return {run:S.run?.id||'',lens:S.lens,loop:String(S.loop),site:String(S.site),pos:String(S.position),pins:S.pins.map(p=>p.word).join(','),
+function viewState() { return {run:S.run?.id||'',lens:S.lens,loop:String(S.loop),site:String(S.site),pos:String(S.position),window:String(S.window?.start||0),pins:S.pins.map(p=>p.word).join(','),
   band:$('workspace-only').checked?'1':'0',special:$('show-special').checked?'1':'0',scope:$('position-scope').value,k:$('inventory-k').value,theta:$('inventory-threshold').value,zoom:String(S.cellWidth)}; }
 function updateHash() { if(S.run)history.replaceState(null,'','#'+new URLSearchParams(viewState()).toString()); }
-function positions() { if(!S.run)return[];const scope=$('position-scope').value;return S.run.tokens.filter(t=>($('show-special').checked||!t.special)&&(scope==='all'||t.segment===scope)).map(t=>t.position); }
+function positions() { if(!S.run)return[];const scope=$('position-scope').value;return S.run.tokens.slice(S.window.start,S.window.end).filter(t=>($('show-special').checked||!t.special)&&(scope==='all'||t.segment===scope)).map(t=>t.position); }
+function renderPaging() {
+  const w=S.window;$('token-paging').hidden=w.total<=512;
+  $('token-window').innerHTML=Array.from({length:Math.ceil(w.total/512)},(_,i)=>{
+    const start=i*512;return `<option value="${start}">${start.toLocaleString()}–${(Math.min(start+512,w.total)-1).toLocaleString()} of ${w.total.toLocaleString()}</option>`;
+  }).join('');
+  $('token-window').value=String(w.start);$('token-window').disabled=S.windowBusy;
+  $('window-prev').disabled=S.windowBusy||w.start===0;$('window-next').disabled=S.windowBusy||w.end>=w.total;
+}
+async function applyWindow(result) {
+  const runId=result.run_id,sequence=S.loadSequence;
+  const extras=await api(`/api/runs/${encodeURIComponent(runId)}/extras?start=${result.window.start}`);
+  if(S.run?.id!==runId||S.loadSequence!==sequence)return;
+  const pins=S.pins.map(p=>p.word);S.window=result.window;S.run.readout_window=result.window;
+  S.run.layers=result.layers;S.layers=new Map(result.layers.map(l=>[l.site,l]));Object.assign(S.run.vocabulary,result.vocabulary);
+  S.traces=extras.traces||{};S.pins=[];S.activePin=null;S.conceptKey='';
+  for(const [key,cell] of Object.entries(extras.inventories||{})){S.cellInventory[key]=cell.inventory;Object.assign(S.run.vocabulary,cell.vocabulary);}
+  if(S.position<S.window.start||S.position>=S.window.end)S.position=positions()[0]??S.window.start;
+  renderAll();scrollSelection();updateHash();
+  for(const word of pins)addPin(word);
+}
+async function loadWindow(start) {
+  if(!S.run||start===S.window.start)return;
+  if(S.busy||S.windowBusy){toast('Wait for the current analysis to finish.');renderPaging();return;}
+  const runId=S.run.id,sequence=S.loadSequence;S.windowBusy=true;renderPaging();clearError();
+  try {
+    let result;
+    try { result=await api(`/api/runs/${encodeURIComponent(runId)}/windows/${start}`); }
+    catch(e){
+      if(e.status!==404)throw e;
+      if(!S.live)throw new Error('This token window has not been computed. Open the live viewer to compute it.');
+      if(S.run?.id===runId&&sequence===S.loadSequence)await startJob({kind:'window',run_id:runId,start});
+      return;
+    }
+    if(S.run?.id===runId&&sequence===S.loadSequence)await applyWindow(result);
+  } catch(e){error(e.message);}
+  finally {S.windowBusy=false;if(S.run)renderPaging();}
+}
 function rows() { const band=$('workspace-only').checked;return Array.from({length:192},(_,s)=>s).filter(s=>(S.loop===0||Math.floor(s/48)+1===S.loop)&&(!band||(s%48>=24&&s%48<=40))); }
 function inventoryAt(layer,position) {
   const extra=S.cellInventory[`${layer?.site}:${position}`];const value=extra||layer?.inventory;const index=extra?0:position;
@@ -125,6 +168,7 @@ function inventoryAt(layer,position) {
 function cellItems(site,position,lens=S.lens) {
   const layer=S.layers.get(site);if(!layer)return null;
   if(lens==='inventory')return inventoryAt(layer,position)?.items??null;
+  position-=layer.position_start||0;
   const data=layer[lens];if(!data?.ids[position])return null;
   return data.ids[position].map((id,i)=>({id,value:data.probabilities[position][i],selection:i+1}));
 }
@@ -135,8 +179,8 @@ function pinRank(site,position,pin,lens=S.lens) {
     const hit=items.find(x=>canonical(textFor(x.id))===canonical(pin.word));
     return {rank:hit?hit.selection:null,value:hit?.value||0,exact:false,inventory:true,found:!!hit};
   }
-  const exact=S.traces[canonical(pin.word)]?.layers[String(site)]?.[lens];
-  if(exact)return {rank:exact.ranks[position],value:exact.probabilities[position],exact:true,found:true};
+  const trace=S.traces[canonical(pin.word)],exact=trace?.layers[String(site)]?.[lens],offset=position-(trace?.position_start||0);
+  if(exact&&exact.ranks[offset]!==undefined)return {rank:exact.ranks[offset],value:exact.probabilities[offset],exact:true,found:true};
   const items=cellItems(site,position,lens);if(items===null)return null;
   const matches=items.filter(x=>canonical(textFor(x.id))===canonical(pin.word));
   return {rank:matches.length?matches[0].selection:null,value:matches.reduce((s,x)=>s+x.value,0),exact:false,found:matches.length>0};
@@ -153,10 +197,10 @@ function renderAll() {
   $('grid-subtitle').textContent=S.lens==='jlens'?'Transported to each loop’s own end':S.lens==='logit'?'Raw state, directly unembedded':'Positive sparse reconstruction';
   $('inventory-coverage').textContent=S.run.layers.some(l=>l.inventory)?'Full recorded grid':`${Object.keys(S.cellInventory).length} computed cell(s)`;
   const pin=currentPin();$('grid-legend').innerHTML=pin?`<span style="color:${pin.color}">●</span> ${esc(pin.word)} · ${S.lens==='inventory'?'coefficient':'rank'}`:`<span class="legend-gradient"></span>low → high ${S.lens==='inventory'?'coefficient':'probability'}`;
-  renderTranscript();renderInspector();renderPins();renderTrace();renderConcepts();schedulePaint();
+  renderPaging();renderTranscript();renderInspector();renderPins();renderTrace();renderConcepts();schedulePaint();
 }
 function renderTranscript() {
-  $('transcript').innerHTML=S.run.tokens.filter(t=>$('show-special').checked||!t.special).map(t=>`<button class="token ${t.segment} ${t.special?'special':''} ${t.position===S.position?'selected':''}" data-position="${t.position}" title="Position ${t.position} · token ID ${t.id} · ${esc(t.text)}" aria-label="Token ${t.position}: ${esc(t.text)}" aria-pressed="${t.position===S.position}">${esc(tokenLabel(t.text))}</button>`).join('');
+  $('transcript').innerHTML=S.run.tokens.slice(S.window.start,S.window.end).filter(t=>$('show-special').checked||!t.special).map(t=>`<button class="token ${t.segment} ${t.special?'special':''} ${t.position===S.position?'selected':''}" data-position="${t.position}" title="Position ${t.position} · token ID ${t.id} · ${esc(t.text)}" aria-label="Token ${t.position}: ${esc(t.text)}" aria-pressed="${t.position===S.position}">${esc(tokenLabel(t.text))}</button>`).join('');
 }
 function renderInspector() {
   const token=S.run.tokens[S.position],loop=Math.floor(S.site/48)+1,physical=S.site%48;
@@ -272,23 +316,23 @@ async function addPin(raw) {
   if(S.pins.length>=4){toast('Unpin a concept before adding another (up to four).');return;}
   if(!S.run){toast('Open a run before tracing a concept.');return;}
   const pin={word,color:COLORS[S.pins.length],loading:false};S.pins.push(pin);S.activePin=word;renderAll();updateHash();
-  const runId=S.run.id,key=`${runId}:${canonical(word)}`;
+  const runId=S.run.id,start=S.window.start,key=`${runId}:${start}:${canonical(word)}`;
   if(S.traces[canonical(word)])return;
   if(traceCache.has(key)){S.traces[canonical(word)]=traceCache.get(key);renderAll();return;}
   if(!S.live)return;
   pin.loading=true;renderPins();
   try {
-    const submitted=await post('/api/jobs',{kind:'trace',run_id:runId,word});let job=submitted;
+    const submitted=await post('/api/jobs',{kind:'trace',run_id:runId,word,start});let job=submitted;
     while(!['complete','failed','cancelled'].includes(job.state)){await delay(700);job=await api(`/api/jobs/${submitted.id}`);}
     if(job.state!=='complete')throw new Error(job.error||'Trace cancelled');
     traceCache.set(key,job.result);
-    if(S.run?.id===runId){S.traces[canonical(word)]=job.result;pin.loading=false;renderAll();}
-  }catch(e){pin.loading=false;if(S.run?.id===runId){renderPins();toast(e.message);}}
+    if(S.run?.id===runId&&S.window.start===start){S.traces[canonical(word)]=job.result;pin.loading=false;renderAll();}
+  }catch(e){pin.loading=false;if(S.run?.id===runId&&S.window.start===start){renderPins();toast(e.message);}}
 }
 function renderTrace() {
   if(!S.pins.length){$('trace-chart').innerHTML='<div class="chart-empty">Click a readout token or pin a word to follow its rank through the loops.</div>';$('trace-caption').textContent='Exact ranks use the full vocabulary. Saved top-8 matches appear while a trace loads.';return;}
   const width=700,height=160,left=36,right=14,top=22,bottom=26,iw=width-left-right,ih=height-top-bottom;
-  const exact=S.pins.some(p=>S.traces[canonical(p.word)]),max=exact?Math.max(10000,...S.pins.flatMap(p=>Object.values(S.traces[canonical(p.word)]?.layers||{}).map(v=>v[S.lens==='logit'?'logit':'jlens'].ranks[S.position]||1))):8;
+  const exact=S.pins.some(p=>S.traces[canonical(p.word)]),max=exact?Math.max(10000,...S.pins.flatMap(p=>Object.values(S.traces[canonical(p.word)]?.layers||{}).map(v=>v[S.lens==='logit'?'logit':'jlens'].ranks[S.position-(S.traces[canonical(p.word)]?.position_start||0)]||1))):8;
   const x=s=>left+s/191*iw,y=r=>top+Math.log10(Math.max(1,r))/Math.log10(max)*ih;
   let svg=`<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Concept rank across virtual layers at token ${S.position}">`;
   for(let loop=0;loop<4;loop++){
@@ -315,7 +359,7 @@ function renderTrace() {
 }
 
 function renderConcepts() {
-  const key=[S.run.id,S.lens,S.loop,$('workspace-only').checked,$('show-special').checked,$('position-scope').value,$('inventory-k').value,$('inventory-threshold').value,Object.keys(S.cellInventory).length].join(':');
+  const key=[S.run.id,S.window.start,S.lens,S.loop,$('workspace-only').checked,$('show-special').checked,$('position-scope').value,$('inventory-k').value,$('inventory-threshold').value,Object.keys(S.cellInventory).length].join(':');
   if(key!==S.conceptKey){
     const counts=new Map();
     for(const layer of S.run.layers){if(S.loop&&layer.loop!==S.loop)continue;if($('workspace-only').checked&&(layer.physical<24||layer.physical>40))continue;
@@ -325,20 +369,25 @@ function renderConcepts() {
     }
     S.cachedConcepts=[...counts.values()].sort((a,b)=>b.count-a.count).slice(0,12);S.conceptKey=key;
   }
-  $('concept-caption').textContent=`${S.lens==='inventory'?'Retained inventory atoms':'Saved top-8 word occurrences'} · ${S.loop?'loop '+S.loop:'all loops'} · ${$('workspace-only').checked?'physical layers 24–40':'all physical layers'}`;
+  $('concept-caption').textContent=`${S.lens==='inventory'?'Retained inventory atoms':'Saved top-8 word occurrences'} · ${S.loop?'loop '+S.loop:'all loops'} · positions ${S.window.start}–${S.window.end-1} · ${$('workspace-only').checked?'physical layers 24–40':'all physical layers'}`;
   $('concept-list').innerHTML=S.cachedConcepts.length?S.cachedConcepts.map(v=>`<button class="concept-item" data-pin="${esc(v.word)}" title="${v.count} matching slots. Click to trace ${esc(v.word)}."><div><strong>${esc(v.word)}</strong><small>${v.count.toLocaleString()}</small></div><div class="concept-spark" aria-label="Occurrences by loop: ${v.loops.join(', ')}">${v.loops.map(n=>`<span style="height:${Math.max(2,n/Math.max(...v.loops)*20)}px"></span>`).join('')}</div></button>`).join(''):'<div class="tiny muted">No word atoms in this selection. Try another scope or compute an inventory.</div>';
 }
 
 async function example(name) {
   const input=EXAMPLES[name];fillComposer(input);$('sidebar').classList.remove('open');
   const cached=S.runs.find(r=>r.kind==='live'&&r.input.prompt===input.prompt&&r.input.mode===input.mode);
-  if(cached)await loadRun(cached.id);else await startJob({...input,kind:'analyze'});
+  if(cached)await loadRun(cached.id);else await startJob(composerPayload());
 }
 
 $('prompt-mode').addEventListener('click',e=>{const b=e.target.closest('[data-mode]');if(b)setMode(b.dataset.mode);});
+$('token-window').addEventListener('change',()=>loadWindow(Number($('token-window').value)));
+$('window-prev').addEventListener('click',()=>loadWindow(Math.max(0,S.window.start-512)));
+$('window-next').addEventListener('click',()=>loadWindow(S.window.start+512));
+try { const saved=localStorage.getItem('ouro-output-budget-v2');if(saved&&[...$('max-tokens').options].some(o=>o.value===saved))$('max-tokens').value=saved; } catch(_) {}
+$('max-tokens').addEventListener('change',()=>{try{localStorage.setItem('ouro-output-budget-v2',$('max-tokens').value);}catch(_) {}});
 $('analyze-button').addEventListener('click',()=>startJob(composerPayload()));
 $('cancel-job').addEventListener('click',async()=>{if(S.job){try{await post(`/api/cancel/${S.job}`,{});$('job-phase').textContent='Cancelling after the current operation…';}catch(e){error(e.message);}}});
-$('new-run').addEventListener('click',()=>{S.run=null;S.pins=[];S.loadSequence++;$('analysis').hidden=true;$('welcome').hidden=false;fillComposer({prompt:'',mode:'raw',max_new_tokens:16});renderRuns();history.replaceState(null,'',location.pathname);$('prompt').focus();$('sidebar').classList.remove('open');});
+$('new-run').addEventListener('click',()=>{S.run=null;S.pins=[];S.loadSequence++;$('analysis').hidden=true;$('welcome').hidden=false;fillComposer({prompt:'',mode:'raw'});renderRuns();history.replaceState(null,'',location.pathname);$('prompt').focus();$('sidebar').classList.remove('open');});
 document.querySelectorAll('[data-example]').forEach(b=>b.addEventListener('click',()=>example(b.dataset.example).catch(e=>error(e.message))));
 $('welcome-example').addEventListener('click',()=>example('currency').catch(e=>error(e.message)));
 $('refresh-runs').addEventListener('click',()=>refreshRuns().then(()=>toast('Saved runs refreshed.')).catch(e=>error(e.message)));

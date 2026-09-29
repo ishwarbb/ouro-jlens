@@ -1,0 +1,158 @@
+{
+  "completed_at": "2026-09-29T17:43:40.233478+00:00",
+  "passed": true,
+  "limits": {
+    "default_output_tokens": 16819,
+    "maximum_output_tokens": 16819,
+    "maximum_prompt_tokens": 4096,
+    "readout_window_tokens": 512
+  },
+  "unit_tests": {
+    "passed": 64,
+    "seconds": 4.632,
+    "command": "PYTHONPATH=jacobian-lens OMP_NUM_THREADS=2 .venv/bin/python -m unittest discover",
+    "coverage": [
+      "cached vs full FP32 tiny Ouro forwards at every recurrent site",
+      "chunked prompt transfer and erasure",
+      "frozen transfer equivalence",
+      "hook/cache cleanup on failure",
+      "late-position exact rank and probability",
+      "legacy and per-site residual storage",
+      "validation and HTTP boundaries"
+    ]
+  },
+  "capacity": {
+    "check": "long cached prefill plus one generated token",
+    "positions": 20915,
+    "sites": 192,
+    "max_new_tokens": 16819,
+    "max_prompt_tokens": 4096,
+    "elapsed_seconds": 90.32,
+    "peak_allocated_gib": 35.87,
+    "peak_reserved_gib": 40.67,
+    "gpu": "NVIDIA L40S",
+    "physical_gpu": 8,
+    "finite": true,
+    "limitation": "Synthetic prefill validates full context capacity; this does not run 16,819 sequential decoding steps."
+  },
+  "bf16_comparison": {
+    "prompt": "The capital of France is the city of",
+    "argmax_matches": true,
+    "max_state_absolute_difference": 0.4375,
+    "max_logit_absolute_difference": 0.375,
+    "interpretation": "BF16 cached and uncached paths are not bit-identical. Tight numerical equivalence is checked separately on the FP32 tiny model."
+  },
+  "live_browser": {
+    "live": true,
+    "checks": [
+      {
+        "name": "recorded live run opens with all 192 sites",
+        "run_id": "52222d748155"
+      },
+      {
+        "name": "lens, scope, loop, token selection and keyboard navigation agree with saved data"
+      },
+      {
+        "name": "exact full-vocabulary concept trace",
+        "concept": "Italy"
+      },
+      {
+        "name": "real sparse cell inventory"
+      },
+      {
+        "name": "share URL, persistent extras and JSON download round trip",
+        "view": {
+          "run": "52222d748155",
+          "lens": "inventory",
+          "loop": "3",
+          "site": "129",
+          "pos": "14",
+          "window": "0",
+          "pins": "Italy",
+          "band": "1",
+          "special": "1",
+          "scope": "all",
+          "k": "16",
+          "theta": "0.01",
+          "zoom": "105"
+        }
+      },
+      {
+        "name": "research inventory controls and explicitly missing loop-end target"
+      },
+      {
+        "name": "capped thought-only output is not shown as a final answer"
+      },
+      {
+        "name": "live greedy generation agrees with final-site readout; loop ends are identity transport",
+        "baseline": {
+          "id": "d775b3c165e6",
+          "answer": " Paris. It is an important city not"
+        }
+      },
+      {
+        "name": "France \u2192 China intervention changes Paris to Beijing and preserves baseline",
+        "edited": {
+          "id": "02b894c8a381",
+          "answer": " Beijing.\n\nThe capital of France",
+          "baseline_id": "d775b3c165e6"
+        }
+      },
+      {
+        "name": "live job cancellation"
+      },
+      {
+        "name": "390px phone layout and intervention dialog fit viewport"
+      },
+      {
+        "name": "320px, 768px and 1024px responsive widths have no page overflow"
+      },
+      {
+        "name": "no browser JavaScript exceptions"
+      }
+    ],
+    "browser_errors": [],
+    "completed_at": "2026-09-29T17:42:50Z"
+  },
+  "long_browser": {
+    "checks": [
+      {
+        "name": "16,819 default survives opening an older 8-token run"
+      },
+      {
+        "name": "16,819-token request stops naturally at end of turn",
+        "run_id": "2f3eed612dd4",
+        "generated": 3
+      },
+      {
+        "name": "generation exceeds 128; full output retained; initial window contains last prompt token",
+        "id": "03df022faed5",
+        "prompt_length": 720,
+        "total": 1232,
+        "generated": 512
+      },
+      {
+        "name": "late-token J-lens readout, exact rank and sparse inventory use absolute positions",
+        "position": 1231
+      },
+      {
+        "name": "late-window share URL and export preserve full sequence and window offsets"
+      },
+      {
+        "name": "cached navigation restores matching traces; long-run controls fit mobile"
+      }
+    ],
+    "browser_errors": [],
+    "completed_at": "2026-09-29T17:41:47Z"
+  },
+  "implementation_sha256": {
+    "ouro_viewer.py": "801e01694e3ee95a7e360b672fd866803190a47396e4dd3f07243fe1ac9b15f5",
+    "ouro_viewer_engine.py": "a4a46890749fd4da39eb4a0a405c7c65ed97057cd1985b95fd48939281f81b6d",
+    "ouro_viewer_inference.py": "44b367220bfd997cc266ad8df445caa572ae7a146fad675f3f27e39ad608a8cb",
+    "ouro_viewer_limits.py": "074a2c58a3185da8985fd1387437107d52b0439da795f603d08ac99737d5ed20",
+    "ouro-viewer/app.js": "f7ffd125ae75ddf9d9c130780a9aa3515b0f1cd996ba6058f40e4d1674da0b0b",
+    "ouro-viewer/index.html": "d2807780670a4a5a4db22738c603f6b7e963584caca49ed2548644973fb4ea18",
+    "ouro-viewer/app.css": "6984bfadc12475eafd163b2303f0a73401bc935d3bc7f417244142c38c5ec9ce"
+  },
+  "frozen_research": "Existing research code, fit results and manifests were not modified."
+}
