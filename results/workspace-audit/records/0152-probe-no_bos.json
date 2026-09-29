@@ -1,0 +1,500 @@
+{
+  "id": "0152-probe-no_bos",
+  "spec": {
+    "family": "probe",
+    "item": {
+      "name": "vehicle-power-bicycle",
+      "category": "vehicle-power",
+      "prompt": "Fact: The source of power for the two-wheeled vehicle ridden in the Tour de France is the rider's",
+      "intermediate": "bicycle",
+      "answer": "legs",
+      "swap_to": "train",
+      "swap_answer": "engine"
+    },
+    "id": "0152-probe-no_bos",
+    "profile": "no_bos"
+  },
+  "result": {
+    "prompt": "Fact: The source of power for the two-wheeled vehicle ridden in the Tour de France is the rider's",
+    "input_ids": [
+      13486,
+      42,
+      378,
+      2257,
+      282,
+      1149,
+      327,
+      260,
+      827,
+      29,
+      12621,
+      21097,
+      5756,
+      412,
+      4181,
+      281,
+      260,
+      14257,
+      367,
+      4649,
+      314,
+      260,
+      27884,
+      506
+    ],
+    "baseline": {
+      "scores": {
+        "47": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 3,
+              "top1": false,
+              "top5": true,
+              "probability": 0.017408259212970734
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 3,
+              "top1": false,
+              "top5": true,
+              "probability": 0.017462806776165962
+            }
+          }
+        },
+        "95": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.25948506593704224
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.2594875991344452
+            }
+          }
+        },
+        "143": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.28575924038887024
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.2857600450515747
+            }
+          }
+        },
+        "191": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 2,
+              "top1": false,
+              "top5": true,
+              "probability": 0.20693403482437134
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 2,
+              "top1": false,
+              "top5": true,
+              "probability": 0.20693470537662506
+            }
+          }
+        }
+      },
+      "top5": [
+        {
+          "token_id": 5501,
+          "token": " muscles",
+          "probability": 0.2496100813150406
+        },
+        {
+          "token_id": 7225,
+          "token": " legs",
+          "probability": 0.20693403482437134
+        },
+        {
+          "token_id": 1475,
+          "token": " leg",
+          "probability": 0.1107638031244278
+        },
+        {
+          "token_id": 4666,
+          "token": " muscle",
+          "probability": 0.0810365304350853
+        },
+        {
+          "token_id": 1248,
+          "token": " body",
+          "probability": 0.0810365304350853
+        }
+      ]
+    },
+    "source": "bicycle",
+    "answer": "legs",
+    "source_token_id": 19018,
+    "source_is_category_member": null,
+    "trials": [
+      {
+        "destination": "train",
+        "expected": "engine",
+        "destination_token_id": 4445,
+        "whole_answer_eligible": true,
+        "conditions": {
+          "baseline": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 3,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.017408259212970734
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 3,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.017462806776165962
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 28,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0025065066292881966
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 28,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.002441099379211664
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.25948506593704224
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.2594875991344452
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 26,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0016444717766717076
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 26,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.001643293653614819
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.28575924038887024
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.2857600450515747
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 28,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.001410102122463286
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 28,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0014092064229771495
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 2,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.20693403482437134
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 2,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.20693470537662506
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 24,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.002161250915378332
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 24,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.002160263480618596
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 5501,
+                "token": " muscles",
+                "probability": 0.2496100813150406
+              },
+              {
+                "token_id": 7225,
+                "token": " legs",
+                "probability": 0.20693403482437134
+              },
+              {
+                "token_id": 1475,
+                "token": " leg",
+                "probability": 0.1107638031244278
+              },
+              {
+                "token_id": 4666,
+                "token": " muscle",
+                "probability": 0.0810365304350853
+              },
+              {
+                "token_id": 1248,
+                "token": " body",
+                "probability": 0.0810365304350853
+              }
+            ]
+          },
+          "transfer": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 3,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.017408259212970734
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 3,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.017462806776165962
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 28,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0025065066292881966
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 28,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.002441099379211664
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 2,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.0766935646533966
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 2,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.07669433951377869
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 25,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.004332861863076687
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 25,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.004327648784965277
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 2,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.053879283368587494
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 2,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.05388030409812927
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 35,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00286200107075274
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 35,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0028563954401761293
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 8,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.039521973580121994
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 8,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.03952452540397644
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 59,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.001536420313641429
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 59,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0015332497423514724
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 1439,
+                "token": " energy",
+                "probability": 0.06121283024549484
+              },
+              {
+                "token_id": 4299,
+                "token": " strength",
+                "probability": 0.05750413239002228
+              },
+              {
+                "token_id": 1149,
+                "token": " power",
+                "probability": 0.05750413239002228
+              },
+              {
+                "token_id": 1248,
+                "token": " body",
+                "probability": 0.05750413239002228
+              },
+              {
+                "token_id": 5501,
+                "token": " muscles",
+                "probability": 0.05402013286948204
+              }
+            ]
+          }
+        },
+        "intervention_eligible": true
+      }
+    ]
+  },
+  "seconds": 0.42838597297668457,
+  "manifest_sha256": "04733c4b6e1a3262976391f022832d52fee7badb7bd615760c6ebb671fd6adb4"
+}

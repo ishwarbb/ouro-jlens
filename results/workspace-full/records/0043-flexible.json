@@ -1,0 +1,73 @@
+{
+  "id": "0043-flexible",
+  "family": "flexible",
+  "specification": {
+    "family": "flexible",
+    "category": "animals",
+    "function": {
+      "name": "class",
+      "template": "Biologically, a {arg} is a type of",
+      "answers": {
+        "lion": "cat",
+        "eagle": "bird",
+        "shark": "fish",
+        "spider": "arachnid"
+      }
+    },
+    "argument": "spider",
+    "arguments": [
+      "lion",
+      "eagle",
+      "shark",
+      "spider"
+    ],
+    "id": "0043-flexible"
+  },
+  "manifest_sha256": "337caf4c026671f1acb52b5408c081844e6300f6586934be90c853c73fa10df5",
+  "result": {
+    "prompt": "Biologically, a spider is a type of",
+    "category": "animals",
+    "argument": "spider",
+    "function": "class",
+    "baseline_answer": {
+      "eligible": false,
+      "rank": null,
+      "top1": false,
+      "top5": false,
+      "probability": null
+    },
+    "trials": [
+      {
+        "source": "spider",
+        "destination": "lion",
+        "answer": "arachnid",
+        "swap_answer": "cat",
+        "source_token_id": 16198,
+        "destination_token_id": 16433,
+        "eligible": false,
+        "reason": "At least one concept/answer lacks a whole-token form"
+      },
+      {
+        "source": "spider",
+        "destination": "eagle",
+        "answer": "arachnid",
+        "swap_answer": "bird",
+        "source_token_id": 16198,
+        "destination_token_id": 22261,
+        "eligible": false,
+        "reason": "At least one concept/answer lacks a whole-token form"
+      },
+      {
+        "source": "spider",
+        "destination": "shark",
+        "answer": "arachnid",
+        "swap_answer": "fish",
+        "source_token_id": 16198,
+        "destination_token_id": 17521,
+        "eligible": false,
+        "reason": "At least one concept/answer lacks a whole-token form"
+      }
+    ]
+  },
+  "seconds": 0.2209014892578125
+}

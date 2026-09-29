@@ -1,0 +1,492 @@
+{
+  "id": "0070-probe-no_bos",
+  "spec": {
+    "family": "probe",
+    "item": {
+      "name": "beverage-source-wine",
+      "category": "beverage-source",
+      "prompt": "Fact: The fruit that the alcoholic drink served at communion is made from is the",
+      "intermediate": "wine",
+      "answer": "grape",
+      "swap_to": "beer",
+      "swap_answer": "barley"
+    },
+    "id": "0070-probe-no_bos",
+    "profile": "no_bos"
+  },
+  "result": {
+    "prompt": "Fact: The fruit that the alcoholic drink served at communion is made from is the",
+    "input_ids": [
+      13486,
+      42,
+      378,
+      4354,
+      338,
+      260,
+      24028,
+      5968,
+      5019,
+      418,
+      32522,
+      314,
+      1135,
+      429,
+      314,
+      260
+    ],
+    "baseline": {
+      "scores": {
+        "47": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 127,
+              "top1": false,
+              "top5": false,
+              "probability": 0.00017681368626654148
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 127,
+              "top1": false,
+              "top5": false,
+              "probability": 0.0001873495348263532
+            }
+          }
+        },
+        "95": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.030574262142181396
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.030745048075914383
+            }
+          }
+        },
+        "143": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.3928767144680023
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.3929409384727478
+            }
+          }
+        },
+        "191": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.461002916097641
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.461039662361145
+            }
+          }
+        }
+      },
+      "top5": [
+        {
+          "token_id": 17040,
+          "token": " grape",
+          "probability": 0.461002916097641
+        },
+        {
+          "token_id": 1142,
+          "token": " same",
+          "probability": 0.051723089069128036
+        },
+        {
+          "token_id": 18214,
+          "token": " grapes",
+          "probability": 0.035548727959394455
+        },
+        {
+          "token_id": 476,
+          "token": " \"",
+          "probability": 0.03137164190411568
+        },
+        {
+          "token_id": 4354,
+          "token": " fruit",
+          "probability": 0.029470928013324738
+        }
+      ]
+    },
+    "source": "wine",
+    "answer": "grape",
+    "source_token_id": 8289,
+    "source_is_category_member": null,
+    "trials": [
+      {
+        "destination": "beer",
+        "expected": "barley",
+        "destination_token_id": 12682,
+        "whole_answer_eligible": true,
+        "conditions": {
+          "baseline": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 127,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00017681368626654148
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 127,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0001873495348263532
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1313,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 6.897129060234874e-05
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1313,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 8.920050458982587e-05
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.030574262142181396
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.030745048075914383
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 244,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0003848731575999409
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 244,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0003994221624452621
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3928767144680023
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3929409384727478
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 208,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00029700566665269434
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 208,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00029723733314312994
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.461002916097641
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.461039662361145
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 369,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0001242641592398286
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 369,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0001243318256456405
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 17040,
+                "token": " grape",
+                "probability": 0.461002916097641
+              },
+              {
+                "token_id": 1142,
+                "token": " same",
+                "probability": 0.051723089069128036
+              },
+              {
+                "token_id": 18214,
+                "token": " grapes",
+                "probability": 0.035548727959394455
+              },
+              {
+                "token_id": 476,
+                "token": " \"",
+                "probability": 0.03137164190411568
+              },
+              {
+                "token_id": 4354,
+                "token": " fruit",
+                "probability": 0.029470928013324738
+              }
+            ]
+          },
+          "transfer": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 127,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00017681368626654148
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 127,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0001873495348263532
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1313,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 6.897129060234874e-05
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1313,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 8.920050458982587e-05
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 404,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.000279110943665728
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 404,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0002794276806525886
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 19,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.006762238685041666
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 19,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.006762821227312088
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 598,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00016452437557745725
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 598,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00016461120685562491
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 63,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0017143833683803678
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 63,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0017144914017990232
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1627,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 4.124943006900139e-05
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1627,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 4.1269879147876054e-05
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 95,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0011867957655340433
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 95,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0011869670124724507
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 582,
+                "token": " one",
+                "probability": 0.10683193802833557
+              },
+              {
+                "token_id": 12682,
+                "token": " beer",
+                "probability": 0.08320079743862152
+              },
+              {
+                "token_id": 476,
+                "token": " \"",
+                "probability": 0.07342445105314255
+              },
+              {
+                "token_id": 377,
+                "token": " P",
+                "probability": 0.03468325361609459
+              },
+              {
+                "token_id": 15830,
+                "token": " Bud",
+                "probability": 0.021036455407738686
+              }
+            ]
+          }
+        },
+        "intervention_eligible": true
+      }
+    ]
+  },
+  "seconds": 0.42303991317749023,
+  "manifest_sha256": "04733c4b6e1a3262976391f022832d52fee7badb7bd615760c6ebb671fd6adb4"
+}

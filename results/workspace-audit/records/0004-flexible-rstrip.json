@@ -1,0 +1,1177 @@
+{
+  "id": "0004-flexible-rstrip",
+  "spec": {
+    "family": "flexible",
+    "category": "countries",
+    "function": {
+      "name": "language",
+      "template": "Most people in {arg} speak",
+      "answers": {
+        "France": "French",
+        "Canada": "English",
+        "China": "Chinese",
+        "Egypt": "Arabic"
+      }
+    },
+    "argument": "France",
+    "arguments": [
+      "France",
+      "Canada",
+      "China",
+      "Egypt"
+    ],
+    "id": "0004-flexible-rstrip",
+    "profile": "rstrip"
+  },
+  "result": {
+    "prompt": "Most people in France speak",
+    "input_ids": [
+      0,
+      6101,
+      701,
+      281,
+      4649,
+      3287
+    ],
+    "baseline": {
+      "scores": {
+        "47": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.3822859823703766
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.3823048174381256
+            }
+          }
+        },
+        "95": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.7788261771202087
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.7788270115852356
+            }
+          }
+        },
+        "143": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.906978964805603
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.9069791436195374
+            }
+          }
+        },
+        "191": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.9489379525184631
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.9489381909370422
+            }
+          }
+        }
+      },
+      "top5": [
+        {
+          "token_id": 3432,
+          "token": " French",
+          "probability": 0.9479219913482666
+        },
+        {
+          "token_id": 216,
+          "token": " ",
+          "probability": 0.008730059489607811
+        },
+        {
+          "token_id": 256,
+          "token": "  ",
+          "probability": 0.005636550020426512
+        },
+        {
+          "token_id": 2483,
+          "token": " _",
+          "probability": 0.0032116095535457134
+        },
+        {
+          "token_id": 198,
+          "token": "\n",
+          "probability": 0.0026625178288668394
+        }
+      ]
+    },
+    "source": "France",
+    "answer": "French",
+    "source_token_id": 4649,
+    "source_is_category_member": null,
+    "trials": [
+      {
+        "destination": "Canada",
+        "expected": "English",
+        "destination_token_id": 4004,
+        "whole_answer_eligible": true,
+        "conditions": {
+          "baseline": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3822859823703766
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3823048174381256
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 2,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.03832505643367767
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 2,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.03832505643367767
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7788261771202087
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7788270115852356
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 43,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0006717209471389651
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 43,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0006717209471389651
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.906978964805603
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.9069791436195374
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 36,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00032500087399967015
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 36,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00032500087399967015
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.9489379525184631
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.9489381909370422
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 54,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00012512416287790984
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 54,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00012512416287790984
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 3432,
+                "token": " French",
+                "probability": 0.9479219913482666
+              },
+              {
+                "token_id": 216,
+                "token": " ",
+                "probability": 0.008730059489607811
+              },
+              {
+                "token_id": 256,
+                "token": "  ",
+                "probability": 0.005636550020426512
+              },
+              {
+                "token_id": 2483,
+                "token": " _",
+                "probability": 0.0032116095535457134
+              },
+              {
+                "token_id": 198,
+                "token": "\n",
+                "probability": 0.0026625178288668394
+              }
+            ]
+          },
+          "transfer": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3822859823703766
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3823048174381256
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 2,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.03832505643367767
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 2,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.03832505643367767
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 17,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0021119697485119104
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 17,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.002113830763846636
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7516874074935913
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7516874074935913
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 63,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0002574473910499364
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 63,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0002575141843408346
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7665002942085266
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7665002942085266
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 55,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00021110493980813771
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 55,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00021113907860126346
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.858298122882843
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.858298122882843
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 2321,
+                "token": " English",
+                "probability": 0.8558818697929382
+              },
+              {
+                "token_id": 6805,
+                "token": " Canadian",
+                "probability": 0.017763260751962662
+              },
+              {
+                "token_id": 732,
+                "token": " what",
+                "probability": 0.013834042474627495
+              },
+              {
+                "token_id": 418,
+                "token": " at",
+                "probability": 0.009507989510893822
+              },
+              {
+                "token_id": 216,
+                "token": " ",
+                "probability": 0.008931929245591164
+              }
+            ]
+          }
+        },
+        "intervention_eligible": true
+      },
+      {
+        "destination": "China",
+        "expected": "Chinese",
+        "destination_token_id": 3275,
+        "whole_answer_eligible": true,
+        "conditions": {
+          "baseline": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3822859823703766
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3823048174381256
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 187,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00030814099591225386
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 187,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00035062088863924146
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7788261771202087
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7788270115852356
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1236,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 1.0367343747930136e-06
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1236,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 1.3443558373182896e-06
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.906978964805603
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.9069791436195374
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 849,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 7.203908012343163e-07
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 849,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 8.273489129351219e-07
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.9489379525184631
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.9489381909370422
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1385,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 1.8478118590792292e-07
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1385,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 2.463040971178998e-07
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 3432,
+                "token": " French",
+                "probability": 0.9479219913482666
+              },
+              {
+                "token_id": 216,
+                "token": " ",
+                "probability": 0.008730059489607811
+              },
+              {
+                "token_id": 256,
+                "token": "  ",
+                "probability": 0.005636550020426512
+              },
+              {
+                "token_id": 2483,
+                "token": " _",
+                "probability": 0.0032116095535457134
+              },
+              {
+                "token_id": 198,
+                "token": "\n",
+                "probability": 0.0026625178288668394
+              }
+            ]
+          },
+          "transfer": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3822859823703766
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3823048174381256
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 187,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00030814099591225386
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 187,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00035062088863924146
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 134,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0003286803257651627
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 134,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.000337138248141855
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.22379916906356812
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.2239152193069458
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 376,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 3.143180219922215e-05
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 376,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 3.276689676567912e-05
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.2679803669452667
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.26799219846725464
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 474,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 9.49839704844635e-06
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 474,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 1.0408956768515054e-05
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 2,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.16078317165374756
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 2,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.1607847362756729
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 37108,
+                "token": " Mandarin",
+                "probability": 0.463670551776886
+              },
+              {
+                "token_id": 4097,
+                "token": " Chinese",
+                "probability": 0.1602402627468109
+              },
+              {
+                "token_id": 253,
+                "token": " a",
+                "probability": 0.09130214154720306
+              },
+              {
+                "token_id": 9942,
+                "token": " Standard",
+                "probability": 0.06275098770856857
+              },
+              {
+                "token_id": 634,
+                "token": " some",
+                "probability": 0.04051508009433746
+              }
+            ]
+          }
+        },
+        "intervention_eligible": true
+      },
+      {
+        "destination": "Egypt",
+        "expected": "Arabic",
+        "destination_token_id": 4754,
+        "whole_answer_eligible": true,
+        "conditions": {
+          "baseline": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3822859823703766
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3823048174381256
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 99,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0007075497996993363
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 99,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0007237951504066586
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7788261771202087
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7788270115852356
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 66,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00028766391915269196
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 66,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0002884616260416806
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.906978964805603
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.9069791436195374
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 27,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00047152259503491223
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 27,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0004724330792669207
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.9489379525184631
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.9489381909370422
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 36,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00023302054614759982
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 36,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00023336734739132226
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 3432,
+                "token": " French",
+                "probability": 0.9479219913482666
+              },
+              {
+                "token_id": 216,
+                "token": " ",
+                "probability": 0.008730059489607811
+              },
+              {
+                "token_id": 256,
+                "token": "  ",
+                "probability": 0.005636550020426512
+              },
+              {
+                "token_id": 2483,
+                "token": " _",
+                "probability": 0.0032116095535457134
+              },
+              {
+                "token_id": 198,
+                "token": "\n",
+                "probability": 0.0026625178288668394
+              }
+            ]
+          },
+          "transfer": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3822859823703766
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3823048174381256
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 99,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0007075497996993363
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 99,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0007237951504066586
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 75,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0003933871630579233
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 75,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00039356955676339567
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.5041477680206299
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.5042803883552551
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 99,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 5.046612204751e-05
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 99,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 5.0472430302761495e-05
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.8114656209945679
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.8119983673095703
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 51,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 5.331442298484035e-05
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 51,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 5.331957800081e-05
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.8854171633720398
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.8859238624572754
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 12428,
+                "token": " Arabic",
+                "probability": 0.8848626017570496
+              },
+              {
+                "token_id": 11240,
+                "token": " Egyptian",
+                "probability": 0.05314012989401817
+              },
+              {
+                "token_id": 7242,
+                "token": " Modern",
+                "probability": 0.019549161195755005
+              },
+              {
+                "token_id": 253,
+                "token": " a",
+                "probability": 0.014302471652626991
+              },
+              {
+                "token_id": 2321,
+                "token": " English",
+                "probability": 0.004942802246659994
+              }
+            ]
+          }
+        },
+        "intervention_eligible": true
+      }
+    ]
+  },
+  "seconds": 0.7870557308197021,
+  "manifest_sha256": "04733c4b6e1a3262976391f022832d52fee7badb7bd615760c6ebb671fd6adb4"
+}

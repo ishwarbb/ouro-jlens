@@ -1,0 +1,101 @@
+<!doctype html><meta charset="utf-8"><title>Ouro Jacobian lens pilot</title><style>body{max-width:1100px;margin:40px auto;padding:0 20px;font:16px/1.5 system-ui;color:#17212b}table{border-collapse:collapse;width:100%;margin:20px 0}td,th{border-bottom:1px solid #d8dfe5;text-align:left;padding:10px;vertical-align:top}code,pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f6f8}pre{padding:14px}details{border:1px solid #ccd4dc;border-radius:6px;padding:12px;margin:14px 0}summary{cursor:pointer;font-weight:600}.note{background:#fff5d9;padding:14px}</style><h1>Ouro-2.6B Jacobian lens</h1><p>Historical four-site pilot; see the standalone Ouro workspace explorer for the full fit.</p>
+<p><strong>10 fitting passages · 64 tokens each · 4 fitted sites · 272.2 seconds of fitting</strong></p>
+<p class="note">This is a small pilot lens, fitted on neutral text. It is not an honesty classifier and does not establish lens quality across tasks. Only the four listed sites are fitted; the adapter supports all 192 layer/pass positions.</p>
+<p>Each row below lists the top vocabulary tokens after transporting an activation into the final-layer basis. The output row uses the model’s actual final readout. Token rankings are qualitative checks; their logits are not honesty scores.</p>
+<h2>Fitted sites</h2><table><tr><th>Virtual site (zero-based)</th><th>Pass and physical layer (one-based)</th><th>Matrix shape</th></tr>
+<tr><td>47</td><td>Pass 1, layer 48</td><td>2048 × 2048</td></tr>
+<tr><td>95</td><td>Pass 2, layer 48</td><td>2048 × 2048</td></tr>
+<tr><td>143</td><td>Pass 3, layer 48</td><td>2048 × 2048</td></tr>
+<tr><td>190</td><td>Pass 4, layer 47</td><td>2048 × 2048</td></tr>
+</table><p>Target: pass 4, layer 48, before final normalization. Readout applies the final normalization exactly once. Weights were frozen and KV caching disabled during fitting.</p>
+<h2>Held-out readout</h2><pre>The traveler packed a coat because the forecast said the evening would be cold. To keep warm outside, she decided to wear her</pre><table><tr><th>Readout</th><th>Top 10 next-token readings</th></tr>
+<tr><td>Pass 1, layer 48</td><td><code>&#x27;largest&#x27;</code> &nbsp; <code>&#x27;Comb&#x27;</code> &nbsp; <code>&#x27;comb&#x27;</code> &nbsp; <code>&#x27;Pair&#x27;</code> &nbsp; <code>&#x27; Comb&#x27;</code> &nbsp; <code>&#x27; biggest&#x27;</code> &nbsp; <code>&#x27; largest&#x27;</code> &nbsp; <code>&#x27;hors&#x27;</code> &nbsp; <code>&#x27; Pair&#x27;</code> &nbsp; <code>&#x27; Larg&#x27;</code></td></tr>
+<tr><td>Pass 2, layer 48</td><td><code>&#x27;\n\n\n&#x27;</code> &nbsp; <code>&#x27;\n\n&#x27;</code> &nbsp; <code>&#x27; __________&#x27;</code> &nbsp; <code>&#x27; ____&#x27;</code> &nbsp; <code>&#x27; ______&#x27;</code> &nbsp; <code>&#x27; _____&#x27;</code> &nbsp; <code>&#x27; ....&#x27;</code> &nbsp; <code>&#x27; ___&#x27;</code> &nbsp; <code>&#x27; __________________&#x27;</code> &nbsp; <code>&#x27;\n\n\n\n&#x27;</code></td></tr>
+<tr><td>Pass 3, layer 48</td><td><code>&#x27; blue&#x27;</code> &nbsp; <code>&#x27; ball&#x27;</code> &nbsp; <code>&#x27; yellow&#x27;</code> &nbsp; <code>&#x27; pink&#x27;</code> &nbsp; <code>&#x27; popcorn&#x27;</code> &nbsp; <code>&#x27; brown&#x27;</code> &nbsp; <code>&#x27; balls&#x27;</code> &nbsp; <code>&#x27; earthqu&#x27;</code> &nbsp; <code>&#x27; socks&#x27;</code> &nbsp; <code>&#x27; water&#x27;</code></td></tr>
+<tr><td>Pass 4, layer 47</td><td><code>&#x27; coat&#x27;</code> &nbsp; <code>&#x27; jacket&#x27;</code> &nbsp; <code>&#x27; hat&#x27;</code> &nbsp; <code>&#x27; warmest&#x27;</code> &nbsp; <code>&#x27; heaviest&#x27;</code> &nbsp; <code>&#x27; wool&#x27;</code> &nbsp; <code>&#x27; scar&#x27;</code> &nbsp; <code>&#x27; gloves&#x27;</code> &nbsp; <code>&#x27; swe&#x27;</code> &nbsp; <code>&#x27; coats&#x27;</code></td></tr>
+<tr><td>Model output</td><td><code>&#x27; coat&#x27;</code> &nbsp; <code>&#x27; jacket&#x27;</code> &nbsp; <code>&#x27; favorite&#x27;</code> &nbsp; <code>&#x27; hat&#x27;</code> &nbsp; <code>&#x27; winter&#x27;</code> &nbsp; <code>&#x27; gloves&#x27;</code> &nbsp; <code>&#x27; new&#x27;</code> &nbsp; <code>&#x27; heavy&#x27;</code> &nbsp; <code>&#x27; wool&#x27;</code> &nbsp; <code>&#x27; thick&#x27;</code></td></tr>
+</table>
+<h2>Held-out readout</h2><pre>The teacher wrote a simple addition problem on the board. After counting three apples and two more apples, the student said that the total was</pre><table><tr><th>Readout</th><th>Top 10 next-token readings</th></tr>
+<tr><td>Pass 1, layer 48</td><td><code>&#x27; largest&#x27;</code> &nbsp; <code>&#x27;largest&#x27;</code> &nbsp; <code>&#x27; smallest&#x27;</code> &nbsp; <code>&#x27; biggest&#x27;</code> &nbsp; <code>&#x27;列&#x27;</code> &nbsp; <code>&#x27;comb&#x27;</code> &nbsp; <code>&#x27; combinations&#x27;</code> &nbsp; <code>&#x27; Comb&#x27;</code> &nbsp; <code>&#x27; combination&#x27;</code> &nbsp; <code>&#x27;Comb&#x27;</code></td></tr>
+<tr><td>Pass 2, layer 48</td><td><code>&#x27; again&#x27;</code> &nbsp; <code>&#x27; halfway&#x27;</code> &nbsp; <code>&#x27; nearer&#x27;</code> &nbsp; <code>&#x27; sixty&#x27;</code> &nbsp; <code>&#x27; sixth&#x27;</code> &nbsp; <code>&#x27; six&#x27;</code> &nbsp; <code>&#x27; fifty&#x27;</code> &nbsp; <code>&#x27; __________&#x27;</code> &nbsp; <code>&#x27; ______&#x27;</code> &nbsp; <code>&#x27; blue&#x27;</code></td></tr>
+<tr><td>Pass 3, layer 48</td><td><code>&#x27; halfway&#x27;</code> &nbsp; <code>&#x27; again&#x27;</code> &nbsp; <code>&#x27; fifty&#x27;</code> &nbsp; <code>&#x27; five&#x27;</code> &nbsp; <code>&#x27; unnecess&#x27;</code> &nbsp; <code>&#x27; half&#x27;</code> &nbsp; <code>&#x27; nearer&#x27;</code> &nbsp; <code>&#x27; irres&#x27;</code> &nbsp; <code>&#x27; six&#x27;</code> &nbsp; <code>&#x27; sixty&#x27;</code></td></tr>
+<tr><td>Pass 4, layer 47</td><td><code>&#x27; five&#x27;</code> &nbsp; <code>&#x27; four&#x27;</code> &nbsp; <code>&#x27; six&#x27;</code> &nbsp; <code>&#x27; three&#x27;</code> &nbsp; <code>&#x27; seven&#x27;</code> &nbsp; <code>&#x27; eight&#x27;</code> &nbsp; <code>&#x27; nine&#x27;</code> &nbsp; <code>&#x27; Five&#x27;</code> &nbsp; <code>&#x27; twelve&#x27;</code> &nbsp; <code>&#x27; two&#x27;</code></td></tr>
+<tr><td>Model output</td><td><code>&#x27; five&#x27;</code> &nbsp; <code>&#x27; four&#x27;</code> &nbsp; <code>&#x27; &#x27;</code> &nbsp; <code>&#x27; &quot;&#x27;</code> &nbsp; <code>&#x27; three&#x27;</code> &nbsp; <code>&#x27; six&#x27;</code> &nbsp; <code>&#x27; two&#x27;</code> &nbsp; <code>&#x27; seven&#x27;</code> &nbsp; <code>&#x27; not&#x27;</code> &nbsp; <code>&#x27; eight&#x27;</code></td></tr>
+</table>
+<h2>Held-out readout</h2><pre>After reading the recipe carefully, the cook poured water into a pot and placed it on the stove. As the water grew hotter, it began to</pre><table><tr><th>Readout</th><th>Top 10 next-token readings</th></tr>
+<tr><td>Pass 1, layer 48</td><td><code>&#x27; combination&#x27;</code> &nbsp; <code>&#x27; ring&#x27;</code> &nbsp; <code>&#x27;comb&#x27;</code> &nbsp; <code>&#x27; sun&#x27;</code> &nbsp; <code>&#x27; eating&#x27;</code> &nbsp; <code>&#x27; biggest&#x27;</code> &nbsp; <code>&#x27; plate&#x27;</code> &nbsp; <code>&#x27; combinations&#x27;</code> &nbsp; <code>&#x27; grate&#x27;</code> &nbsp; <code>&#x27; largest&#x27;</code></td></tr>
+<tr><td>Pass 2, layer 48</td><td><code>&#x27;\n\n&#x27;</code> &nbsp; <code>&#x27;\n\n\n&#x27;</code> &nbsp; <code>&#x27;\n&#x27;</code> &nbsp; <code>&#x27; change&#x27;</code> &nbsp; <code>&#x27; __________&#x27;</code> &nbsp; <code>&#x27; changes&#x27;</code> &nbsp; <code>&#x27; bump&#x27;</code> &nbsp; <code>&#x27; ______&#x27;</code> &nbsp; <code>&#x27; __________________&#x27;</code> &nbsp; <code>&#x27; movement&#x27;</code></td></tr>
+<tr><td>Pass 3, layer 48</td><td><code>&#x27; misunder&#x27;</code> &nbsp; <code>&#x27; earthqu&#x27;</code> &nbsp; <code>&#x27; unnecess&#x27;</code> &nbsp; <code>&#x27; destro&#x27;</code> &nbsp; <code>&#x27; experim&#x27;</code> &nbsp; <code>&#x27; predecess&#x27;</code> &nbsp; <code>&#x27; quir&#x27;</code> &nbsp; <code>&#x27; encou&#x27;</code> &nbsp; <code>&#x27; cryst&#x27;</code> &nbsp; <code>&#x27; stink&#x27;</code></td></tr>
+<tr><td>Pass 4, layer 47</td><td><code>&#x27; boil&#x27;</code> &nbsp; <code>&#x27; bubble&#x27;</code> &nbsp; <code>&#x27; bub&#x27;</code> &nbsp; <code>&#x27; evaporate&#x27;</code> &nbsp; <code>&#x27; simmer&#x27;</code> &nbsp; <code>&#x27; bubbles&#x27;</code> &nbsp; <code>&#x27; rise&#x27;</code> &nbsp; <code>&#x27; boils&#x27;</code> &nbsp; <code>&#x27; shake&#x27;</code> &nbsp; <code>&#x27; move&#x27;</code></td></tr>
+<tr><td>Model output</td><td><code>&#x27; boil&#x27;</code> &nbsp; <code>&#x27; bubble&#x27;</code> &nbsp; <code>&#x27;\n\n&#x27;</code> &nbsp; <code>&#x27; __________&#x27;</code> &nbsp; <code>&#x27; move&#x27;</code> &nbsp; <code>&#x27; change&#x27;</code> &nbsp; <code>&#x27; ______&#x27;</code> &nbsp; <code>&#x27; make&#x27;</code> &nbsp; <code>&#x27;:&#x27;</code> &nbsp; <code>&#x27; form&#x27;</code></td></tr>
+</table>
+<details><summary>Full fitting summary</summary><pre>{
+  &quot;metadata&quot;: {
+    &quot;model&quot;: {
+      &quot;model&quot;: &quot;ByteDance/Ouro-2.6B&quot;,
+      &quot;revision&quot;: &quot;1ed04250da1a9936042725d302e81c8fa2ab5abd&quot;
+    },
+    &quot;adapter_sha256&quot;: &quot;9c171c8b388a334447363a386c4c39713933bade9bada7745f9a59ce817ee829&quot;,
+    &quot;prompts_sha256&quot;: &quot;0433d254843bb0154aaa54de05f9fd348991902c037a5ebfc9ca4121e5bc4edb&quot;,
+    &quot;dim_batch&quot;: 16,
+    &quot;max_seq_len&quot;: 64,
+    &quot;sources&quot;: [
+      47,
+      95,
+      143,
+      190
+    ],
+    &quot;target&quot;: 191,
+    &quot;dtype&quot;: &quot;bfloat16&quot;,
+    &quot;attention&quot;: &quot;sdpa&quot;,
+    &quot;use_cache&quot;: false,
+    &quot;add_bos&quot;: true,
+    &quot;torch&quot;: &quot;2.14.0+cu130&quot;,
+    &quot;transformers&quot;: &quot;4.57.6&quot;,
+    &quot;gpu&quot;: &quot;NVIDIA L40S&quot;
+  },
+  &quot;n_prompts&quot;: 10,
+  &quot;requested_prompts&quot;: 10,
+  &quot;previous_prompts&quot;: 1,
+  &quot;newly_fitted_prompts&quot;: 9,
+  &quot;invocation_seconds&quot;: 243.03610337525606,
+  &quot;peak_allocated_bytes&quot;: 17727896064,
+  &quot;lens_bytes&quot;: 33556543,
+  &quot;matrix_shape&quot;: [
+    2048,
+    2048
+  ],
+  &quot;source_labels&quot;: [
+    {
+      &quot;site&quot;: 47,
+      &quot;recurrent_pass&quot;: 1,
+      &quot;physical_layer&quot;: 48,
+      &quot;location&quot;: &quot;block output before pass-ending normalization&quot;
+    },
+    {
+      &quot;site&quot;: 95,
+      &quot;recurrent_pass&quot;: 2,
+      &quot;physical_layer&quot;: 48,
+      &quot;location&quot;: &quot;block output before pass-ending normalization&quot;
+    },
+    {
+      &quot;site&quot;: 143,
+      &quot;recurrent_pass&quot;: 3,
+      &quot;physical_layer&quot;: 48,
+      &quot;location&quot;: &quot;block output before pass-ending normalization&quot;
+    },
+    {
+      &quot;site&quot;: 190,
+      &quot;recurrent_pass&quot;: 4,
+      &quot;physical_layer&quot;: 47,
+      &quot;location&quot;: &quot;block output before pass-ending normalization&quot;
+    }
+  ],
+  &quot;jacobian_norms&quot;: {
+    &quot;47&quot;: 6.495615005493164,
+    &quot;95&quot;: 7.552966594696045,
+    &quot;143&quot;: 12.734954833984375,
+    &quot;190&quot;: 54.35723114013672
+  }
+}</pre></details>
+<p><a href="https://github.com/ishwarbb/ouro-jlens/tree/main/results/jlens">Verification and machine-readable readouts on GitHub</a></p>

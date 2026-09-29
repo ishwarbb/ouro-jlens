@@ -1,0 +1,73 @@
+{
+  "id": "0045-flexible",
+  "family": "flexible",
+  "specification": {
+    "family": "flexible",
+    "category": "animals",
+    "function": {
+      "name": "group",
+      "template": "A group of {arg}s is called a",
+      "answers": {
+        "lion": "pride",
+        "eagle": "convocation",
+        "shark": "shiver",
+        "spider": "cluster"
+      }
+    },
+    "argument": "eagle",
+    "arguments": [
+      "lion",
+      "eagle",
+      "shark",
+      "spider"
+    ],
+    "id": "0045-flexible"
+  },
+  "manifest_sha256": "337caf4c026671f1acb52b5408c081844e6300f6586934be90c853c73fa10df5",
+  "result": {
+    "prompt": "A group of eagles is called a",
+    "category": "animals",
+    "argument": "eagle",
+    "function": "group",
+    "baseline_answer": {
+      "eligible": false,
+      "rank": null,
+      "top1": false,
+      "top5": false,
+      "probability": null
+    },
+    "trials": [
+      {
+        "source": "eagle",
+        "destination": "lion",
+        "answer": "convocation",
+        "swap_answer": "pride",
+        "source_token_id": 22261,
+        "destination_token_id": 16433,
+        "eligible": false,
+        "reason": "At least one concept/answer lacks a whole-token form"
+      },
+      {
+        "source": "eagle",
+        "destination": "shark",
+        "answer": "convocation",
+        "swap_answer": "shiver",
+        "source_token_id": 22261,
+        "destination_token_id": 17521,
+        "eligible": false,
+        "reason": "At least one concept/answer lacks a whole-token form"
+      },
+      {
+        "source": "eagle",
+        "destination": "spider",
+        "answer": "convocation",
+        "swap_answer": "cluster",
+        "source_token_id": 22261,
+        "destination_token_id": 16198,
+        "eligible": false,
+        "reason": "At least one concept/answer lacks a whole-token form"
+      }
+    ]
+  },
+  "seconds": 0.20521140098571777
+}

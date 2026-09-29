@@ -1,0 +1,516 @@
+{
+  "id": "0146-probe-alternate_format",
+  "spec": {
+    "family": "probe",
+    "item": {
+      "name": "spaceneedle-border",
+      "category": "multihop",
+      "prompt": "Fact: The US state where the Space Needle is located shares its northern border with ",
+      "intermediate": "Seattle",
+      "answer": "Canada",
+      "swap_to": "Philadelphia",
+      "swap_answer": "New"
+    },
+    "id": "0146-probe-alternate_format",
+    "profile": "alternate_format"
+  },
+  "result": {
+    "prompt": "<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\nFact: The US state where the Space Needle is located shares its northern border with <|im_end|>\n<|im_start|>assistant\n",
+    "input_ids": [
+      0,
+      1,
+      9690,
+      198,
+      2683,
+      359,
+      253,
+      5356,
+      11173,
+      30,
+      2,
+      198,
+      1,
+      4093,
+      198,
+      13486,
+      42,
+      378,
+      2038,
+      1215,
+      837,
+      260,
+      5744,
+      11448,
+      290,
+      314,
+      3807,
+      9478,
+      624,
+      5761,
+      7112,
+      351,
+      216,
+      2,
+      198,
+      1,
+      520,
+      9531,
+      198
+    ],
+    "baseline": {
+      "scores": {
+        "47": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 737,
+              "top1": false,
+              "top5": false,
+              "probability": 0.0001271640503546223
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 737,
+              "top1": false,
+              "top5": false,
+              "probability": 0.00028525321977213025
+            }
+          }
+        },
+        "95": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 3,
+              "top1": false,
+              "top5": true,
+              "probability": 0.02174902707338333
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 3,
+              "top1": false,
+              "top5": true,
+              "probability": 0.02305345982313156
+            }
+          }
+        },
+        "143": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.22821199893951416
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.23706671595573425
+            }
+          }
+        },
+        "191": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.3254811465740204
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.3347203731536865
+            }
+          }
+        }
+      },
+      "top5": [
+        {
+          "token_id": 26760,
+          "token": "Canada",
+          "probability": 0.32530122995376587
+        },
+        {
+          "token_id": 504,
+          "token": "The",
+          "probability": 0.13560572266578674
+        },
+        {
+          "token_id": 1195,
+          "token": "the",
+          "probability": 0.11242110282182693
+        },
+        {
+          "token_id": 22251,
+          "token": "British",
+          "probability": 0.07726582139730453
+        },
+        {
+          "token_id": 23856,
+          "token": "Washington",
+          "probability": 0.023564742878079414
+        }
+      ]
+    },
+    "source": "Seattle",
+    "answer": "Canada",
+    "source_token_id": 17742,
+    "source_is_category_member": null,
+    "trials": [
+      {
+        "destination": "Philadelphia",
+        "expected": "New",
+        "destination_token_id": 11554,
+        "whole_answer_eligible": true,
+        "conditions": {
+          "baseline": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 737,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0001271640503546223
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 737,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00028525321977213025
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 394,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0002544760354794562
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 394,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0002269335964228958
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 3,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.02174902707338333
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 3,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.02305345982313156
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 77,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.001316384645178914
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 77,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0012553930282592773
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.22821199893951416
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.23706671595573425
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 91,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0005118196131661534
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 91,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0005049079773016274
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3254811465740204
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.3347203731536865
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 110,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0003340138937346637
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 110,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0003289022424723953
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 26760,
+                "token": "Canada",
+                "probability": 0.32530122995376587
+              },
+              {
+                "token_id": 504,
+                "token": "The",
+                "probability": 0.13560572266578674
+              },
+              {
+                "token_id": 1195,
+                "token": "the",
+                "probability": 0.11242110282182693
+              },
+              {
+                "token_id": 22251,
+                "token": "British",
+                "probability": 0.07726582139730453
+              },
+              {
+                "token_id": 23856,
+                "token": "Washington",
+                "probability": 0.023564742878079414
+              }
+            ]
+          },
+          "transfer": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 737,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0001271640503546223
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 737,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00028525321977213025
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 394,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0002544760354794562
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 394,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0002269335964228958
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 6,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.013575268909335136
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 6,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.014428982511162758
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 13,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.005773031618446112
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 13,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0056409090757369995
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 10,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.008292279206216335
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 10,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.009415915235877037
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.24336707592010498
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.24292691051959991
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 16,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.005244333762675524
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 16,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0055800690315663815
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.2702038288116455
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.26979899406433105
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 5529,
+                "token": "New",
+                "probability": 0.2688775360584259
+              },
+              {
+                "token_id": 47212,
+                "token": "Penn",
+                "probability": 0.20940203964710236
+              },
+              {
+                "token_id": 504,
+                "token": "The",
+                "probability": 0.11931367963552475
+              },
+              {
+                "token_id": 1195,
+                "token": "the",
+                "probability": 0.09292159229516983
+              },
+              {
+                "token_id": 13486,
+                "token": "Fact",
+                "probability": 0.036388617008924484
+              }
+            ]
+          }
+        },
+        "intervention_eligible": true
+      }
+    ]
+  },
+  "seconds": 0.4076268672943115,
+  "manifest_sha256": "04733c4b6e1a3262976391f022832d52fee7badb7bd615760c6ebb671fd6adb4",
+  "execution_plan_sha256": "72df1db779ab7255a6ef2e6eef18387bd349f83ab59f96eeb154a408d5a4a222"
+}

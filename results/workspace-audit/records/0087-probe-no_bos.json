@@ -1,0 +1,488 @@
+{
+  "id": "0087-probe-no_bos",
+  "spec": {
+    "family": "probe",
+    "item": {
+      "name": "ex-city-capital-Lyon-Naples",
+      "category": "city-capital",
+      "prompt": "Fact: The capital of the country where Lyon is located is",
+      "intermediate": "France",
+      "answer": "Paris",
+      "swap_to": "Italy",
+      "swap_answer": "Rome"
+    },
+    "id": "0087-probe-no_bos",
+    "profile": "no_bos"
+  },
+  "result": {
+    "prompt": "Fact: The capital of the country where Lyon is located is",
+    "input_ids": [
+      13486,
+      42,
+      378,
+      3575,
+      282,
+      260,
+      1798,
+      837,
+      38034,
+      314,
+      3807,
+      314
+    ],
+    "baseline": {
+      "scores": {
+        "47": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 25,
+              "top1": false,
+              "top5": false,
+              "probability": 0.0009262479143217206
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 25,
+              "top1": false,
+              "top5": false,
+              "probability": 0.0009697299683466554
+            }
+          }
+        },
+        "95": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.11712443083524704
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.11732057482004166
+            }
+          }
+        },
+        "143": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.84856116771698
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.8486728072166443
+            }
+          }
+        },
+        "191": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.7928917407989502
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.7930299639701843
+            }
+          }
+        }
+      },
+      "top5": [
+        {
+          "token_id": 7042,
+          "token": " Paris",
+          "probability": 0.7928178906440735
+        },
+        {
+          "token_id": 441,
+          "token": " not",
+          "probability": 0.06507845968008041
+        },
+        {
+          "token_id": 597,
+          "token": " also",
+          "probability": 0.014520966447889805
+        },
+        {
+          "token_id": 6392,
+          "token": " indeed",
+          "probability": 0.008807412348687649
+        },
+        {
+          "token_id": 260,
+          "token": " the",
+          "probability": 0.008807412348687649
+        }
+      ]
+    },
+    "source": "France",
+    "answer": "Paris",
+    "source_token_id": 4649,
+    "source_is_category_member": null,
+    "trials": [
+      {
+        "destination": "Italy",
+        "expected": "Rome",
+        "destination_token_id": 7158,
+        "whole_answer_eligible": true,
+        "conditions": {
+          "baseline": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 25,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0009262479143217206
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 25,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0009697299683466554
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 27,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0009552154806442559
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 10,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0023666545748710632
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.11712443083524704
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.11732057482004166
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 5,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.016407975926995277
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 5,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.017964791506528854
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.84856116771698
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.8486728072166443
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 7,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.004739933181554079
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 7,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.005239484366029501
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7928917407989502
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7930299639701843
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 9,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.006444163620471954
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 9,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.007881933823227882
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 7042,
+                "token": " Paris",
+                "probability": 0.7928178906440735
+              },
+              {
+                "token_id": 441,
+                "token": " not",
+                "probability": 0.06507845968008041
+              },
+              {
+                "token_id": 597,
+                "token": " also",
+                "probability": 0.014520966447889805
+              },
+              {
+                "token_id": 6392,
+                "token": " indeed",
+                "probability": 0.008807412348687649
+              },
+              {
+                "token_id": 260,
+                "token": " the",
+                "probability": 0.008807412348687649
+              }
+            ]
+          },
+          "transfer": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 25,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0009262479143217206
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 25,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0009697299683466554
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 27,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0009552154806442559
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 10,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0023666545748710632
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 105,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0008313304278999567
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 105,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0008667759248055518
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.19639261066913605
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.1975477635860443
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 482,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 2.3262309696292505e-06
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 482,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 2.3597415292897495e-06
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.907703161239624
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.9077443480491638
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 622,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 1.1891913800354814e-06
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 622,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 1.2079143516530166e-06
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.8945021629333496
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.8945576548576355
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 7268,
+                "token": " Rome",
+                "probability": 0.8943898677825928
+              },
+              {
+                "token_id": 441,
+                "token": " not",
+                "probability": 0.04183117300271988
+              },
+              {
+                "token_id": 281,
+                "token": " in",
+                "probability": 0.007269168272614479
+              },
+              {
+                "token_id": 19997,
+                "token": " Florence",
+                "probability": 0.006415017414838076
+              },
+              {
+                "token_id": 253,
+                "token": " a",
+                "probability": 0.005661233328282833
+              }
+            ]
+          }
+        },
+        "intervention_eligible": true
+      }
+    ]
+  },
+  "seconds": 0.3944838047027588,
+  "manifest_sha256": "04733c4b6e1a3262976391f022832d52fee7badb7bd615760c6ebb671fd6adb4"
+}

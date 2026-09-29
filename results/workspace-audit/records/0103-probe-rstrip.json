@@ -1,0 +1,490 @@
+{
+  "id": "0103-probe-rstrip",
+  "spec": {
+    "family": "probe",
+    "item": {
+      "name": "ex2-city-capital-Osaka",
+      "category": "city-capital",
+      "prompt": "Fact: The capital of the country where Osaka is located is",
+      "intermediate": "Japan",
+      "answer": "Tokyo",
+      "swap_to": "Germany",
+      "swap_answer": "Berlin"
+    },
+    "id": "0103-probe-rstrip",
+    "profile": "rstrip"
+  },
+  "result": {
+    "prompt": "Fact: The capital of the country where Osaka is located is",
+    "input_ids": [
+      0,
+      13486,
+      42,
+      378,
+      3575,
+      282,
+      260,
+      1798,
+      837,
+      13956,
+      10339,
+      314,
+      3807,
+      314
+    ],
+    "baseline": {
+      "scores": {
+        "47": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 7,
+              "top1": false,
+              "top5": false,
+              "probability": 0.0025225032586604357
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 7,
+              "top1": false,
+              "top5": false,
+              "probability": 0.0030519827269017696
+            }
+          }
+        },
+        "95": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.8298123478889465
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.8302804231643677
+            }
+          }
+        },
+        "143": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.8334028720855713
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.8341794610023499
+            }
+          }
+        },
+        "191": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.7688533067703247
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.7694840431213379
+            }
+          }
+        }
+      },
+      "top5": [
+        {
+          "token_id": 19081,
+          "token": " Tokyo",
+          "probability": 0.7688533067703247
+        },
+        {
+          "token_id": 441,
+          "token": " not",
+          "probability": 0.0631113201379776
+        },
+        {
+          "token_id": 28995,
+          "token": " Kyoto",
+          "probability": 0.04915114864706993
+        },
+        {
+          "token_id": 2390,
+          "token": " actually",
+          "probability": 0.009678435511887074
+        },
+        {
+          "token_id": 13956,
+          "token": " Os",
+          "probability": 0.008541189134120941
+        }
+      ]
+    },
+    "source": "Japan",
+    "answer": "Tokyo",
+    "source_token_id": 3085,
+    "source_is_category_member": null,
+    "trials": [
+      {
+        "destination": "Germany",
+        "expected": "Berlin",
+        "destination_token_id": 4521,
+        "whole_answer_eligible": true,
+        "conditions": {
+          "baseline": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 7,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0025225032586604357
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 7,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0030519827269017696
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 38,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0008318332838825881
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 38,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0009350375039502978
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.8298123478889465
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.8302804231643677
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 5,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0059518348425626755
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 5,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.005963720381259918
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.8334028720855713
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.8341794610023499
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 30,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0005223157932050526
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 30,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0005228011286817491
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7688533067703247
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7694840431213379
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 19,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.001484236097894609
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 19,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0014856390189379454
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 19081,
+                "token": " Tokyo",
+                "probability": 0.7688533067703247
+              },
+              {
+                "token_id": 441,
+                "token": " not",
+                "probability": 0.0631113201379776
+              },
+              {
+                "token_id": 28995,
+                "token": " Kyoto",
+                "probability": 0.04915114864706993
+              },
+              {
+                "token_id": 2390,
+                "token": " actually",
+                "probability": 0.009678435511887074
+              },
+              {
+                "token_id": 13956,
+                "token": " Os",
+                "probability": 0.008541189134120941
+              }
+            ]
+          },
+          "transfer": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 7,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0025225032586604357
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 7,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0030519827269017696
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 38,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0008318332838825881
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 38,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0009350375039502978
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 139,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00011665121564874426
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 111,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0002870235766749829
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.8085020184516907
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.809005856513977
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 723,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 4.697170425060904e-06
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 93,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00013368920190259814
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.788754403591156
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7888050079345703
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 892,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 4.199272552796174e-06
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 102,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00016429397510364652
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7162512540817261
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.7162851691246033
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 11452,
+                "token": " Berlin",
+                "probability": 0.7162512540817261
+              },
+              {
+                "token_id": 441,
+                "token": " not",
+                "probability": 0.09106112271547318
+              },
+              {
+                "token_id": 35737,
+                "token": " Frankfurt",
+                "probability": 0.024508770555257797
+              },
+              {
+                "token_id": 27093,
+                "token": " Munich",
+                "probability": 0.02031848579645157
+              },
+              {
+                "token_id": 260,
+                "token": " the",
+                "probability": 0.01157712284475565
+              }
+            ]
+          }
+        },
+        "intervention_eligible": true
+      }
+    ]
+  },
+  "seconds": 0.3887178897857666,
+  "manifest_sha256": "04733c4b6e1a3262976391f022832d52fee7badb7bd615760c6ebb671fd6adb4"
+}

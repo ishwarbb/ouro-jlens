@@ -1,0 +1,111 @@
+{
+  "protocol": {
+    "version": 1,
+    "seed": 42,
+    "paper": "https://arxiv.org/html/2609.01924v1",
+    "model": "ByteDance/Ouro-2.6B",
+    "physical_band_inclusive_zero_based": [
+      24,
+      40
+    ],
+    "sensitivity_band_inclusive_zero_based": [
+      24,
+      36
+    ],
+    "early_control_band_inclusive_zero_based": [
+      0,
+      16
+    ],
+    "primary_loops_zero_based": [
+      1,
+      2,
+      3
+    ],
+    "primary_operator": "Pseudoinverse coordinate swap of unit J-lens directions; equivalent to reflection in their difference",
+    "swap_strength": 1.0,
+    "intervention_positions": "all prompt tokens, including BOS, except introspection (final user turn only)",
+    "token_scoring": "Exact case-insensitive whole-token decoded string; no first-subtoken fallback. All exclusions logged.",
+    "direction_token_selection": "Prefer single-token leading-space original/lowercase forms, then no-space forms; introspection reverses this preference.",
+    "controls": [
+      "baseline",
+      "random_matched",
+      "raw_lens",
+      "final_target",
+      "early_band",
+      "loop2",
+      "loop3",
+      "loop4"
+    ],
+    "sensitivity_conditions": [
+      "projection_transfer",
+      "band24_36",
+      "double_strength"
+    ],
+    "families": [
+      "flexible_generalization",
+      "probe_swap_and_ablation",
+      "verbal_report",
+      "language_selectivity",
+      "directed_modulation_topics",
+      "introspection"
+    ],
+    "verbal_report_prompt": "Native chat template; user: Think of a {category}. Answer in one word.; assistant prefill: One word:",
+    "verbal_report_candidates": "First ten released candidates, excluding the unmodified answer; report top-1 and top-5, and baseline-outside-top10 subset",
+    "factual_prompt_format": "Released raw text without additional chat wrapping or stripping trailing whitespace",
+    "readout_positions": "All non-BOS prompt positions for prompt-absent intermediates; post-passage question for language; copied carrier for modulation",
+    "modulation_sampling": "All 22 topics and all 24 phrasings; each topic uses carrier_sentences[topic_index % 20] in every condition",
+    "introspection_strengths": [
+      0.0,
+      0.5,
+      1.0,
+      2.0,
+      4.0,
+      8.0
+    ],
+    "introspection_scaling": "Strength times clean per-layer mean residual norm over all non-BOS prompt positions; fixed across strengths",
+    "introspection_control": "Matched-norm random direction at strength 8, same injection span",
+    "primary_hypotheses": {
+      "steering": "Own-loop swap improves intended-answer top-1 above baseline and matched-size random edits",
+      "recurrence": "Sustained loops 2-4 outperform loop-2-only; show all three single-loop comparisons",
+      "necessity": "Argument ablation reduces baseline-correct answer retention more than unrelated-token ablation",
+      "latent_readout": "Prompt-absent intermediates beat matched foils and raw/final-target readout under own-loop lenses",
+      "selectivity": "Language label hit@5 is higher for explicit author questions than automatic continuation",
+      "modulation": "Topic hit@5 orders focus > control > suppress",
+      "introspection": "Target top-1 at strength 8 exceeds zero-strength and random-direction controls"
+    },
+    "statistics": "Per-trial records; paired cluster bootstrap (10000 draws, seed 42), grouped by source argument for flexible generalization, source intermediate for probes, category for report, topic for modulation, passage for language, concept for introspection. Also show raw counts and baseline-correct subsets.",
+    "reporting": "Primary contrasts are fixed; sensitivities are labeled and never substituted for a failed primary. Qualitative reproduction is separate from matching paper percentages.",
+    "limitations": "The authors' code, exact prompt sample, swap implementation details and causal band were not released. This uses the original study's public prompts and mathematical swap, with Ouro band 24-40 taken from the linked paper. Not an exact numerical replication. Capacity, ignition, dual task, sparse inventory and all eleven suites are not assessed."
+  },
+  "protocol_sha256": "c6f579ff662adeeda587bbf8f2b7232496ac67cdf6a2075fe751e44784fb218f",
+  "family_path": "/home/ibb3/ouro-eval/results/jlens-family-smoke",
+  "family_manifest_sha256": "ef39a53f7ab5ac2bb4dc12bb61847c93d1057bd73c331df6b3a54994e008982e",
+  "family_weights_sha256": {
+    "target-143.pt": "2b55c1dea208bb81559155d64fb3285e3b43eac9179f1552244dd93e6ac0d33b",
+    "target-191.pt": "9147f4f3450db8b15a988716929a85897cb9549898775db61032cbeb3e66030a",
+    "target-47.pt": "ff51c0d86988cd2964d656708dc661ff2960d56850a0142ede9cca868b56150c",
+    "target-95.pt": "951a4a6d42ca713932387691d5a32f67e8b05d6d7d711cae3c222a7de8f25d8a"
+  },
+  "data_sha256": {
+    "flexible-generalization": "f48d8e877c7422e14fa60794984fde07bbd11acbda4030c0149ec0a593773fdd",
+    "probe-swap": "a0edd27ca23f7b4d0fbe90448c2ddcc7457a3d812121bf024ed12a032ff86796",
+    "verbal-report": "9a33b48074c4565413247bace11d37537a963774936740287f0fb7dff460652c",
+    "selectivity-language": "be35ac37e304b28dbe1aa65a6491b102bbe9bf84a9e896886307e8218bcfd2b2",
+    "directed-modulation": "f3478bb7f3b9e19423f0c056a289fdaf1759942daf67e5304e4f55d9ad555b92",
+    "verbal-introspection": "c16e92d32b43e50027863d939445bb839301457f494363c00e2d00e5c6e73560"
+  },
+  "code_sha256": {
+    "workspace_reproduction.py": "64fbdf260602b658d999c950354697a6ad9d751d75a18a8f5d1c3f06111aae9d",
+    "workspace_interventions.py": "2c4de0adc8db60eb170f9bc87edbb97b05d1cb508e92aa35338fcb86afdd1b61"
+  },
+  "tokenizer_sha256": {
+    "tokenizer.json": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d",
+    "tokenizer_config.json": "7e010da95d71b0fa1aa809552922c74cc1dd98d628f21ba39ca6c35aa18d5d91"
+  },
+  "debug": true,
+  "limit_per_family_per_worker": 1,
+  "workers": 1,
+  "n_items": 299,
+  "torch": "2.14.0+cu130",
+  "transformers": "4.57.6"
+}

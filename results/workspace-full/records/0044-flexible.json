@@ -1,0 +1,1214 @@
+{
+  "id": "0044-flexible",
+  "family": "flexible",
+  "specification": {
+    "family": "flexible",
+    "category": "animals",
+    "function": {
+      "name": "group",
+      "template": "A group of {arg}s is called a",
+      "answers": {
+        "lion": "pride",
+        "eagle": "convocation",
+        "shark": "shiver",
+        "spider": "cluster"
+      }
+    },
+    "argument": "lion",
+    "arguments": [
+      "lion",
+      "eagle",
+      "shark",
+      "spider"
+    ],
+    "id": "0044-flexible"
+  },
+  "manifest_sha256": "337caf4c026671f1acb52b5408c081844e6300f6586934be90c853c73fa10df5",
+  "result": {
+    "prompt": "A group of lions is called a",
+    "category": "animals",
+    "argument": "lion",
+    "function": "group",
+    "baseline_answer": {
+      "eligible": true,
+      "rank": 1,
+      "top1": true,
+      "top5": true,
+      "probability": 0.7049593925476074
+    },
+    "trials": [
+      {
+        "source": "lion",
+        "destination": "eagle",
+        "answer": "pride",
+        "swap_answer": "convocation",
+        "source_token_id": 16433,
+        "destination_token_id": 22261,
+        "eligible": false,
+        "reason": "At least one concept/answer lacks a whole-token form"
+      },
+      {
+        "source": "lion",
+        "destination": "shark",
+        "answer": "pride",
+        "swap_answer": "shiver",
+        "source_token_id": 16433,
+        "destination_token_id": 17521,
+        "eligible": false,
+        "reason": "At least one concept/answer lacks a whole-token form"
+      },
+      {
+        "source": "lion",
+        "destination": "spider",
+        "answer": "pride",
+        "swap_answer": "cluster",
+        "source_token_id": 16433,
+        "destination_token_id": 16198,
+        "eligible": true,
+        "conditions": {
+          "baseline": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.28667229413986206
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 59,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0008652364485897124
+                }
+              },
+              "95": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.6774651408195496
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 15,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0012159348698332906
+                }
+              },
+              "143": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.7676007151603699
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 13,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0016624432755634189
+                }
+              },
+              "191": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.7049593925476074
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 12,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0023712143301963806
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 11320,
+                "token": " pride",
+                "probability": 0.693746030330658
+              },
+              {
+                "token_id": 476,
+                "token": " \"",
+                "probability": 0.13660669326782227
+              },
+              {
+                "token_id": 18271,
+                "token": " coalition",
+                "probability": 0.03913847729563713
+              },
+              {
+                "token_id": 637,
+                "token": " '",
+                "probability": 0.03676719218492508
+              },
+              {
+                "token_id": 694,
+                "token": " pr",
+                "probability": 0.017367593944072723
+              }
+            ]
+          },
+          "sustained": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.28667229413986206
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 59,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0008652364485897124
+                }
+              },
+              "95": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.5430685877799988
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 13,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0023291758261621
+                }
+              },
+              "143": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.6029552221298218
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 11,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.003759151790291071
+                }
+              },
+              "191": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.5200773477554321
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 13,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.004170706029981375
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 11320,
+                "token": " pride",
+                "probability": 0.5107231140136719
+              },
+              {
+                "token_id": 476,
+                "token": " \"",
+                "probability": 0.18788455426692963
+              },
+              {
+                "token_id": 694,
+                "token": " pr",
+                "probability": 0.06099718064069748
+              },
+              {
+                "token_id": 637,
+                "token": " '",
+                "probability": 0.04750464856624603
+              },
+              {
+                "token_id": 18271,
+                "token": " coalition",
+                "probability": 0.03938274085521698
+              }
+            ]
+          },
+          "loop2": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.28667229413986206
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 59,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0008652364485897124
+                }
+              },
+              "95": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.5430685877799988
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 13,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0023291758261621
+                }
+              },
+              "143": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.7867947220802307
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 12,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0015047881752252579
+                }
+              },
+              "191": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.7021897435188293
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 14,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.001728014089167118
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 11320,
+                "token": " pride",
+                "probability": 0.6910204291343689
+              },
+              {
+                "token_id": 476,
+                "token": " \"",
+                "probability": 0.13606998324394226
+              },
+              {
+                "token_id": 18271,
+                "token": " coalition",
+                "probability": 0.04417545720934868
+              },
+              {
+                "token_id": 637,
+                "token": " '",
+                "probability": 0.03662274032831192
+              },
+              {
+                "token_id": 694,
+                "token": " pr",
+                "probability": 0.019602742046117783
+              }
+            ]
+          },
+          "loop3": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.28667229413986206
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 59,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0008652364485897124
+                }
+              },
+              "95": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.6774651408195496
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 15,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0012159348698332906
+                }
+              },
+              "143": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.5692356824874878
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 13,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0037833035457879305
+                }
+              },
+              "191": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.7497929334640503
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 11,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0023649155627936125
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 11320,
+                "token": " pride",
+                "probability": 0.7371102571487427
+              },
+              {
+                "token_id": 476,
+                "token": " \"",
+                "probability": 0.09371304512023926
+              },
+              {
+                "token_id": 18271,
+                "token": " coalition",
+                "probability": 0.060505691915750504
+              },
+              {
+                "token_id": 637,
+                "token": " '",
+                "probability": 0.025222525000572205
+              },
+              {
+                "token_id": 694,
+                "token": " pr",
+                "probability": 0.02091020904481411
+              }
+            ]
+          },
+          "loop4": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.28667229413986206
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 59,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0008652364485897124
+                }
+              },
+              "95": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.6774651408195496
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 15,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0012159348698332906
+                }
+              },
+              "143": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.7676007151603699
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 13,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0016624432755634189
+                }
+              },
+              "191": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.43395888805389404
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 13,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.005752698052674532
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 11320,
+                "token": " pride",
+                "probability": 0.4270561635494232
+              },
+              {
+                "token_id": 476,
+                "token": " \"",
+                "probability": 0.25902265310287476
+              },
+              {
+                "token_id": 637,
+                "token": " '",
+                "probability": 0.0742112323641777
+              },
+              {
+                "token_id": 694,
+                "token": " pr",
+                "probability": 0.035054903477430344
+              },
+              {
+                "token_id": 42,
+                "token": ":",
+                "probability": 0.02730078622698784
+              }
+            ]
+          },
+          "random_matched": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.28667229413986206
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 59,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0008652364485897124
+                }
+              },
+              "95": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.4014407992362976
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 7,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.010564236901700497
+                }
+              },
+              "143": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.9111894965171814
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 12,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.00034752098144963384
+                }
+              },
+              "191": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.46956729888916016
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 8,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.004883734043687582
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 11320,
+                "token": " pride",
+                "probability": 0.4652822017669678
+              },
+              {
+                "token_id": 476,
+                "token": " \"",
+                "probability": 0.2651097774505615
+              },
+              {
+                "token_id": 637,
+                "token": " '",
+                "probability": 0.0808539167046547
+              },
+              {
+                "token_id": 18271,
+                "token": " coalition",
+                "probability": 0.06296909600496292
+              },
+              {
+                "token_id": 3123,
+                "token": " pack",
+                "probability": 0.02624942734837532
+              }
+            ]
+          },
+          "raw_lens": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.28667229413986206
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 59,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0008652364485897124
+                }
+              },
+              "95": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.6036282181739807
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 15,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0016736681573092937
+                }
+              },
+              "143": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.6696824431419373
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 13,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0022434082347899675
+                }
+              },
+              "191": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.6335706114768982
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 13,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0027326573617756367
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 11320,
+                "token": " pride",
+                "probability": 0.6240942478179932
+              },
+              {
+                "token_id": 476,
+                "token": " \"",
+                "probability": 0.16797268390655518
+              },
+              {
+                "token_id": 637,
+                "token": " '",
+                "probability": 0.04812498018145561
+              },
+              {
+                "token_id": 18271,
+                "token": " coalition",
+                "probability": 0.035208988934755325
+              },
+              {
+                "token_id": 694,
+                "token": " pr",
+                "probability": 0.029189277440309525
+              }
+            ]
+          },
+          "early_band": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.28667229413986206
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 59,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0008652364485897124
+                }
+              },
+              "95": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.6830829977989197
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 15,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0014765728265047073
+                }
+              },
+              "143": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.80633145570755
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 13,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0011318898759782314
+                }
+              },
+              "191": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.6895850300788879
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 13,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0019207962322980165
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 11320,
+                "token": " pride",
+                "probability": 0.6779207587242126
+              },
+              {
+                "token_id": 476,
+                "token": " \"",
+                "probability": 0.11780495941638947
+              },
+              {
+                "token_id": 18271,
+                "token": " coalition",
+                "probability": 0.04613308981060982
+              },
+              {
+                "token_id": 637,
+                "token": " '",
+                "probability": 0.03824567422270775
+              },
+              {
+                "token_id": 694,
+                "token": " pr",
+                "probability": 0.023197172209620476
+              }
+            ]
+          },
+          "projection_transfer": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.28667229413986206
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 59,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0008652364485897124
+                }
+              },
+              "95": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 154,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0003998229803983122
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 17,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.004921785090118647
+                }
+              },
+              "143": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 343,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0001340805902145803
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 33,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0025369685608893633
+                }
+              },
+              "191": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 446,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 8.987614273792133e-05
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 13,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.007856009528040886
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 476,
+                "token": " \"",
+                "probability": 0.24377956986427307
+              },
+              {
+                "token_id": 1011,
+                "token": " sk",
+                "probability": 0.18985572457313538
+              },
+              {
+                "token_id": 1528,
+                "token": " group",
+                "probability": 0.07914363592863083
+              },
+              {
+                "token_id": 42,
+                "token": ":",
+                "probability": 0.03979592025279999
+              },
+              {
+                "token_id": 14321,
+                "token": " snake",
+                "probability": 0.030993090942502022
+              }
+            ]
+          },
+          "band24_36": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.28667229413986206
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 59,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0008652364485897124
+                }
+              },
+              "95": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.5712003111839294
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 14,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0015844269655644894
+                }
+              },
+              "143": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.6690868735313416
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 12,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0023808805271983147
+                }
+              },
+              "191": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.552293598651886
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 13,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.003243969054892659
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 11320,
+                "token": " pride",
+                "probability": 0.5423599481582642
+              },
+              {
+                "token_id": 476,
+                "token": " \"",
+                "probability": 0.1874345988035202
+              },
+              {
+                "token_id": 694,
+                "token": " pr",
+                "probability": 0.05370091274380684
+              },
+              {
+                "token_id": 637,
+                "token": " '",
+                "probability": 0.0473908856511116
+              },
+              {
+                "token_id": 18271,
+                "token": " coalition",
+                "probability": 0.03690806031227112
+              }
+            ]
+          },
+          "double_strength": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.28667229413986206
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 59,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0008652364485897124
+                }
+              },
+              "95": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 47750,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 6.490633932188133e-23
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 426,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 2.7247856705137234e-18
+                }
+              },
+              "143": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 647,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 1.1526555040773302e-19
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 47456,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 1.1406294445328033e-23
+                }
+              },
+              "191": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 47942,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 5.285006451141826e-23
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 411,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 3.1365483212268013e-18
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 16198,
+                "token": " spider",
+                "probability": 0.9999585151672363
+              },
+              {
+                "token_id": 32771,
+                "token": " Spider",
+                "probability": 3.535603536874987e-05
+              },
+              {
+                "token_id": 18558,
+                "token": " spiders",
+                "probability": 6.143957762105856e-06
+              },
+              {
+                "token_id": 3014,
+                "token": " webs",
+                "probability": 1.5736450337255903e-11
+              },
+              {
+                "token_id": 3877,
+                "token": " web",
+                "probability": 6.9141133790529e-13
+              }
+            ]
+          },
+          "final_target": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.28667229413986206
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 59,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0008652364485897124
+                }
+              },
+              "95": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.6416983604431152
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 15,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0012243365636095405
+                }
+              },
+              "143": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.6596554517745972
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 14,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.0014188950881361961
+                }
+              },
+              "191": {
+                "answer": {
+                  "eligible": true,
+                  "rank": 1,
+                  "top1": true,
+                  "top5": true,
+                  "probability": 0.4433045983314514
+                },
+                "swap_answer": {
+                  "eligible": true,
+                  "rank": 17,
+                  "top1": false,
+                  "top5": false,
+                  "probability": 0.002289744094014168
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 11320,
+                "token": " pride",
+                "probability": 0.432477742433548
+              },
+              {
+                "token_id": 476,
+                "token": " \"",
+                "probability": 0.21746346354484558
+              },
+              {
+                "token_id": 637,
+                "token": " '",
+                "probability": 0.06230432912707329
+              },
+              {
+                "token_id": 694,
+                "token": " pr",
+                "probability": 0.05852949619293213
+              },
+              {
+                "token_id": 18271,
+                "token": " coalition",
+                "probability": 0.03334910422563553
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "seconds": 2.575862169265747
+}

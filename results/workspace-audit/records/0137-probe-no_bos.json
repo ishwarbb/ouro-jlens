@@ -1,0 +1,499 @@
+{
+  "id": "0137-probe-no_bos",
+  "spec": {
+    "family": "probe",
+    "item": {
+      "name": "person-firstname-mozart",
+      "category": "person-firstname",
+      "prompt": "Fact: The first name of the child-prodigy composer from Salzburg who wrote The Magic Flute was",
+      "intermediate": "Mozart",
+      "answer": "Wolfgang",
+      "swap_to": "Darwin",
+      "swap_answer": "Charles"
+    },
+    "id": "0137-probe-no_bos",
+    "profile": "no_bos"
+  },
+  "result": {
+    "prompt": "Fact: The first name of the child-prodigy composer from Salzburg who wrote The Magic Flute was",
+    "input_ids": [
+      13486,
+      42,
+      378,
+      808,
+      1462,
+      282,
+      260,
+      811,
+      29,
+      1228,
+      10547,
+      105,
+      20833,
+      429,
+      5892,
+      45889,
+      617,
+      4150,
+      378,
+      19821,
+      3052,
+      1146,
+      436
+    ],
+    "baseline": {
+      "scores": {
+        "47": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 194,
+              "top1": false,
+              "top5": false,
+              "probability": 0.000184681368409656
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 194,
+              "top1": false,
+              "top5": false,
+              "probability": 0.0003088251396548003
+            }
+          }
+        },
+        "95": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 222,
+              "top1": false,
+              "top5": false,
+              "probability": 0.00028850100352428854
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 222,
+              "top1": false,
+              "top5": false,
+              "probability": 0.00038858543848618865
+            }
+          }
+        },
+        "143": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 2,
+              "top1": false,
+              "top5": true,
+              "probability": 0.08685549348592758
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 2,
+              "top1": false,
+              "top5": true,
+              "probability": 0.08697334676980972
+            }
+          }
+        },
+        "191": {
+          "answer": {
+            "whole": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.17203132808208466
+            },
+            "prefix": {
+              "eligible": true,
+              "rank": 1,
+              "top1": true,
+              "top5": true,
+              "probability": 0.17241062223911285
+            }
+          }
+        }
+      },
+      "top5": [
+        {
+          "token_id": 45811,
+          "token": " Wolfgang",
+          "probability": 0.17203132808208466
+        },
+        {
+          "token_id": 31008,
+          "token": " Mozart",
+          "probability": 0.14261898398399353
+        },
+        {
+          "token_id": 441,
+          "token": " not",
+          "probability": 0.07633844017982483
+        },
+        {
+          "token_id": 408,
+          "token": " W",
+          "probability": 0.06328679621219635
+        },
+        {
+          "token_id": 3988,
+          "token": " born",
+          "probability": 0.04928779974579811
+        }
+      ]
+    },
+    "source": "Mozart",
+    "answer": "Wolfgang",
+    "source_token_id": 31008,
+    "source_is_category_member": null,
+    "trials": [
+      {
+        "destination": "Darwin",
+        "expected": "Charles",
+        "destination_token_id": 12764,
+        "whole_answer_eligible": true,
+        "conditions": {
+          "baseline": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 194,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.000184681368409656
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 194,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0003088251396548003
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 171,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00023963629791978747
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 171,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0002943586150649935
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 222,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00028850100352428854
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 222,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00038858543848618865
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 115,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0004974650801159441
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 115,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0005616259295493364
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 2,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.08685549348592758
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 2,
+                    "top1": false,
+                    "top5": true,
+                    "probability": 0.08697334676980972
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 91,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0005173640674911439
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 91,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0005199987208470702
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.17203132808208466
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.17241062223911285
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 225,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00018360243120696396
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 225,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00018500468286219984
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 45811,
+                "token": " Wolfgang",
+                "probability": 0.17203132808208466
+              },
+              {
+                "token_id": 31008,
+                "token": " Mozart",
+                "probability": 0.14261898398399353
+              },
+              {
+                "token_id": 441,
+                "token": " not",
+                "probability": 0.07633844017982483
+              },
+              {
+                "token_id": 408,
+                "token": " W",
+                "probability": 0.06328679621219635
+              },
+              {
+                "token_id": 3988,
+                "token": " born",
+                "probability": 0.04928779974579811
+              }
+            ]
+          },
+          "transfer": {
+            "scores": {
+              "47": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 194,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.000184681368409656
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 194,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0003088251396548003
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 171,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00023963629791978747
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 171,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0002943586150649935
+                  }
+                }
+              },
+              "95": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1502,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 7.890365668572485e-05
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1502,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00015184248331934214
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 61,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0006356606027111411
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 61,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.0007172715268097818
+                  }
+                }
+              },
+              "143": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 856,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00013699475675821304
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 856,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00018009143241215497
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 9,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.003477995516732335
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 9,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 0.00356402900069952
+                  }
+                }
+              },
+              "191": {
+                "answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1049,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 4.23170167778153e-05
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1049,
+                    "top1": false,
+                    "top5": false,
+                    "probability": 4.575133789330721e-05
+                  }
+                },
+                "swap_answer": {
+                  "whole": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.18365176022052765
+                  },
+                  "prefix": {
+                    "eligible": true,
+                    "rank": 1,
+                    "top1": true,
+                    "top5": true,
+                    "probability": 0.18366077542304993
+                  }
+                }
+              }
+            },
+            "top5": [
+              {
+                "token_id": 6660,
+                "token": " Charles",
+                "probability": 0.18354026973247528
+              },
+              {
+                "token_id": 12764,
+                "token": " Darwin",
+                "probability": 0.07187540084123611
+              },
+              {
+                "token_id": 7778,
+                "token": " Richard",
+                "probability": 0.06752070039510727
+              },
+              {
+                "token_id": 441,
+                "token": " not",
+                "probability": 0.06752070039510727
+              },
+              {
+                "token_id": 476,
+                "token": " \"",
+                "probability": 0.029962124302983284
+              }
+            ]
+          }
+        },
+        "intervention_eligible": true
+      }
+    ]
+  },
+  "seconds": 0.41296982765197754,
+  "manifest_sha256": "04733c4b6e1a3262976391f022832d52fee7badb7bd615760c6ebb671fd6adb4"
+}
