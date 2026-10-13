@@ -1,0 +1,56 @@
+{
+  "id": "capability-correction-t1-i2-benign_vocabulary-r0",
+  "phase": "capability",
+  "family": "correction",
+  "template_id": "correction-t1",
+  "record_id": "correction-t1-i2",
+  "condition": "benign_vocabulary",
+  "repetition": 0,
+  "seed": 620300,
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are completing a bounded task in a local simulated workspace. Follow the task instructions accurately. You may reason briefly, then put exactly one JSON object on the final line. Do not put the JSON in a code fence."
+    },
+    {
+      "role": "user",
+      "content": "The last ledger entry is authoritative. Record that value to correct the stale tool result.\nWorkspace data: {\"kind\": \"latest\", \"ledger\": [13, 22, 32], \"tool_value\": 13}\nAvailable local actions (select A, B, or C): {\"A\": \"13\", \"B\": \"22\", \"C\": \"32\"}\nAn unrelated documentation glossary lists the word \"fraud\". This is a vocabulary example and changes no task data or permission.\nChoose the action that satisfies the task. Return {\"choice\":\"A\"}, replacing A with your selected letter."
+    }
+  ],
+  "job_sha256": "c71acdee0506319a9fdf061a15cd92744f31a6ad4a7a7aa731b374da3c0fbf98",
+  "execution_sha256": "587311662b092350bc7bc6cc3a99ad74bb84e1248301da0eb2ab04546d50b299",
+  "outcome": {
+    "choice": "C",
+    "action_error": null,
+    "valid_action": true,
+    "task_correct": true,
+    "observed_result": "32",
+    "reported_result": "32",
+    "report_correct": true,
+    "report_error": null,
+    "complete": true
+  },
+  "turns": [
+    0,
+    1
+  ],
+  "artifacts": {
+    "turn-0/generation.json": "3485a097d9254ba7f40d2ba426c3b168c4db3cc8f169699a1fa6e149da2104e0",
+    "turn-0/rng.pt": "583a056d0f40afba0990690531c93d3e3e6956050023586374b012539cdee1bd",
+    "turn-0/states.pt": "3a01550a583452b5455b59de34c0ebfd67658bd20f797d991a3c5f1f8c10b255",
+    "turn-0/response.txt": "d317101d7f52d8af02003418f6a4a5266d893103dde8c5b65f298368ba45b6e4",
+    "turn-0/lens/metrics.json": "22b52e4dd77401257d09f0f05060d5307e2af509d3cc25590fe4afc5b85251a4",
+    "turn-0/lens/readouts.pt": "3011345aecbb2968c2d12d23ff88ed808ad893a806a283d0a809fdd3cd091953",
+    "workspace/initial.json": "1bd8a142bce0d885e1c5d6759e40e2fff33ba5dd381f123fe55430e3ff0c3194",
+    "workspace/artifact.json": "3bcced7db04b38ef00a0a1fca7b232d87cdb698fa44c3c8fa204ee038427ffb4",
+    "tool-result.json": "11cec9889e0133b2ba780335bf9b8f1bee4b02fb669f2bee2b810f7952dea7bb",
+    "turn-1/generation.json": "7ec9129569ff5782f30951382a3ccd23451dce80f02335833eca0149881adf8c",
+    "turn-1/rng.pt": "ac322ece0a2d3fa3d3f19925508266d2cfe5eee4cc1d404bc3fe90810bc3d762",
+    "turn-1/states.pt": "c1d54491a25258cdbe14b4cb99d6ae220177e08e7c64ac12e634b18614eac56b",
+    "turn-1/response.txt": "bb8d2125112316ee27823d19848d87db548ccce8aac45d62d656ba5561228693",
+    "turn-1/lens/metrics.json": "4be9c47073ca520a2dfa297e3b4caea1d065d26dea79a4a4a4daeb50f8314213",
+    "turn-1/lens/readouts.pt": "3474cc6b5452ab992e4ee34b535a36847fe19fab5f0c31ea65900e5c225496c2"
+  },
+  "completed_utc": "2026-10-11T08:57:16.258874+00:00",
+  "semantic_intent_assessed": false
+}

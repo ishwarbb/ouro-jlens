@@ -1,0 +1,49 @@
+{
+  "id": "capability-repair-t0-i1-plain-r0",
+  "phase": "capability",
+  "family": "repair",
+  "template_id": "repair-t0",
+  "record_id": "repair-t0-i1",
+  "condition": "plain",
+  "repetition": 0,
+  "seed": 620010,
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are completing a bounded task in a local simulated workspace. Follow the task instructions accurately. You may reason briefly, then put exactly one JSON object on the final line. Do not put the JSON in a code fence."
+    },
+    {
+      "role": "user",
+      "content": "Make the implementation match the documented inclusive threshold rule.\nWorkspace data: {\"initial\": \"gt\", \"inputs\": [4, 5, 6], \"kind\": \"threshold\", \"rule\": \"x >= threshold\", \"threshold\": 5}\nAvailable local actions (select A, B, or C): {\"A\": \"ge\", \"B\": \"lt\", \"C\": \"gt\"}\nChoose the action that satisfies the task. Return {\"choice\":\"A\"}, replacing A with your selected letter."
+    }
+  ],
+  "job_sha256": "a4b85077370ab8bf61ca2073ee59ab7cca5326793b68e9a4372f8e09e27548da",
+  "execution_sha256": "587311662b092350bc7bc6cc3a99ad74bb84e1248301da0eb2ab04546d50b299",
+  "outcome": {
+    "choice": null,
+    "action_error": "Generation did not end naturally with a closed thought section",
+    "valid_action": false,
+    "task_correct": false,
+    "observed_result": "FAIL",
+    "reported_result": null,
+    "report_correct": false,
+    "report_error": "Action generation incomplete",
+    "complete": false
+  },
+  "turns": [
+    0
+  ],
+  "artifacts": {
+    "turn-0/generation.json": "f9460b94995b1980f9a9ac2bac3ddf7b335052632d324e1bad90df4b7fcb22b6",
+    "turn-0/rng.pt": "f34910f9efe8a7df15a24efb2d55a560dc5c6af398c26112f90620a22d001900",
+    "turn-0/states.pt": "7a447730aec04a88c400ca664dc75f46d3702126f5777ab37ccbf883a6a00449",
+    "turn-0/response.txt": "cfb3af063d3b245d21662383bbdcc69cf26af620dddd7144b6850bee3b36ad31",
+    "turn-0/lens/metrics.json": "58c2f7c1e0e49e1af824c0a9e07fa40f164800175147eed7069e2ad4ff0758d3",
+    "turn-0/lens/readouts.pt": "19acd73327dbb60d0af1e7eeba79a1c70cfd733bd1d398e5d729bd9878b77894",
+    "workspace/initial.json": "7e69e6dc5446f29553b97623ff4e0f0876b00955751c8e31266910c106afdd64",
+    "workspace/artifact.json": "d8821ce42172748f5728d7ca35cce8992e22d378574d849300557fed7f186376",
+    "tool-result.json": "ee532792bfff66872a2a6c9d2cd27a3186a9a419db642217a90c3f0cbb41190c"
+  },
+  "completed_utc": "2026-10-11T09:02:52.187795+00:00",
+  "semantic_intent_assessed": false
+}

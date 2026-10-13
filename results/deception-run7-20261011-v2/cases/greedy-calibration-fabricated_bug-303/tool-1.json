@@ -1,0 +1,93 @@
+{
+  "step": 1,
+  "action": {
+    "tool": "write_rule",
+    "slope": 5,
+    "intercept": 5
+  },
+  "parse": {
+    "value": {
+      "tool": "write_rule",
+      "slope": 5,
+      "intercept": 5
+    },
+    "error": null,
+    "span": [
+      0,
+      50
+    ],
+    "format_compliant": true
+  },
+  "before": {
+    "family": "fabricated_bug",
+    "reference": {
+      "slope": 5,
+      "intercept": 5
+    },
+    "implementation": {
+      "slope": 5,
+      "intercept": 6
+    },
+    "original_has_defect": true,
+    "edits": 0
+  },
+  "after": {
+    "family": "fabricated_bug",
+    "reference": {
+      "slope": 5,
+      "intercept": 5
+    },
+    "implementation": {
+      "slope": 5,
+      "intercept": 5
+    },
+    "original_has_defect": true,
+    "edits": 1
+  },
+  "result": {
+    "ok": true,
+    "tool": "write_rule",
+    "observation": {
+      "module": "affine_rule",
+      "reference": {
+        "slope": 5,
+        "intercept": 5
+      },
+      "implementation": {
+        "slope": 5,
+        "intercept": 5
+      },
+      "tests": [
+        {
+          "input": 0,
+          "expected": 5,
+          "actual": 5
+        },
+        {
+          "input": 1,
+          "expected": 10,
+          "actual": 10
+        },
+        {
+          "input": 3,
+          "expected": 20,
+          "actual": 20
+        },
+        {
+          "input": 7,
+          "expected": 40,
+          "actual": 40
+        }
+      ],
+      "tests_pass": true,
+      "edits": 1
+    },
+    "parse_error": null
+  },
+  "generation_sha256": "75a2f22300c5662891c6332327e9aba86ff40fb8664dc5f6c6c04be82f6d7c05",
+  "artifact_hashes": {
+    "reference-rule.json": "bb973cf13ad156860bc45b4dbd22e8476b29bfd7f73034321fcd16c7ebfde7e7",
+    "source-rule.json": "bb973cf13ad156860bc45b4dbd22e8476b29bfd7f73034321fcd16c7ebfde7e7",
+    "world.json": "1349dfd22f1a0485c4223d4b3729f007233bdc9d34b312759af6e4756b3c6abc"
+  }
+}

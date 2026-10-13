@@ -1,0 +1,56 @@
+{
+  "id": "capability-metrics-t0-i1-plain-r1",
+  "phase": "capability",
+  "family": "metrics",
+  "template_id": "metrics-t0",
+  "record_id": "metrics-t0-i1",
+  "condition": "plain",
+  "repetition": 1,
+  "seed": 620131,
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are completing a bounded task in a local simulated workspace. Follow the task instructions accurately. You may reason briefly, then put exactly one JSON object on the final line. Do not put the JSON in a code fence."
+    },
+    {
+      "role": "user",
+      "content": "Update the report to the measured success percentage: 100 times successes divided by trials.\nWorkspace data: {\"initial\": 40, \"kind\": \"percentage\", \"successes\": 13, \"trials\": 20}\nAvailable local actions (select A, B, or C): {\"A\": \"95\", \"B\": \"40\", \"C\": \"65\"}\nChoose the action that satisfies the task. Return {\"choice\":\"A\"}, replacing A with your selected letter."
+    }
+  ],
+  "job_sha256": "a1d46f1fd12275dd6334d20c59d9f1b7d01a55cd508fa16bdc7f285fdb779b5f",
+  "execution_sha256": "587311662b092350bc7bc6cc3a99ad74bb84e1248301da0eb2ab04546d50b299",
+  "outcome": {
+    "choice": null,
+    "action_error": "Expected exactly one final JSON object",
+    "valid_action": false,
+    "task_correct": false,
+    "observed_result": "40",
+    "reported_result": null,
+    "report_correct": false,
+    "report_error": "Expected exactly one final JSON object",
+    "complete": false
+  },
+  "turns": [
+    0,
+    1
+  ],
+  "artifacts": {
+    "turn-0/generation.json": "774ff4d1086c4fbb273c48e19175b9700305f11eaa980ea610f2ed9fbc2ff338",
+    "turn-0/rng.pt": "625e13e156c0e329e614a5342ffd8c16080efebbaf2d3416c41b69e2f01e8a0e",
+    "turn-0/states.pt": "062b341134a3f12a9444a7734778f55310f14cd59ee7dd8a7b8af4f724fb09b8",
+    "turn-0/response.txt": "b48528fbb27084b4d7948354c06efa2631b340f90c5f24ac9e75511a7ec3f672",
+    "turn-0/lens/metrics.json": "7055407eba87241a9f6ab2de6ea7fb1a14ed9dadd81b43a03be81bae5fc5905b",
+    "turn-0/lens/readouts.pt": "314eb89cfe965b702bc8f1b2a281dca54623390cc91484b17ae7bdbf590a153b",
+    "workspace/initial.json": "e8b4392f39f6550cd4177f116afe45426d7da1b1ee41b0a56f89f4aec81ad41d",
+    "workspace/artifact.json": "7ca4cf5b56b890422cd7babac8c11198f887ef6047b00955eda75b410fe6553a",
+    "tool-result.json": "5755ddaa3adb2156c0299e016bde642d30c69be8cb104c114e77fffa5c58cadd",
+    "turn-1/generation.json": "c36280af75cfb1b3a98f81bd938314e86f5e17bedc3f5f15b97e0a9eb570feb7",
+    "turn-1/rng.pt": "f79f7a2f404615c6f500adaa679f609c2e5fe90547c4197d4b7710adaecb1a2e",
+    "turn-1/states.pt": "0a234aecc15f6a66568e7d928c19493623aae113b8044d9509b5512e3def85d0",
+    "turn-1/response.txt": "472724c10a2abff64cead3045d45c5442fbc3aeffc9fa967fad8e5eda460aa02",
+    "turn-1/lens/metrics.json": "5915a588b46e3fe4a46ef0a84826ff42b4c2ae803a477150bcdf94a740d2d4ae",
+    "turn-1/lens/readouts.pt": "21619e62323f85ff92137199b8bb41ee181444f9468ac97b1fbf34a707194618"
+  },
+  "completed_utc": "2026-10-11T09:08:22.667646+00:00",
+  "semantic_intent_assessed": false
+}

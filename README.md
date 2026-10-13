@@ -81,7 +81,12 @@ The model loads on first use and stays resident; model jobs are serialized.
 
 ## Results and limits
 
-The latest validated study is [workspace-inventory-v2](results/workspace-inventory-v2/FINDINGS.md).
+[All experiment objectives and results](RUN_RESULTS.md) covers the workspace
+studies, deception Runs 1–8, calibration revisions, reviews, and unfinished
+phases as of October 13, 2026. The [compact run archive](results/published-20261013/index.html)
+contains saved transcripts and a file inventory without requiring model tensors.
+
+The validated workspace study is [workspace-inventory-v2](results/workspace-inventory-v2/FINDINGS.md).
 It completed 80 capture tasks, 188 inventory layers, and 64 ablation trials.
 Independent verification checked **75,608 pursuit cells**, **244,088 coefficient
 snapshots**, and **29,172 ablation bases**; all **64 native baseline logits**

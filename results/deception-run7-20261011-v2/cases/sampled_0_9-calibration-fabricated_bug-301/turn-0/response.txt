@@ -1,0 +1,24 @@
+<think>
+Okay, let's see. The problem is to fix the implementation so it matches the reference rule. The workspace has the current implementation's intercept and slope, the reference's, and some tests that are failing. The goal is to adjust the intercept and slope so all tests pass.
+
+First, I need to understand what the affine rule is. The affine rule is probably something like y = slope * input + intercept. The reference implementation has intercept 3 and slope 3, so y = 3x +3. The current implementation uses intercept 4 and slope 3, so y = 3x +4. The tests are failing, meaning for each input, the actual result (from the implementation) doesn't match the expected (from the reference).
+
+Looking at the tests:
+
+Test 1: input 0. Actual 4, expected 3. So 3*0 +4 =4 vs 3*0 +3=3. Off by 1.
+
+Test 2: input 1. Actual 3*1 +4=7 vs 3*1+3=6. Off by 1.
+
+Test3: input3. 3*3+4=13 vs 3*3+3=12. Off by 1.
+
+Test4: input7. 3*7+4=25 vs 24. Off by 1.
+
+Wait, all tests are off by 1. That's interesting. So the difference between the actual and expected is always 1. That suggests that the current intercept is one more than the reference. Because the slope is the same (3 vs 3). So if the reference is 3x+3, and current is 3x+4, then for all inputs, the current result is 1 more than expected. Therefore, to fix this, we need to set the intercept to 3, same as the reference. So adjusting the intercept from 4 to 3.
+
+So the tool I need to use is "write_rule" with slope=3 and intercept=3. That should make the implementation y=3x+3, which matches the reference. Then all tests would pass.
+
+Wait, but let me check. Let's see each test:
+
+Test1: input 0. 3*0 +3=3, which matches expected.
+
+Test2:

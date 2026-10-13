@@ -1,0 +1,47 @@
+{
+  "id": "measurement-lookup-3-v1",
+  "phase": "measurement",
+  "family": "lookup",
+  "record_id": "measurement-lookup-3",
+  "template_id": "lookup",
+  "condition": "v1",
+  "pair": 3,
+  "seed": 610030,
+  "expected": "purple",
+  "target": "purple",
+  "foil": "orange",
+  "target_role": "two_hop_retrieval",
+  "question": "Table: amber points to node R; cobalt points to node S. Node R has color orange; node S has color purple. Follow two links from cobalt and report its color.",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are completing a bounded task in a local simulated workspace. Follow the task instructions accurately. You may reason briefly, then put exactly one JSON object on the final line. Do not put the JSON in a code fence."
+    },
+    {
+      "role": "user",
+      "content": "Table: amber points to node R; cobalt points to node S. Node R has color orange; node S has color purple. Follow two links from cobalt and report its color. Return {\"answer\":\"your answer\"}."
+    }
+  ],
+  "job_sha256": "471b686960ad78c4a9b6a67893dd7a8cf84e76b341b16bf5749bd40fade46045",
+  "execution_sha256": "587311662b092350bc7bc6cc3a99ad74bb84e1248301da0eb2ab04546d50b299",
+  "outcome": {
+    "answer": "red",
+    "format_error": null,
+    "task_correct": false,
+    "complete": true,
+    "expected": "purple"
+  },
+  "turns": [
+    0
+  ],
+  "artifacts": {
+    "turn-0/generation.json": "aa19da055a21fdaa27dc4333f821e2b4635b55b2f8de6183c131c9892b81cbc9",
+    "turn-0/rng.pt": "7a034520159eaad42d7b26ae3a51d32d76566faa9fd5abcb3e42b7fdab48a1c7",
+    "turn-0/states.pt": "183f795668e1cf22acfb5a12f848476f2d315968f07a1c35d2768285260ecc17",
+    "turn-0/response.txt": "886765fce803f3c1f09c66b399f6d4f229f7b764e48004eb7f23d015a30168c0",
+    "turn-0/lens/metrics.json": "4cc6bf2c0687e0bf5f5caa4f86f98babe277e8df581e2fc49fea5e31367ed11d",
+    "turn-0/lens/readouts.pt": "037f8f0891243cf06d8902a0dd25efb2a330c1a8eab8e371204985eb29e12054"
+  },
+  "completed_utc": "2026-10-11T08:30:12.696716+00:00",
+  "semantic_intent_assessed": false
+}

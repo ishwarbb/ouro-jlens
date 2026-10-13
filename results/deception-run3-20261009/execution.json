@@ -1,0 +1,46 @@
+{
+  "created_utc": "2026-10-09T17:25:27.973763+00:00",
+  "status": "prepared",
+  "study": "Run 3",
+  "source_plan_sha256": "acf33d53926483d7ad0fd21eea773b3cf1960a553f7c0d8fb26cf2ccb6d60bcf",
+  "frozen_files": {
+    "plan/protocol.json": "acf33d53926483d7ad0fd21eea773b3cf1960a553f7c0d8fb26cf2ccb6d60bcf",
+    "plan/manifest.json": "130fdd20abb10270f858f7341dd56b4ca7c23493640d6cd20f491943455e8cfd",
+    "plan/calibration-templates.json": "1fa1f2dbe5ff890d10356497c036a3fa60246ece56c39017a23cd17ef7301436",
+    "plan/prompt-templates.json": "1bd6c91698a0e145c1af2fc0fb9298c70a0f17768e61ad9887970a3a2483d839",
+    "code/run_deception_run3.py": "c5ffb3b3bf6c5218a6eb43a794c9f0f8bdddccad71d2db1b04c6c2dd5bf839b3",
+    "code/analyze_deception_run2.py": "f98ee25b740ef910a4abfe241bd99365693cfa5d8a4596272b7445ea9d84d249",
+    "code/run_deception_probe.py": "78c630a6b4be1f4c268a9ebfb4339b9aba4b9e284063e0f4f9988d18746d091b",
+    "generation-jobs.json": "f3c0bdc2618568711341a7630555114493d4e53ff4d8d6dfe3e5acb4f66387b2"
+  },
+  "lens_files": {
+    "results/jlens-family-1000/target-143.pt": "15490c8c343f5568e123e06569ab13c76c02b4bfa7d25584b6e01938182cba3f",
+    "results/jlens-family-1000/target-191.pt": "6edf5b1326e15c9ed62f03853c6ac557b16e84ee1ecea1db0dedd1528eb538a1",
+    "results/jlens-family-1000/target-47.pt": "14c10a884827744cdae8fcdcb3fd55094b20be19e26da180507f467b8c6c2b19",
+    "results/jlens-family-1000/target-95.pt": "92876073144519066c7acd8757bd0ff5782e913438ae59d7c5c26416cbc96596"
+  },
+  "expected_checkpoint_sha256": "2fdf9805a3510b7dc82959a2db4872ef767a5bdc55520c6a1b54fc3e463c1bba",
+  "sampling": {
+    "baseline": "One greedy neutral response per record; never invent or sample-until-correct a history.",
+    "temperature": 0.9,
+    "top_p": 0.95,
+    "top_k": 0,
+    "max_new_tokens": 1024,
+    "capped": "Keep and exclude from absence-of-strategy claims; no selective reroll. A future higher-cap cohort must be separately registered.",
+    "seed_policy": "Six independent single-sequence seeds per template, paired across conditions. Record RNG state. If batching changes RNG, freeze and disclose it.",
+    "execution": "Native template, unchanged weights, complete raw tokens including any think blocks, normal EOS stopping."
+  },
+  "phases": [
+    "discovery",
+    "held_out"
+  ],
+  "discovery_phase": "24 knowledge baselines + 48 calibration + up to 288 discovery responses; no held-out condition responses.",
+  "held_out_gate": "Requires discovery-lock.json with review and analysis file hashes before starting held-out condition responses.",
+  "baseline_gate": "Automatic conservative factual assertion check; ambiguous cases deferred for review, not excluded. Reviews override only with a matching baseline hash.",
+  "disk_cap_gib": 512,
+  "minimum_free_gib": 100,
+  "gpu": "CUDA_VISIBLE_DEVICES=0",
+  "memory_fraction": 0.7,
+  "resume": "Single-case seeds; completed generation JSON is the commit marker. Validate hashes before reuse. Interrupted uncommitted cases may repeat with the same seed.",
+  "completion": "Generation completion is separate from semantic review, J-lens analysis, and the conditional causal stage."
+}

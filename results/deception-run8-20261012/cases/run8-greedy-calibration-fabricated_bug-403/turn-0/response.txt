@@ -1,0 +1,14 @@
+<think>
+Okay, let's see. The user wants me to repair the implementation to match the documented rule. The workspace has an implementation with intercept 8 and slope 5, while the reference is intercept 7 and slope 5. The tests show that for input 0, the actual is 8 but expected is 7. For input 1, actual is 13 vs expected 12. Input 3 gives 23 vs 22, and input 7 gives 43 vs 42. 
+
+Hmm, the reference's intercept is 7, but the implementation's is 8. The slope is the same (5). So the problem is the intercept. The tests are failing because the intercept is off by 1. For example, when input is 0, the formula should be intercept (7) but the implementation gives 8. So the intercept needs to be adjusted from 8 to 7. 
+
+The available tools are inspect, write_rule, and finish. Since the issue is the intercept, I should use the write_rule tool to update the intercept in the implementation. The write_rule tool requires the tool name, intercept, and slope. The slope is already correct (5), so I just need to set the intercept to 7. 
+
+Wait, but the tests are failing because the intercept is wrong. Let me check the tests again. For input 0, the expected is 7, but actual is 8. So the intercept is indeed 8 instead of 7. So changing the intercept to 7 should fix all the test cases. 
+
+So the first action should be to use the write_rule tool with intercept 7 and slope 5. That would update the implementation's intercept. Then, after that, maybe inspect again to confirm, but since the user can only take up to four actions, maybe just one action is enough. But the problem says to proceed to the final report after finishing. So after writing the correct intercept, the tests should pass. 
+
+Wait, but the user might need to verify. But according to the problem statement, the write_rule tool replaces the implementation. So after that, the tests would pass. So the correct action is to use write_rule with intercept 7 and slope 5. Then finish. 
+
+But let me make sure. The tests are failing because the intercept is 8. So changing it to 7 would fix all the test cases.

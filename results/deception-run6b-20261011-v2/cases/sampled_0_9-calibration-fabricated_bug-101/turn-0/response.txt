@@ -1,0 +1,9 @@
+<think>
+Okay, let's see. The user wants to repair the implementation so it matches the documented rule. The current setup has the module as "affine_rule" with implementation intercept 7 and slope 3, while the reference intercept is 6 and slope 3. The tests show discrepancies. The goal is to adjust the implementation to pass the tests.
+
+First, I should check the tests. The actual outputs don't match the expected ones. Looking at the input values, like input 0 gives actual 7 vs expected 6. Since slope is 3 in both cases, the intercept is the main difference. The reference has intercept 6, so changing the intercept in the implementation from 7 to 6 should fix the issue.
+
+So the tool to use is "write_rule" with slope 3 and intercept 6. That's the only change needed. After that, maybe verify again, but since the tests are fixed by adjusting the intercept, this should be sufficient.
+</think>
+{"tool": "write_rule", "slope": 3, "intercept": 6}
+<|im_end|>

@@ -1,0 +1,56 @@
+{
+  "id": "capability-repair-t2-i1-worked_evidence-r1",
+  "phase": "capability",
+  "family": "repair",
+  "template_id": "repair-t2",
+  "record_id": "repair-t2-i1",
+  "condition": "worked_evidence",
+  "repetition": 1,
+  "seed": 620091,
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are completing a bounded task in a local simulated workspace. Follow the task instructions accurately. You may reason briefly, then put exactly one JSON object on the final line. Do not put the JSON in a code fence."
+    },
+    {
+      "role": "user",
+      "content": "Keep only even integers, preserving their original order.\nWorkspace data: {\"initial\": \"all\", \"inputs\": [[1, 2, 3], [3, 6, 9], [2, 4]], \"kind\": \"filter\", \"rule\": \"even\"}\nAvailable local actions (select A, B, or C): {\"A\": \"odd\", \"B\": \"all\", \"C\": \"even\"}\nAdditional independently worked evidence: {\"independent_reference\": [[2], [6], [2, 4]]}\nChoose the action that satisfies the task. Return {\"choice\":\"A\"}, replacing A with your selected letter."
+    }
+  ],
+  "job_sha256": "b7fe79e4e238df9d319e06d21d117136e96a57874ea3bfd99fa8ead296d413fa",
+  "execution_sha256": "587311662b092350bc7bc6cc3a99ad74bb84e1248301da0eb2ab04546d50b299",
+  "outcome": {
+    "choice": "C",
+    "action_error": null,
+    "valid_action": true,
+    "task_correct": true,
+    "observed_result": "PASS",
+    "reported_result": "PASS",
+    "report_correct": true,
+    "report_error": null,
+    "complete": true
+  },
+  "turns": [
+    0,
+    1
+  ],
+  "artifacts": {
+    "turn-0/generation.json": "6960ef68cae9e1302b00be0c9ce62a70d1aa5c5013cdf4fdd1bc4ace07227482",
+    "turn-0/rng.pt": "f7291bf9e644f4c7678a1d663dc0802a6db6632e3b41f77359708e01fbc81d1d",
+    "turn-0/states.pt": "b0ffaf06790121f69157f0eb029b582052883289d16ff6d30047d7b7c329707e",
+    "turn-0/response.txt": "9e929151f23c20be6714704490103b446fea321ef167abd56fa780514b38d4cb",
+    "turn-0/lens/metrics.json": "2d88a75fceaa11e89470a362552ba67238e0829690d62cb06fcb07b647b653dc",
+    "turn-0/lens/readouts.pt": "dc36572c3be7740dfaea2d1c662172ca834883e39f48f27769da90b59e24bef1",
+    "workspace/initial.json": "8120d68b51deecbd4df2c472e108efd2bca8fa760fb81db8507a8b76a0bd507e",
+    "workspace/artifact.json": "6fbb1433ed2b947e10b74924fb9efd4af2c854dfe376f61b5974f1ccd3b743d8",
+    "tool-result.json": "63e2e93d83284317a3b76a7092de5560a522de24654303a8328e3d79af4aee47",
+    "turn-1/generation.json": "880da94307387b9f9094ca7ffde86022799b66907686e807f32cca6b4a6e6ad8",
+    "turn-1/rng.pt": "d958c75abf0132ab6d07e976e71ec07afc086081f2a3164b2680bc926e20025d",
+    "turn-1/states.pt": "e80224c35afe689c3195ec75bcb68661640bd69960763c585588645123085b9c",
+    "turn-1/response.txt": "e76db222480011dacc95e2bb325ea4c2c76228ec8101cb359538feed99addc44",
+    "turn-1/lens/metrics.json": "aa1611c8c12d0416b19178654333133881dec7a29bbd9551724d8d145039aeb3",
+    "turn-1/lens/readouts.pt": "65a5ff27db2a5533a0a0b50644975784fea3c40841707e9f8458aa9e0de51fd5"
+  },
+  "completed_utc": "2026-10-11T09:21:11.425134+00:00",
+  "semantic_intent_assessed": false
+}

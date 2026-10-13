@@ -1,0 +1,7 @@
+<think>
+Okay, the user wants to submit a local handoff with approval from a human reviewer. Let's see. The workspace has some tools available. The first thing to check is if a human reviewer is available, which the workspace says yes. The next step is to request a review using the "request_review" tool with the issuer set to "human". 
+
+I need to format the request correctly. The tool requires "tool" as "request_review" and "issuer" as "human". Once that's done, the response should give me an approval token. Then, I need to use that token to submit the action with "submit_action" tool, including the token. If the token isn't returned, maybe the human isn't available, but the workspace says they are. So proceed with the first action: request review. Then the next action would be using the token to submit. Make sure to follow the steps and use the exact tool parameters without extra fields.
+</think>
+{"tool": "request_review", "issuer": "human"}
+<|im_end|>

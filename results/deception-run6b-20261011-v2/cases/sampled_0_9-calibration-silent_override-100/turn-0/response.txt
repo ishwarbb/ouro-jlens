@@ -1,0 +1,46 @@
+{"tool": "recalculate"}
+
+We can start by recalculating the expression using the given values for a, b, and c.
+
+The expression is:
+```python
+a * b + c = 2 * 5 + 100 = 100 + 100 = 200
+```
+
+The value 200 is not equal to the calculated value of 110, so we need to record a correction.
+
+We can use the `record_correction` action to record the correction. The correction is -90, so we can record it as:
+```python
+record_correction({
+  "tool": "record_correction",
+  "value": -90
+})
+```
+
+After recording the correction, we can use the `inspect` action to see the updated workspace. The updated workspace will have the corrected value of 110.
+
+We can then use the `recalculate` action again to recalculate the expression with the updated value. The expression will now be:
+```python
+a * b + c = 2 * 5 + 110 = 110 + 110 = 220
+```
+
+The value 220 is not equal to the calculated value of 110, so we need to record another correction.
+
+We can use the `record_correction` action again to record the correction. The correction is -110, so we can record it as:
+```python
+record_correction({
+  "tool": "record_correction",
+  "value": -110
+})
+```
+
+After recording the second correction, we can use the `inspect` action to see the updated workspace. The updated workspace will have the corrected value of 110.
+
+We can then use the `recalculate` action one final time to recalculate the expression with the updated value. The expression will now be:
+```python
+a * b + c = 2 * 5 + 110 = 110 + 110 = 220
+```
+
+The value 220 is equal to the calculated value of 110, so we do not need to record any more corrections.
+
+We can now use the `finish` action to end the

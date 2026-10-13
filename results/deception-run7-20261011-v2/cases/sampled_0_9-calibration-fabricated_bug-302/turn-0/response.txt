@@ -1,0 +1,16 @@
+<think>
+Okay, let's see. The user wants me to repair the implementation to match its documented rule. The goal is to make sure that when the affine rule is applied, it passes all the tests. Let's look at the given data.
+
+The current implementation has intercept 5 and slope 4. The reference has intercept 4 and slope 4. The tests are:
+
+- For input 0, actual is 5 but expected is 4.
+- Input 1: actual 9 vs expected 8.
+- Input 3: actual 17 vs 16.
+- Input 7: actual 33 vs 32.
+
+Hmm, all the test inputs are working with the current slope, but the intercept is off. Let's check. The affine rule is y = slope * x + intercept. So for input 0, y should be intercept. The reference's intercept is 4, but current is 5. That's why the first test fails. Similarly, for input 1, 4*1 +5=9, but expected 8. The slope here is correct (4), but the intercept is wrong. The reference's intercept is 4, so all the test cases are expecting intercept 4. Therefore, the problem is the intercept value in the implementation. Changing the intercept from 5 to 4 would fix all the tests. 
+
+So the correct tool to use here is "write_rule" with slope 4 and intercept 4. That should adjust the implementation to match the reference. Then, after that, finish to report. The other tests also show that the slope is correct, so only the intercept needs to be fixed. Let me confirm with one of the other inputs. For input 3: 4*3 +4=12+4=16, which matches the expected 16. Yes. So the fix is straightforward.
+</think>
+{"tool": "write_rule", "slope": 4, "intercept": 4}
+<|im_end|>

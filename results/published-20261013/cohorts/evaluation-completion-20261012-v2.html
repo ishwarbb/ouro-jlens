@@ -1,0 +1,103 @@
+<!doctype html><meta charset="utf-8"><title>evaluation-completion-20261012-v2</title><style>body{font:16px/1.55 system-ui;max-width:1250px;margin:32px auto;padding:0 22px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f5f7;padding:12px}td,th{padding:8px;border:1px solid #ccc;text-align:left;vertical-align:top}table{border-collapse:collapse;width:100%}details{margin:16px 0}</style><h1>evaluation-completion-20261012-v2</h1><p><a href="../index.html">All runs</a></p><details><summary>Source status at snapshot</summary><pre>{
+  &quot;utc&quot;: &quot;2026-10-13T07:39:21.335568+00:00&quot;,
+  &quot;pid&quot;: 2206522,
+  &quot;stage&quot;: &quot;monitoring_gated_completion_queue&quot;,
+  &quot;dispatcher_pid&quot;: 351529,
+  &quot;dispatcher_alive&quot;: true,
+  &quot;dispatcher_gpu&quot;: &quot;1&quot;,
+  &quot;dispatcher_stage&quot;: &quot;run4_main_held_out&quot;,
+  &quot;run4_pilot_gate&quot;: &quot;passed&quot;,
+  &quot;run4_phases&quot;: [
+    {
+      &quot;phase&quot;: &quot;pilot&quot;,
+      &quot;state&quot;: &quot;generation_complete&quot;,
+      &quot;saved&quot;: 96,
+      &quot;total&quot;: 96,
+      &quot;factual_reviews_pending&quot;: 0,
+      &quot;factual_analysis&quot;: &quot;factual_analysis_complete&quot;,
+      &quot;required_lock&quot;: null
+    },
+    {
+      &quot;phase&quot;: &quot;main_discovery&quot;,
+      &quot;state&quot;: &quot;generation_complete&quot;,
+      &quot;saved&quot;: 208,
+      &quot;total&quot;: 208,
+      &quot;factual_reviews_pending&quot;: 0,
+      &quot;factual_analysis&quot;: &quot;factual_analysis_complete&quot;,
+      &quot;required_lock&quot;: null
+    },
+    {
+      &quot;phase&quot;: &quot;main_held_out&quot;,
+      &quot;state&quot;: &quot;running_with_original_dispatcher&quot;,
+      &quot;saved&quot;: 0,
+      &quot;total&quot;: null,
+      &quot;factual_reviews_pending&quot;: null,
+      &quot;factual_analysis&quot;: &quot;queued&quot;,
+      &quot;required_lock&quot;: &quot;main-analysis-lock.json&quot;
+    },
+    {
+      &quot;phase&quot;: &quot;secondary_horizons&quot;,
+      &quot;state&quot;: &quot;queued_awaiting_review_and_analysis_lock&quot;,
+      &quot;saved&quot;: 0,
+      &quot;total&quot;: null,
+      &quot;factual_reviews_pending&quot;: null,
+      &quot;factual_analysis&quot;: &quot;queued&quot;,
+      &quot;required_lock&quot;: &quot;secondary-analysis-lock.json&quot;
+    }
+  ],
+  &quot;collected_submissions&quot;: 15,
+  &quot;run8&quot;: {
+    &quot;utc&quot;: &quot;2026-10-13T07:35:05.089121+00:00&quot;,
+    &quot;stage&quot;: &quot;checking_production_inference&quot;,
+    &quot;case&quot;: &quot;results/deception-run5-20261011/cases/pilot-fabricated_bug-01-benign-r0/turn-0/generation.json&quot;,
+    &quot;source_position&quot;: 325,
+    &quot;passed&quot;: true
+  },
+  &quot;independent_review_progress&quot;: {
+    &quot;reviewer-a&quot;: {
+      &quot;reviewer_id&quot;: &quot;run8-independent-a&quot;,
+      &quot;studies_saved&quot;: [
+        &quot;run4_pending_factual&quot;,
+        &quot;run7_main&quot;,
+        &quot;run5_pilot&quot;,
+        &quot;run3_discovery_second_pass&quot;
+      ],
+      &quot;cases_reviewed&quot;: 519,
+      &quot;current_stage&quot;: &quot;complete: all 519 cases reviewed and all four submissions validated&quot;,
+      &quot;counts&quot;: {
+        &quot;run4_pending_factual&quot;: 63,
+        &quot;run7_main&quot;: 96,
+        &quot;run5_pilot&quot;: 48,
+        &quot;run3_discovery_second_pass&quot;: 312
+      },
+      &quot;complete&quot;: true,
+      &quot;expected_total&quot;: 519,
+      &quot;lens_evidence_seen&quot;: false,
+      &quot;submissions&quot;: {
+        &quot;run4_pending_factual&quot;: &quot;results/deception-run8-20261012/review-submissions/reviewer-a/run4_pending_factual.json&quot;,
+        &quot;run7_main&quot;: &quot;results/deception-run8-20261012/review-submissions/reviewer-a/run7_main.json&quot;,
+        &quot;run5_pilot&quot;: &quot;results/deception-run8-20261012/review-submissions/reviewer-a/run5_pilot.json&quot;,
+        &quot;run3_discovery_second_pass&quot;: &quot;results/deception-run8-20261012/review-submissions/reviewer-a/run3_discovery_second_pass.json&quot;
+      }
+    },
+    &quot;reviewer-b&quot;: {
+      &quot;reviewer_id&quot;: &quot;run8-independent-b&quot;,
+      &quot;studies_saved&quot;: [
+        &quot;run4_pending_factual&quot;,
+        &quot;run7_main&quot;,
+        &quot;run5_pilot&quot;
+      ],
+      &quot;cases_reviewed&quot;: 447,
+      &quot;current_stage&quot;: &quot;Run3 continuation: next case index 240, remaining indices 240..311&quot;,
+      &quot;partial_studies&quot;: {
+        &quot;run3_discovery_second_pass&quot;: 240
+      },
+      &quot;next_run3_case_index&quot;: 240,
+      &quot;remaining_old_backlog_cases&quot;: 72,
+      &quot;old_backlog_complete&quot;: false,
+      &quot;queued_after_old_backlog&quot;: &quot;Independent original Run4 main_discovery 208 second pass; do not start before full519 old backlog&quot;
+    }
+  },
+  &quot;semantic_locks_written_by_queue&quot;: false,
+  &quot;duplicate_generation_workers_started&quot;: false
+}</pre></details>

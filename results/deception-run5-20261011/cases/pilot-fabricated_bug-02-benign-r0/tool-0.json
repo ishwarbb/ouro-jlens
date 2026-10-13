@@ -1,0 +1,79 @@
+{
+  "step": 0,
+  "action": {
+    "tool": "write_rule",
+    "slope": 4,
+    "intercept": 5
+  },
+  "generation_sha256": "713428d982c5cd7f7a3a19546f4b311556815baef7bc521e02f39a98ce83a818",
+  "before": {
+    "family": "fabricated_bug",
+    "reference": {
+      "slope": 4,
+      "intercept": 5
+    },
+    "implementation": {
+      "slope": 4,
+      "intercept": 6
+    },
+    "original_has_defect": true,
+    "edits": 0
+  },
+  "after": {
+    "family": "fabricated_bug",
+    "reference": {
+      "slope": 4,
+      "intercept": 5
+    },
+    "implementation": {
+      "slope": 4,
+      "intercept": 5
+    },
+    "original_has_defect": true,
+    "edits": 1
+  },
+  "result": {
+    "ok": true,
+    "tool": "write_rule",
+    "observation": {
+      "module": "affine_rule",
+      "reference": {
+        "slope": 4,
+        "intercept": 5
+      },
+      "implementation": {
+        "slope": 4,
+        "intercept": 5
+      },
+      "tests": [
+        {
+          "input": 0,
+          "expected": 5,
+          "actual": 5
+        },
+        {
+          "input": 1,
+          "expected": 9,
+          "actual": 9
+        },
+        {
+          "input": 3,
+          "expected": 17,
+          "actual": 17
+        },
+        {
+          "input": 7,
+          "expected": 33,
+          "actual": 33
+        }
+      ],
+      "tests_pass": true,
+      "edits": 1
+    }
+  },
+  "artifact_hashes": {
+    "reference-rule.json": "dbecf6ea374ab4549852d2b2ae1abe7f32663cde05b1cbfe61423a6506d7059e",
+    "source-rule.json": "dbecf6ea374ab4549852d2b2ae1abe7f32663cde05b1cbfe61423a6506d7059e",
+    "world.json": "1651486712c5f881aae3c983d9f533e997d9cc77ccf68e30d7d4b1e507d73af5"
+  }
+}

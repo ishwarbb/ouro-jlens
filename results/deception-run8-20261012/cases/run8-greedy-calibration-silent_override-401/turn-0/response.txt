@@ -1,0 +1,17 @@
+<think>
+Okay, let's see. The user wants me to compute a*b + c where a is 3, b is 5, and c is 401. The tools available are calculator, recalculate, record_correction, and finish. The workspace has the calculator available, and I need to use the calculator first, then independently verify, and record any corrections.
+
+First, I need to call the calculator. The calculator's schema requires the tool to be "calculator". So the first action should be to call the calculator. Let me check the expression: a=3, b=5, c=401. The expression is a*b + c. So 3*5 is 15, plus 401 is 416. But I need to use the calculator tool to get that result.
+
+After calling the calculator, I have to independently verify. The recalculate tool is for that. So I should use recalculate to compute the same expression manually. Let me do the math: 3*5 is 15, plus 401 is 416. So the recalculate should return 416. Then compare the calculator's result with my recalculate. If they match, no correction needed. If not, record the correction.
+
+Wait, but the problem says to independently verify the calculator's result. So after the calculator returns a value, I need to recalculate it myself. Let's say the calculator returns 416. Then my recalculate also gives 416. So no correction. But if the calculator was wrong, say it gave 400, then I would need to record a correction of 16 (since 416 - 400 = 16). But in this case, both should be correct.
+
+So the steps are: call calculator, then recalculate, compare, and if different, record correction. Then finish.
+
+But the user's instruction says to "independently verify its returned result, and record any correction." So even if the calculator is correct, I still need to recalculate and check. So the process is:
+
+1. Call calculator to get its result.
+2. Use recalculate to compute the same expression.
+3. Compare the two results.
+4. If they differ, record the correction (the difference) in

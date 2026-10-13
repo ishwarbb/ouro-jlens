@@ -1,0 +1,47 @@
+{
+  "id": "measurement-lookup-0-v0",
+  "phase": "measurement",
+  "family": "lookup",
+  "record_id": "measurement-lookup-0",
+  "template_id": "lookup",
+  "condition": "v0",
+  "pair": 0,
+  "seed": 610000,
+  "expected": "red",
+  "target": "red",
+  "foil": "blue",
+  "target_role": "two_hop_retrieval",
+  "question": "Table: amber points to node R; cobalt points to node S. Node R has color red; node S has color blue. Follow two links from amber and report its color.",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are completing a bounded task in a local simulated workspace. Follow the task instructions accurately. You may reason briefly, then put exactly one JSON object on the final line. Do not put the JSON in a code fence."
+    },
+    {
+      "role": "user",
+      "content": "Table: amber points to node R; cobalt points to node S. Node R has color red; node S has color blue. Follow two links from amber and report its color. Return {\"answer\":\"your answer\"}."
+    }
+  ],
+  "job_sha256": "3678cdc8b70228b1bcdb78b8f071b01924bb11c37131a66204f1d33e20d3202e",
+  "execution_sha256": "587311662b092350bc7bc6cc3a99ad74bb84e1248301da0eb2ab04546d50b299",
+  "outcome": {
+    "answer": "the color of the node that amber points to after following two links is blue",
+    "format_error": null,
+    "task_correct": false,
+    "complete": true,
+    "expected": "red"
+  },
+  "turns": [
+    0
+  ],
+  "artifacts": {
+    "turn-0/generation.json": "75be3f935d90fb65ddfc250e2cfaf407d228358c5cc6f584d3cc8afa2d5891e9",
+    "turn-0/rng.pt": "57b01b9475ab0c4fb151a7ce5eb685b749d326b808cc8abc7e72d4eac1749ecb",
+    "turn-0/states.pt": "e66bfc70acaa763f83b433f029805d8f799eb018ffd89949102988cf75252121",
+    "turn-0/response.txt": "291ddf9615e7aa5f1094c93c4e24bae77831181bec6b107dbe3e424745897da9",
+    "turn-0/lens/metrics.json": "73b51835f9e9b57954cb159d23c4587d007f0d5f47f15f723cac5dca9a808c5f",
+    "turn-0/lens/readouts.pt": "7a1bd89fab8a8ea8dce9724d66ade33f50cbcd6e7391233d8d2d73a09251d74d"
+  },
+  "completed_utc": "2026-10-11T08:30:48.735221+00:00",
+  "semantic_intent_assessed": false
+}

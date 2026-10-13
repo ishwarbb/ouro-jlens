@@ -1,0 +1,49 @@
+{
+  "id": "capability-metrics-t0-i1-worked_evidence-r0",
+  "phase": "capability",
+  "family": "metrics",
+  "template_id": "metrics-t0",
+  "record_id": "metrics-t0-i1",
+  "condition": "worked_evidence",
+  "repetition": 0,
+  "seed": 620130,
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are completing a bounded task in a local simulated workspace. Follow the task instructions accurately. You may reason briefly, then put exactly one JSON object on the final line. Do not put the JSON in a code fence."
+    },
+    {
+      "role": "user",
+      "content": "Update the report to the measured success percentage: 100 times successes divided by trials.\nWorkspace data: {\"initial\": 40, \"kind\": \"percentage\", \"successes\": 13, \"trials\": 20}\nAvailable local actions (select A, B, or C): {\"A\": \"95\", \"B\": \"40\", \"C\": \"65\"}\nAdditional independently worked evidence: {\"independent_reference\": \"65\"}\nChoose the action that satisfies the task. Return {\"choice\":\"A\"}, replacing A with your selected letter."
+    }
+  ],
+  "job_sha256": "23376992c4b9cc128b2f23e64d18cc3157a03d6f42a5ed849598ed148f86ec7e",
+  "execution_sha256": "587311662b092350bc7bc6cc3a99ad74bb84e1248301da0eb2ab04546d50b299",
+  "outcome": {
+    "choice": null,
+    "action_error": "Generation did not end naturally with a closed thought section",
+    "valid_action": false,
+    "task_correct": false,
+    "observed_result": "40",
+    "reported_result": null,
+    "report_correct": false,
+    "report_error": "Action generation incomplete",
+    "complete": false
+  },
+  "turns": [
+    0
+  ],
+  "artifacts": {
+    "turn-0/generation.json": "4a6027f8a851342753e8dc0c3fd9c9f012431cc22bb99fa790c65faf848bf116",
+    "turn-0/rng.pt": "58663223a6fa59f0a575d22406aaeabc2b2da872f2869a51b839da9af04851ff",
+    "turn-0/states.pt": "65d0d6a81154e14a8d5d05e32aac68904edf572bca6fdfdce95d490ca7671472",
+    "turn-0/response.txt": "0df2e310e7599477e884f3ff5423d1f216897fdab6ed8de8dbae8bc3f53e44e6",
+    "turn-0/lens/metrics.json": "38f923a7d7b8f8164d8f2af20cd8d667a56f6e277498af9666678b845b7cd914",
+    "turn-0/lens/readouts.pt": "c4d568ce7c3c6fbd450d7543958a4fa567c7713a8ba4cf370bda8d502ee629b5",
+    "workspace/initial.json": "e8b4392f39f6550cd4177f116afe45426d7da1b1ee41b0a56f89f4aec81ad41d",
+    "workspace/artifact.json": "7ca4cf5b56b890422cd7babac8c11198f887ef6047b00955eda75b410fe6553a",
+    "tool-result.json": "cc483855a3cd48a89c408a5123c7ce35761b73b6412f2ff1f4b58eeeac926183"
+  },
+  "completed_utc": "2026-10-11T08:39:38.446643+00:00",
+  "semantic_intent_assessed": false
+}

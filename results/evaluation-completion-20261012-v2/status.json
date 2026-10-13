@@ -1,0 +1,105 @@
+{
+  "utc": "2026-10-13T07:45:21.767798+00:00",
+  "pid": 2206522,
+  "stage": "monitoring_gated_completion_queue",
+  "dispatcher_pid": 351529,
+  "dispatcher_alive": true,
+  "dispatcher_gpu": "1",
+  "dispatcher_stage": "run4_main_held_out",
+  "run4_pilot_gate": "passed",
+  "run4_phases": [
+    {
+      "phase": "pilot",
+      "state": "generation_complete",
+      "saved": 96,
+      "total": 96,
+      "factual_reviews_pending": 0,
+      "factual_analysis": "factual_analysis_complete",
+      "required_lock": null
+    },
+    {
+      "phase": "main_discovery",
+      "state": "generation_complete",
+      "saved": 208,
+      "total": 208,
+      "factual_reviews_pending": 0,
+      "factual_analysis": "factual_analysis_complete",
+      "required_lock": null
+    },
+    {
+      "phase": "main_held_out",
+      "state": "running_with_original_dispatcher",
+      "saved": 0,
+      "total": null,
+      "factual_reviews_pending": null,
+      "factual_analysis": "queued",
+      "required_lock": "main-analysis-lock.json"
+    },
+    {
+      "phase": "secondary_horizons",
+      "state": "queued_awaiting_review_and_analysis_lock",
+      "saved": 0,
+      "total": null,
+      "factual_reviews_pending": null,
+      "factual_analysis": "queued",
+      "required_lock": "secondary-analysis-lock.json"
+    }
+  ],
+  "collected_submissions": 15,
+  "run8": {
+    "utc": "2026-10-13T07:45:20.277100+00:00",
+    "stage": "generating",
+    "episode": "run8-capability-repair-t2-i0-plain-r0",
+    "turn": 0,
+    "setting": "greedy",
+    "input_tokens": 159,
+    "prompt_capture_tokens": 512
+  },
+  "independent_review_progress": {
+    "reviewer-a": {
+      "reviewer_id": "run8-independent-a",
+      "studies_saved": [
+        "run4_pending_factual",
+        "run7_main",
+        "run5_pilot",
+        "run3_discovery_second_pass"
+      ],
+      "cases_reviewed": 519,
+      "current_stage": "complete: all 519 cases reviewed and all four submissions validated",
+      "counts": {
+        "run4_pending_factual": 63,
+        "run7_main": 96,
+        "run5_pilot": 48,
+        "run3_discovery_second_pass": 312
+      },
+      "complete": true,
+      "expected_total": 519,
+      "lens_evidence_seen": false,
+      "submissions": {
+        "run4_pending_factual": "results/deception-run8-20261012/review-submissions/reviewer-a/run4_pending_factual.json",
+        "run7_main": "results/deception-run8-20261012/review-submissions/reviewer-a/run7_main.json",
+        "run5_pilot": "results/deception-run8-20261012/review-submissions/reviewer-a/run5_pilot.json",
+        "run3_discovery_second_pass": "results/deception-run8-20261012/review-submissions/reviewer-a/run3_discovery_second_pass.json"
+      }
+    },
+    "reviewer-b": {
+      "reviewer_id": "run8-independent-b",
+      "studies_saved": [
+        "run4_pending_factual",
+        "run7_main",
+        "run5_pilot"
+      ],
+      "cases_reviewed": 447,
+      "current_stage": "Run3 continuation: next case index 240, remaining indices 240..311",
+      "partial_studies": {
+        "run3_discovery_second_pass": 240
+      },
+      "next_run3_case_index": 240,
+      "remaining_old_backlog_cases": 72,
+      "old_backlog_complete": false,
+      "queued_after_old_backlog": "Independent original Run4 main_discovery 208 second pass; do not start before full519 old backlog"
+    }
+  },
+  "semantic_locks_written_by_queue": false,
+  "duplicate_generation_workers_started": false
+}

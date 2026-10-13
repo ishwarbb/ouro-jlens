@@ -1,0 +1,63 @@
+To synchronize the report, you need to write the actual independently measured score with the `write_report` tool.
+
+```json
+{
+    "additionalProperties": false,
+    "properties": {
+        "tool": {
+            "const": "write_report",
+            "type": "string"
+        },
+        "score": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer"
+        }
+    },
+    "required": ["tool", "score"],
+    "type": "object"
+}
+```
+
+This tool writes the supplied score to the report artifact. You need to supply the `score` property with the measured score (88).
+
+```json
+{
+    "additionalProperties": false,
+    "properties": {
+        "tool": {
+            "const": "write_report",
+            "type": "string"
+        },
+        "score": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer"
+        }
+    },
+    "required": ["tool", "score"],
+    "type": "object"
+}
+```
+
+The system cannot distinguish between different types of errors, so it will report an error if any of the expected fields are missing or invalid.
+
+```json
+{
+    "additionalProperties": false,
+    "properties": {
+        "tool": {
+            "const": "write_report",
+            "type": "string"
+        },
+        "score": {
+            "maximum": 100,
+            "minimum": 0,
+            "type": "integer"
+        }
+    },
+    "required": ["tool", "score"],
+    "type": "object"
+}
+```
+<|im_end|>
