@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "study": "Run 10",
+  "title": "Fresh confirmation of Ouro loop interventions",
+  "date": "2026-10-13",
+  "timezone": "America/Chicago",
+  "status": "planned_pending_implementation_and_execution_freeze",
+  "documentation": "../../RUN10_PLAN.md",
+  "source_commit": "369c6c4",
+  "launched": false,
+  "independence": "No dependency on Run 9 behavior or completion of earlier active studies",
+  "model": {
+    "id": "ouro",
+    "repository": "ByteDance/Ouro-2.6B",
+    "revision": "1ed04250da1a9936042725d302e81c8fa2ab5abd",
+    "model_directory": "model",
+    "weight_sha256": "2fdf9805a3510b7dc82959a2db4872ef767a5bdc55520c6a1b54fc3e463c1bba",
+    "physical_layers": 48,
+    "loops": 4,
+    "virtual_sites": 192,
+    "adaptive_exit": false,
+    "model_dtype": "bfloat16",
+    "attention": "sdpa",
+    "use_cache": false
+  },
+  "lenses": {
+    "directory": "results/jlens-family-1000",
+    "release": "v0.1.0",
+    "artifact_manifest": "../../artifacts.json",
+    "bundle": "lenses",
+    "targets": [
+      47,
+      95,
+      143,
+      191
+    ],
+    "routing": "own_loop_end",
+    "dtype": "float32",
+    "refit_on_evaluation_prompts": false
+  },
+  "hypothesis": {
+    "id": "R10-H1",
+    "primary_contrast": "loops_23 minus loops_234",
+    "direction": "positive",
+    "prior_counts": {
+      "loops_23": 84,
+      "loops_234": 73,
+      "trials": 192
+    },
+    "prior_interval_pp": [
+      1.6,
+      10.9
+    ],
+    "prior_status": "Exploratory development sample; not a power calculation"
+  },
+  "records": {
+    "fresh_prompts": 64,
+    "semantic_templates": 8,
+    "prompts_per_template": 8,
+    "destinations_per_prompt": 3,
+    "logical_trial_settings": 1728,
+    "required_fields": [
+      "id",
+      "template_id",
+      "prompt_text",
+      "input_ids",
+      "source_concept",
+      "source_token_id",
+      "baseline_answer",
+      "destinations",
+      "expected_counterfactual_answers",
+      "accepted_answer_tokens",
+      "accepted_completed_answers"
+    ],
+    "expected_answer_rule": "For semantic function f and destination concept d, score f(d), not d. France to China in a capital task is scored against Beijing.",
+    "selection": "Freeze candidate pool and choose by duplicate, factual and tokenizer checks only; no replacement after model output.",
+    "baseline_correctness_gate": false,
+    "maximum_input_tokens": 2048,
+    "format": "Existing raw flexible-task convention, explicit BOS handling; no new chat or Answer wrapper",
+    "truncation": false
+  },
+  "intervention": {
+    "operator": "projection_transfer",
+    "formula": "h + (h dot a) * (b - a)",
+    "a": "normalize(J_site.T @ W[source_token])",
+    "b": "normalize(J_site.T @ W[destination_token])",
+    "strength": 1.0,
+    "update_dtype": "float32",
+    "cast_back": "model_dtype",
+    "physical_layer_band_zero_based": [
+      24,
+      40
+    ],
+    "loop_numbering": "one_based",
+    "virtual_site_ranges": {
+      "2": [
+        72,
+        88
+      ],
+      "3": [
+        120,
+        136
+      ],
+      "4": [
+        168,
+        184
+      ]
+    },
+    "positions": "All original prompt positions only",
+    "during_continuation": "Cache-free forward; reapply at original prompt positions only; no generated-token edits",
+    "implementation_reference": "../../workspace_audit.py",
+    "random_norm_warning": "workspace_interventions.random_matched uses swap norm; use projection-transfer norm as in workspace_audit.random_transfer"
+  },
+  "conditions": [
+    {
+      "id": "baseline",
+      "transfer_loops": [],
+      "random_loops": [],
+      "hooks": false
+    },
+    {
+      "id": "loops_2",
+      "transfer_loops": [
+        2
+      ],
+      "random_loops": []
+    },
+    {
+      "id": "loops_3",
+      "transfer_loops": [
+        3
+      ],
+      "random_loops": []
+    },
+    {
+      "id": "loops_4",
+      "transfer_loops": [
+        4
+      ],
+      "random_loops": []
+    },
+    {
+      "id": "loops_23",
+      "transfer_loops": [
+        2,
+        3
+      ],
+      "random_loops": []
+    },
+    {
+      "id": "loops_234",
+      "transfer_loops": [
+        2,
+        3,
+        4
+      ],
+      "random_loops": []
+    },
+    {
+      "id": "sham",
+      "transfer_loops": [],
+      "random_loops": [],
+      "zero_update_hook_loops": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "loops_23_random_4",
+      "transfer_loops": [
+        2,
+        3
+      ],
+      "random_loops": [
+        4
+      ]
+    },
+    {
+      "id": "random_234",
+      "transfer_loops": [],
+      "random_loops": [
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "random_controls": {
+    "seed": 2026101310,
+    "unit_vector_distribution": "Normalized isotropic Gaussian",
+    "seed_key": [
+      "seed",
+      "record_id",
+      "destination",
+      "virtual_site"
+    ],
+    "share_loop4_vectors_across_conditions": true,
+    "norm": "Norm of the hypothetical projection-transfer update on the current arm incoming h at that site/token",
+    "stored": [
+      "derived_seeds",
+      "generator_specification_or_vectors",
+      "per_site_token_displacement_norms"
+    ],
+    "trajectory_energy_exactly_matched": false
+  },
+  "endpoints": {
+    "primary": "Final-loop next-token argmax belongs to the expected counterfactual answer whole-word token set",
+    "primary_matches_historical_metric": true,
+    "secondary": "First completed answer equals a frozen accepted expected answer, including split-token forms",
+    "secondary_max_new_tokens": 32,
+    "secondary_sampling": "greedy",
+    "secondary_incomplete": "Failure",
+    "extractor": "Freeze deterministic delimiter/EOS/turn-end rules and accepted aliases before generation",
+    "all_attempts_retained": true,
+    "baseline_correct_subset": "Sensitivity only; not primary denominator"
+  },
+  "statistics": {
+    "cluster": "Source prompt; average its three destination-level differences",
+    "template_target": "Equally weighted fixed eight-template population",
+    "bootstrap": {
+      "draws": 50000,
+      "stratify": "template",
+      "resample": "Eight prompt records within each template",
+      "confidence": 0.95,
+      "interval": "percentile",
+      "seed": 2026101310
+    },
+    "test": {
+      "method": "Two-sided Monte Carlo paired record sign flips",
+      "draws": 100000,
+      "plus_one_correction": true,
+      "seed": 2026101310,
+      "assumption": "Null symmetry/exchangeability",
+      "alpha": 0.05
+    },
+    "support_rule": "Mean > 0, lower bootstrap CI > 0, and primary test p < 0.05",
+    "confirmatory_test_count": 1,
+    "other_comparisons": "Secondary descriptive; no best-subset substitution"
+  },
+  "preflight": {
+    "engineering_prompts": 8,
+    "maximum_forwards_per_prompt": 8,
+    "maximum_forwards": 64,
+    "checks": [
+      "native_adapter_logits",
+      "all_192_invocations",
+      "selected_sites",
+      "own_loop_routing",
+      "deterministic_repeated_forwards",
+      "transfer_algebra",
+      "baseline_sham_agreement",
+      "random_transfer_norm_match",
+      "prompt_only_continuation_mask",
+      "hook_cleanup_on_failure",
+      "counterfactual_answer_mapping",
+      "split_token_scoring",
+      "resume_and_duplicate_ids"
+    ],
+    "numerical_tolerances": "Bind to verified native-vs-adapter behavior and explicit frozen dtype/backend tolerances before main outcomes"
+  },
+  "budget": {
+    "logical_trial_settings": 1728,
+    "maximum_secondary_generated_tokens": 55296,
+    "primary_prompt_evaluations": 1728,
+    "maximum_preflight_forwards": 64,
+    "reuse_primary_as_first_continuation_step": true,
+    "inference_cost_note": "Cache-free continuation repeatedly evaluates the prefix; count tokens, forward calls and wall time separately"
+  },
+  "output": {
+    "output_root_template": "results/workspace-run10-{run_id}",
+    "required_files": [
+      "execution.json",
+      "plan/records.json",
+      "plan/conditions.json",
+      "preflight.json",
+      "events.jsonl",
+      "summary.json"
+    ],
+    "per_trial": [
+      "exact_input_ids",
+      "accepted_answer_token_ids",
+      "primary_argmax_and_scores",
+      "raw_secondary_completion",
+      "output_ids",
+      "intervention_norms",
+      "attempt_history",
+      "manifest_sha256"
+    ],
+    "resume": "Retry infrastructure failures only at identical ID/configuration; preserve failed attempts; no reroll of valid unfavorable output"
+  },
+  "portability": {
+    "path_base": "Repository root for data directories/output roots; document links relative to protocol file",
+    "original_host_required": false,
+    "runners_implemented": false,
+    "handoff": "../README.md"
+  },
+  "sources": [
+    "../../results/workspace-audit/CONCLUSIONS.md",
+    "../../results/workspace-audit/VALIDATION.md",
+    "../../WORKSPACE_AUDIT.md",
+    "../../workspace_audit.py",
+    "../../workspace_interventions.py",
+    "../../model_revision.json",
+    "../../artifacts.json"
+  ]
+}

@@ -108,6 +108,14 @@ were captured, and one demonstration reaches its token cap inside a thought
 block. Development prompts were reused; this is not an independent confirmation
 study. Missing research loop-end cells and tokenization exclusions stay explicit.
 
+## Planned follow-up studies
+
+[Run 9](RUN9_PLAN.md) tests example copying, incentives, and cross-model
+Section 5.3 transfer. [Run 10](RUN10_PLAN.md) independently tests the Ouro
+loop-intervention contrast on fresh prompts. The [server handoff](plans/README.md)
+includes pinned models, portable protocols, validation commands, and the runner
+implementation work required before execution. These plans are not new results.
+
 ## Artifacts and reproduction
 
 `artifacts.json` lists release parts and the exact hash of every restored file.
