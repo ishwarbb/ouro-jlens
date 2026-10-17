@@ -1,0 +1,101 @@
+{
+  "status": "FP32_PASSED_BF16_CHUNK_VALIDATION_FAILED",
+  "device": "GPU 8",
+  "gpu_trial_processes_exited": true,
+  "fp32_total_seconds": 28.21,
+  "fp32_pair_replay_seconds": 1.305,
+  "fp32_peak_allocated_bytes": 12185419776,
+  "fp32_validation": {
+    "status": "passed",
+    "checks": [
+      {
+        "loops": 1,
+        "tokens": 16,
+        "hooks": 18,
+        "chunk_logit_max_abs_error": 1.811981201171875e-05,
+        "chunk_state_max_abs_error": 7.62939453125e-06,
+        "final_readout_exact": true,
+        "loop1_prefix_exact": true,
+        "author_transport_orientation_passed": true
+      },
+      {
+        "loops": 4,
+        "tokens": 16,
+        "hooks": 72,
+        "chunk_logit_max_abs_error": 1.5735626220703125e-05,
+        "chunk_state_max_abs_error": 1.52587890625e-05,
+        "final_readout_exact": true,
+        "loop1_prefix_exact": true,
+        "author_transport_orientation_passed": true
+      },
+      {
+        "loops": 8,
+        "tokens": 16,
+        "hooks": 76,
+        "chunk_logit_max_abs_error": 2.288818359375e-05,
+        "chunk_state_max_abs_error": 2.09808349609375e-05,
+        "final_readout_exact": true,
+        "loop1_prefix_exact": true,
+        "author_transport_orientation_passed": true
+      }
+    ],
+    "backend": "Hugging Face only; vLLM equivalence not tested",
+    "historical_replay_exact": false,
+    "dtype": "torch.float32",
+    "protocol_sha256": "b51c407b9e7ffb4086364804aa3179bdd257fedc47b0ebdb94e1a01c4b0b1686"
+  },
+  "cpu_gpu_comparison": [
+    {
+      "id": "a46d334cef321d67332438ca:20:0",
+      "condition": "original",
+      "identical_input_tokens": true,
+      "cpu_target_words": [],
+      "gpu_target_words": [],
+      "word_set_match": true,
+      "complete_metrics_exact_match": true,
+      "seconds": 0.647
+    },
+    {
+      "id": "4e01c1b477092738a11d534e:20:0",
+      "condition": "standard",
+      "identical_input_tokens": true,
+      "cpu_target_words": [
+        "hidden",
+        "manipulation",
+        "pretend",
+        "secretly"
+      ],
+      "gpu_target_words": [
+        "hidden",
+        "manipulation",
+        "pretend",
+        "secretly"
+      ],
+      "word_set_match": true,
+      "complete_metrics_exact_match": true,
+      "seconds": 0.658
+    }
+  ],
+  "bf16_validation": {
+    "status": "failed",
+    "protocol_sha256": "a10def173f35cc455fd1b112b8eb4ba1eba6feadcd1cc295cbe7390ba9254007",
+    "dtype": "torch.bfloat16",
+    "check": "full-prefix versus chunked logits",
+    "max_absolute_error": 1.25,
+    "mismatched_elements": 7522,
+    "total_elements": 786432,
+    "rollouts_measured": 0,
+    "note": "Validation aborted before rollout measurement. Reconciled from the process traceback after exit. No tolerance was relaxed."
+  },
+  "unit_tests_passed": 16,
+  "full_scale_started": false,
+  "generation_performed": false,
+  "conclusion": "The brief FP32 GPU replay passes and agrees with CPU on target-word sets. BF16 chunked replay did not pass numerical validation and must not be treated as validated for production.",
+  "gpu8_scope": "Only brief bounded trials; ordinary full-scale runs remain disallowed.",
+  "post_trial_code_changes": {
+    "default_precision": "float32",
+    "explicit_bfloat16_requires_validation": true,
+    "runner_sha256": "cf3306fa76ead9531253f44fd34e38ea40f01eb9e0dd9f756c08aea972d68c5d",
+    "scope": "Default and validation guards updated after the explicit-FP32 trial; no further GPU execution."
+  }
+}

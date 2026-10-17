@@ -12,6 +12,12 @@ New analyses now default to the author's published lens at
 available for historical reproduction. See the
 [author-lens comparison](reports/professor-20261013/author-ouro-lens-comparison.html).
 
+The separate [MonitorBench replay experiment](experiments/monitorbench_replay/README.md)
+applies the author's **Ouro-2.6B-Thinking** lens to saved responses from the original
+ten tasks. Its guide includes the conditional-emergence objective, environment
+setup, trial and full-cohort commands, validation results, and an agent handoff.
+No response regeneration is required; the full-scale replay has not run.
+
 This repository contains the implementation, frozen evaluation records,
 reports, numerical checks, and five ready-to-browse viewer examples. Larger
 fitted tensors and captured states are attached to the

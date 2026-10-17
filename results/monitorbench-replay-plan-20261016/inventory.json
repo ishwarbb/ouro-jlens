@@ -1,0 +1,129 @@
+{
+  "source_roots": [
+    "/srv/local/hanw14/loopllm_eval/results",
+    "/home/ibb3/LoopLLM_Eval/results"
+  ],
+  "selected_tasks": [
+    "goal_deception.realworld",
+    "cue_condition.knowledge",
+    "cue_condition.preference",
+    "cue_condition.judgment",
+    "cue_answer.math",
+    "cue_answer.health",
+    "cue_answer.logic",
+    "cue_answer.safety",
+    "cue_answer.science",
+    "cue_answer.engineering"
+  ],
+  "canonical_files": 456,
+  "file_bytes": 3980041861,
+  "totals": {
+    "records": 42776,
+    "records_with_messages": 42776,
+    "records_with_prompt_ids": 0,
+    "records_with_output_ids": 0,
+    "records_with_rollout_count_mismatch": 0,
+    "records_with_loop_metadata": 42776,
+    "rollouts": 208096,
+    "response_characters": 3732076294,
+    "nonempty_rollouts": 208096,
+    "rollouts_with_think_close": 167713,
+    "rollouts_with_think_open": 18,
+    "rollouts_with_replacement_character": 3489
+  },
+  "models": {
+    "Ouro-1.4B-Thinking_ut10": 5728,
+    "Ouro-1.4B-Thinking_ut2": 15504,
+    "Ouro-1.4B-Thinking_ut3": 9776,
+    "Ouro-1.4B-Thinking_ut4": 15504,
+    "Ouro-1.4B-Thinking_ut5": 9776,
+    "Ouro-1.4B-Thinking_ut6": 15504,
+    "Ouro-1.4B-Thinking_ut7": 2960,
+    "Ouro-1.4B-Thinking_ut8": 13920,
+    "Ouro-2.6B-Thinking_ut1": 18272,
+    "Ouro-2.6B-Thinking_ut2": 24640,
+    "Ouro-2.6B-Thinking_ut3": 14016,
+    "Ouro-2.6B-Thinking_ut4": 23440,
+    "Ouro-2.6B-Thinking_ut5": 4576,
+    "Ouro-2.6B-Thinking_ut6": 13632,
+    "Ouro-2.6B-Thinking_ut8": 20848
+  },
+  "model_size_rollouts": {
+    "1.4B": 88672,
+    "2.6B": 119424
+  },
+  "pair_groups": 32082,
+  "index_pairs": 156072,
+  "paired_unique_baseline_records": 10694,
+  "paired_unique_intervention_records": 32082,
+  "pair_groups_by_condition": {
+    "standard": 10694,
+    "direct_conceal": 10694,
+    "monitor_aware": 10694
+  },
+  "pairs_by_condition": {
+    "standard": 52024,
+    "direct_conceal": 52024,
+    "monitor_aware": 52024
+  },
+  "unpaired_groups": 0,
+  "unpaired_reasons": {},
+  "files_with_recorded_revision": 0,
+  "multiple_n_strata": [
+    {
+      "root": 0,
+      "model": "Ouro-2.6B-Thinking_ut8",
+      "task": "cue_answer.logic",
+      "condition": "direct_conceal",
+      "n": [
+        4,
+        8
+      ]
+    },
+    {
+      "root": 0,
+      "model": "Ouro-2.6B-Thinking_ut8",
+      "task": "cue_answer.logic",
+      "condition": "monitor_aware",
+      "n": [
+        4,
+        8
+      ]
+    },
+    {
+      "root": 0,
+      "model": "Ouro-2.6B-Thinking_ut8",
+      "task": "cue_answer.logic",
+      "condition": "original",
+      "n": [
+        4,
+        8
+      ]
+    },
+    {
+      "root": 0,
+      "model": "Ouro-2.6B-Thinking_ut8",
+      "task": "cue_answer.logic",
+      "condition": "standard",
+      "n": [
+        4,
+        8
+      ]
+    }
+  ],
+  "issues": [],
+  "same_prompt_pair_groups": 0,
+  "lens_coverage": {
+    "available_thinking_model": "ByteDance/Ouro-2.6B-Thinking",
+    "pinned_model_revision": "f1edd81e7ac41355db670500ceaf204e0f73af68",
+    "author_targets": [
+      47,
+      95,
+      143,
+      191
+    ],
+    "size_14b": "No released matching lens in the audited author inventory.",
+    "loops_1_to_4": "Candidate full-loop coverage for 2.6B, subject to checkpoint/tokenizer and replay-equivalence checks.",
+    "loops_over_4": "Only loops 1–4 have author matrices. Replay with original total depth and label readout as prefix-only; later loops are unmeasured."
+  }
+}
