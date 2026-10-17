@@ -8,6 +8,35 @@ Implementation: [ouro_lens_family.py](ouro_lens_family.py).
 Runner: [fit_ouro_family.py](fit_ouro_family.py).
 The earlier four-site, final-target pilot remains documented in [JLENS.md](JLENS.md).
 
+## Author release comparison (16 October 2026)
+
+The [author release](https://huggingface.co/zigzag9939/jlens-looped-transformers)
+is now available. Its base-Ouro lenses use exactly our pinned model checkpoint.
+We downloaded and checksum-verified all six base-Ouro banks at repository commit
+`dc9e1b928a2d14bbb09e914525e39c258a489b05` and imported the four loop-end banks
+without changing their tensors into `results/author-lens-20261016/family`.
+This is now the default for new work, including the live viewer,
+`OuroLensFamily.load()`, `fit_ouro_family.py --phase apply`,
+`workspace_reproduction.py`, and `run_deception_probe.py`.
+The shared setting is `ouro_lens_config.DEFAULT_FAMILY`. Saved viewer runs
+retain their original lens for additional traces, inventories and windows.
+Frozen historical runners and comparison code retain their recorded family.
+Restore the author banks with `python3 download_author_lens.py` if needed.
+
+The 188 own-loop matrices have mean cosine similarity above 0.99996 in every
+loop. Across 1,504 matched readouts (three fresh raw-text positions and five
+previously selected professor-example positions, each at 188 sources), the
+two banks agree on the top token in 98.14% of cells. All five selected concept
+ranks are unchanged. Long cross-loop transports differ more substantially.
+These are consistency checks, not semantic-accuracy or causal-effect validation.
+
+Differences include corpus selection, explicit BOS handling, stored precision,
+and numerical environment. The author's two extra mid-loop banks target 120
+and 132. See the [comparison report](reports/professor-20261013/author-ouro-lens-comparison.html)
+and [JSON summary](reports/professor-20261013/author-ouro-lens-comparison.json)
+for coverage, checksums, full metrics, qualifications and usage commands.
+`compare_author_ouro_lens.py` reproduces the audit from the downloaded snapshot.
+
 ## Paper and release search
 
 [Wang and Reid, arXiv:2609.01924v1](https://arxiv.org/html/2609.01924v1)

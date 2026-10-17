@@ -207,7 +207,7 @@ def main():
     p.add_argument('--phase', choices=['prepare', 'fit', 'apply'], required=True)
     p.add_argument('--model', type=Path, default=ROOT / 'model')
     p.add_argument('--corpus', type=Path, default=ROOT / 'fitting_data/wikitext103-1000.json')
-    p.add_argument('--output-dir', type=Path, default=ROOT / 'results/jlens-family')
+    p.add_argument('--output-dir', type=Path, help='Defaults to the author family for apply; results/jlens-family for prepare/fit')
     p.add_argument('--num-prompts', type=int, default=1000)
     p.add_argument('--dim-batch', type=int, default=4)
     p.add_argument('--max-seq-len', type=int, default=128)
@@ -219,6 +219,9 @@ def main():
     p.add_argument('--device', default='cuda')
     p.add_argument('--prompt', default='Fact: The currency used in the country shaped like a boot is')
     args = p.parse_args()
+    if args.output_dir is None:
+        from ouro_lens_config import DEFAULT_FAMILY
+        args.output_dir = DEFAULT_FAMILY if args.phase == 'apply' else ROOT / 'results/jlens-family'
     if min(args.num_prompts, args.dim_batch, args.checkpoint_every) < 1:
         p.error('Counts must be positive')
     if args.skip_first < 0 or args.max_seq_len <= args.skip_first + 1:

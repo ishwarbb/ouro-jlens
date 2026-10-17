@@ -1,7 +1,7 @@
 # Ouro workspace explorer
 
 A local, interactive viewer for the existing Ouro-2.6B checkpoint and the
-1,000-prompt Jacobian lens family. It serves recorded experiments immediately
+author's published 1,000-prompt Jacobian lens family for new runs. It serves recorded experiments immediately
 and loads the model when the first live analysis is requested. The frontend
 uses native HTML, CSS, JavaScript, Canvas and SVG; no Node, build step, CDN,
 external model API or new inference dependencies are required.
@@ -30,14 +30,21 @@ then restore the fitted family and saved example states:
 
 ```bash
 python3 download_artifacts.py --bundle lenses --bundle viewer
+python3 download_author_lens.py
 .venv/bin/python ouro_viewer.py --port 8769 --gpu 0
 ```
 
-`--gpu` accepts 0–3 and 8. Automatic mode falls back to CPU when the selected
+`--gpu` accepts 0–8. Automatic mode falls back to CPU when the selected
 GPU has less than 10 GiB free and moves to that GPU before a later job if
 capacity becomes available. CPU inference uses eight threads. `--device cpu`
 forces CPU; `--device cuda` requires GPU capacity. The model and lenses stay
 loaded between jobs. A single worker serializes model operations.
+
+New analyses and interventions use the pinned author family in
+`results/author-lens-20261016/family`. Each new run records its lens repository,
+revision, family path and manifest hash. Additional traces, inventories and
+windows for an existing run use that run's recorded family, preserving its
+original results. The old local fit remains available for these operations.
 
 `--data PATH` selects another viewer data folder. New analysis requires the
 checkpoint and fitted lenses. Exact traces and inventories for a saved run
@@ -47,6 +54,41 @@ without any tensor artifacts.
 To regenerate the two research viewer exports, restore the `inventories`
 bundle and run `.venv/bin/python export_ouro_viewer.py`. Existing exports are
 preserved unless `--refresh-research` is provided.
+
+## Professor presentation collection
+
+Open **http://127.0.0.1:8769/professor** (or the same `/professor` path on your forwarded port). The sidebar's **Research examples** link opens saved cases with exact responses or explicitly labeled next-token predictions, prompts, takeaways, interpretation limits, and source hashes. Interactive top-25 readouts provide recorded position, loop, layer, and readout-method selectors; other cases show recorded concept-readout or causal-control tables. Raw logits are labeled separately from probabilities; missing cells remain missing.
+
+The collection covers openly stated false reporting, truthful lexical flags, reasoning/answer disagreement, ambiguous word meaning, absent monitored hits, within-response correction, token caps, intermediate concepts, causal transfer, and controlled span ablation. Selection is illustrative, not a detector ranking or effect estimate.
+
+Saved data: `results/ouro-viewer/professor-examples/`. Rebuild only these presentation exports with `.venv/bin/python export_professor_examples.py`; original experiment files remain unchanged. Source-selection review is in `results/ouro-viewer/professor-example-review.json`.
+
+Examples 11–13 use the author's released lens: two fresh multiplication reasoning/answer mismatches and an archived battery contradiction. Their full truthful controls, timing, and interpretation limits are included. See [the follow-up report](reports/professor-20261013/additional-author-lens-examples.html) and `results/professor-followups-20261016/analysis.json`. All 32 fresh attempts are retained, including disclosed strategies and errors. Rebuild the analysis with `.venv/bin/python analyze_professor_followups.py` and the new exports with `.venv/bin/python export_professor_followups.py`; the historical exporter preserves the resulting `supplemental-examples.json` entries.
+
+Examples 14–21 present eight distinct tasks from the [1,024-response author-lens study](reports/professor-20261013/author-lens-scale-20261016.html). All 1,024 responses have fixed-window author-lens and raw-lens screening; 30 candidates and controls have full generated-trajectory replays. Eleven reviewed clean mismatches include three duplicate response forms. Early lexical flags also occur in aligned controls, so these are behavioral examples, not validated hidden schemes. The filterable report retains every outcome, and `results/professor-scale-20261016/responses.csv` exports every response. Rebuild its analysis with `.venv/bin/python summarize_professor_scale.py` and its presentation with `.venv/bin/python export_professor_scale.py`. Both supplement exporters preserve the other study's entries.
+
+The current [incentive-transition report](reports/professor-20261013/incentive-transitions-20261016.html)
+answers the user's clarified question: among correct-answer controls with no
+target-word hits, how many gain hits when the reward favors a wrong answer?
+At author J-lens rank ≤10, 118/262 clean early-window controls gain a hit in
+the same-task/sample-index incentive response; across all saved windows the
+count is 130/201. Words in other benign responses are allowed. The two
+conditions used different batch seeds, so the report also compares all
+within-task incentive samples against other benign samples and keeps lexical
+emergence separate from behavioral deception. Rebuild with
+`python3 analyze_incentive_transitions.py`; source hashes, per-word counts,
+full response pairs and CSVs are in `results/incentive-transitions-20261016/`.
+
+The earlier [target-word specificity report](reports/professor-20261013/target-word-specificity-20261016.html)
+applied a stricter population-wide criterion, superseded by the conditional
+question above. It tests whether the author-lens words distinguish mismatch examples from
+truthful controls. It includes every measured word, ranks 1/5/10, raw-lens
+comparisons, and early/reasoning/message windows. No tested word rule meets
+the zero-observed-control-hit criterion while flagging a mismatch across the
+combined control set; actual scheming sensitivity remains unmeasured because
+these mismatches do not establish concealed intent. The task split is explicitly
+retrospective. Rebuild with `python3 analyze_target_specificity.py`; detailed
+data and source hashes are in `results/target-specificity-20261016/`.
 
 ## Explore
 

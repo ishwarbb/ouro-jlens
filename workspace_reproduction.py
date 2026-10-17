@@ -15,6 +15,7 @@ import transformers
 from jlens.hooks import ActivationRecorder
 from ouro_full_fit import load_model
 from ouro_lens_family import OuroLensFamily
+from ouro_lens_config import DEFAULT_FAMILY
 from fit_ouro_family import ROOT,save_json,digest,weight_identity
 from workspace_interventions import Directions,Vocabulary,intervention,score_tokens
 
@@ -355,7 +356,7 @@ def run(args):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--family',type=Path,default=ROOT/'results/jlens-family-1000')
+    p.add_argument('--family',type=Path,default=DEFAULT_FAMILY)
     p.add_argument('--output',type=Path,default=DEFAULT_OUTPUT)
     p.add_argument('--gpus',default='0,1,2,3')
     p.add_argument('--worker',action='store_true')

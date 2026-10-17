@@ -13,6 +13,7 @@ import torch
 from fit_ouro_family import ROOT,digest
 from ouro_full_fit import load_model
 from ouro_lens_family import OuroLensFamily
+from ouro_lens_config import DEFAULT_FAMILY, family_for_run
 from workspace_validated import ValidatedIO,terminal_ids,answer_text,word_atom
 from workspace_interventions import Directions
 from workspace_inventory import dictionary,pursuit
@@ -20,7 +21,7 @@ from workspace_inventory import dictionary,pursuit
 from ouro_viewer_inference import CachedDecoder,prefix_edit
 from ouro_viewer_limits import DEFAULT_NEW_TOKENS,MAX_PROMPT_TOKENS,READOUT_WINDOW,PREFILL_CHUNK,READOUT_BATCH,window_bounds
 
-FAMILY=ROOT/'results/jlens-family-1000'
+FAMILY=DEFAULT_FAMILY
 MODEL=dict(name='Ouro-2.6B',revision='1ed04250da1a9936042725d302e81c8fa2ab5abd',loops=4,layers_per_loop=48,
            fit_prompts=1000,routing='Each source uses its own loop-end Jacobian. Loop ends use identity transport.',
            workspace_band=[24,40],layer_indexing='zero based')
@@ -62,14 +63,26 @@ class Engine:
             hf=AutoModelForCausalLM.from_pretrained(ROOT/'model',trust_remote_code=True,dtype=torch.bfloat16,
                 device_map='cpu',attn_implementation='sdpa').eval()
             self.model=OuroLensModel(hf,tokenizer)
-        self.family=OuroLensFamily.load(FAMILY)
-        self.io=ValidatedIO(self.model);self.bank=Directions(self.model,self.family);self.allowed=None
+        self.family_path=None
+        self.select_family(FAMILY)
+        self.io=ValidatedIO(self.model);self.allowed=None
+
+    def select_family(self,path):
+        if path==self.family_path:return
+        family=OuroLensFamily.load(path)
+        family.check_model(self.model)
+        self.family=family;self.family_path=path
+        self.bank=Directions(self.model,family)
 
     @property
     def device(self):return self.model.hf_model.lm_head.weight.device
 
     def execute(self,payload,update):
         kind=payload['kind']
+        # New analyses and interventions use the author family. Extra readouts
+        # for an existing run use its recorded lens, including cached windows.
+        family=family_for_run(self.store.get(payload['run_id'])) if kind in ('trace','inventory','window') else FAMILY
+        self.select_family(family)
         if self.device.type=='cpu' and self.preference=='auto' and cuda_has_room() and torch.cuda.is_available():
             update('A GPU is free; moving Ouro to it',.03)
             self.model.hf_model.to('cuda');self.bank=Directions(self.model,self.family);self.allowed=None
@@ -155,7 +168,9 @@ class Engine:
                 vocabulary=page['vocabulary']|{str(t):self.io.tokenizer.decode([t]) for t in set(ids)},
                 generation=dict(raw_text=self.io.tokenizer.decode(generated),answer_text=visible,output_tokens=len(generated),
                     limit_reached=len(generated)==limit and not stopped and limit>0,unclosed_thought=inside,had_thought=had_thought,stopped=stopped),
-                elapsed_seconds=round(time.time()-started,2),notes=[],provenance=dict(family_sha256=digest(FAMILY/'family.json'),
+                elapsed_seconds=round(time.time()-started,2),notes=[],provenance=dict(family_sha256=digest(self.family_path/'family.json'),
+                    family_path=str(self.family_path.relative_to(ROOT)),
+                    lens_repository=self.family.metadata.get('repo'),lens_revision=self.family.metadata.get('revision'),
                     native_precision='bfloat16',transport_precision='float32',state_format='per-site-v1',top_k=8,attention='sdpa',
                     generation='greedy; explicit DynamicCache, separate KV entries for all recurrent sites',prefill_chunk=PREFILL_CHUNK,
                     readout_window_size=READOUT_WINDOW,generated_ids_preserved=True,fit_prompts=1000,device=self.device.type))

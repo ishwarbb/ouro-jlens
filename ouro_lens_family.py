@@ -13,6 +13,7 @@ from pathlib import Path
 import torch
 from jlens import JacobianLens
 from jlens.hooks import ActivationRecorder
+from ouro_lens_config import DEFAULT_FAMILY
 
 
 class TargetModel:
@@ -215,7 +216,7 @@ class OuroLensFamily:
         temp.replace(directory / 'family.json')
 
     @classmethod
-    def load(cls, directory):
+    def load(cls, directory=DEFAULT_FAMILY):
         directory = Path(directory)
         manifest = json.loads((directory / 'family.json').read_text())
         if manifest['format_version'] != 1:

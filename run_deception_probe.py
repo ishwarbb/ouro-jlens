@@ -90,8 +90,10 @@ def split_trace(tokenizer, ids):
 
 
 def main():
+    from ouro_lens_config import DEFAULT_FAMILY
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--family", type=Path, default=DEFAULT_FAMILY)
     parser.add_argument("--max-new-tokens", type=int, default=2048)
     parser.add_argument("--seeds", default="42,43,44")
     parser.add_argument("--prepare-only", action="store_true")
@@ -106,7 +108,7 @@ def main():
     protocol = dict(
         model="ByteDance/Ouro-2.6B", revision="1ed04250da1a9936042725d302e81c8fa2ab5abd",
         request_reasoning=args.request_reasoning,
-        family=str(ROOT / "results/jlens-family-1000"), loops=4, layers_per_loop=48,
+        family=str(args.family.resolve()), loops=4, layers_per_loop=48,
         sampling=dict(temperature=0.7, top_p=0.95, top_k=0, seeds=seeds),
         max_new_tokens=args.max_new_tokens, target_words=WORDS,
         primary_positions="Last prompt token and first 20 generated token positions; activations predict the following token.",
@@ -150,7 +152,7 @@ def main():
         print(json.dumps(record), flush=True)
 
     status("checking checkpoint provenance")
-    family_path = ROOT / "results/jlens-family-1000"
+    family_path = args.family
     meta = json.loads((family_path / "family.json").read_text())["metadata"]
     assert sha(ROOT / "model/config.json") == meta["model_config_sha256"]
     assert json.loads((ROOT / "model_revision.json").read_text()) == meta["model_revision"]

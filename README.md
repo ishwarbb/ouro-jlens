@@ -6,6 +6,12 @@ the adapter exposes all **192** distinct layer invocations. The completed
 1,000-prompt fit contains **476 FP32 source-to-target matrices** targeting
 the four loop ends at virtual sites 47, 95, 143 and 191.
 
+New analyses now default to the author's published lens at
+`results/author-lens-20261016/family`, pinned to Hugging Face revision
+`dc9e1b928a2d14bbb09e914525e39c258a489b05`. The original local fit remains
+available for historical reproduction. See the
+[author-lens comparison](reports/professor-20261013/author-ouro-lens-comparison.html).
+
 This repository contains the implementation, frozen evaluation records,
 reports, numerical checks, and five ready-to-browse viewer examples. Larger
 fitted tensors and captured states are attached to the
@@ -55,6 +61,7 @@ python3 -m venv .venv
 .venv/bin/pip install --no-deps --no-build-isolation -e ./jacobian-lens
 .venv/bin/python download_model.py
 python3 download_artifacts.py --bundle lenses --bundle viewer
+python3 download_author_lens.py
 .venv/bin/python ouro_viewer.py --gpu 0 --port 8769
 ```
 

@@ -208,7 +208,12 @@ def handler_for(store,jobs):
                     if not file.is_file():raise FileNotFoundError('Saved run not found')
                     self.send(file.read_bytes());return
                 if path.startswith('/api/jobs/'):self.send(jobs.get(path.removeprefix('/api/jobs/')));return
-                files={'/':'index.html','/index.html':'index.html','/app.js':'app.js','/app.css':'app.css','/favicon.svg':'favicon.svg'}
+                if re.fullmatch(r'/professor-data/[a-zA-Z0-9_-]+\.json',path):
+                    file=store.root/'professor-examples'/path.rsplit('/',1)[-1]
+                    if not file.is_file():raise FileNotFoundError('Saved example evidence not found')
+                    self.send(file.read_bytes());return
+                files={'/':'index.html','/index.html':'index.html','/app.js':'app.js','/app.css':'app.css','/favicon.svg':'favicon.svg',
+                       '/professor':'professor.html','/professor.html':'professor.html','/professor.js':'professor.js','/professor.css':'professor.css'}
                 if path not in files:raise FileNotFoundError('Page not found')
                 file=WEB/files[path]
                 content_type=mimetypes.guess_type(str(file))[0] or 'application/octet-stream'
@@ -234,7 +239,7 @@ def handler_for(store,jobs):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port',type=int,default=8769)
-    parser.add_argument('--gpu',choices=['0','1','2','3','8'],default='0')
+    parser.add_argument('--gpu',choices=[str(i) for i in range(9)],default='0')
     parser.add_argument('--device',choices=['auto','cpu','cuda'],default='auto')
     parser.add_argument('--data',type=Path,default=DEFAULT_DATA)
     parser.add_argument('--read-only',action='store_true')
